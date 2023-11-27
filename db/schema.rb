@@ -42,15 +42,15 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_27_143006) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "sessions", force: :cascade do |t|
+  create_table "trainings", force: :cascade do |t|
     t.integer "shot_made"
     t.integer "shot_total"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "zone_id"
-    t.index ["user_id"], name: "index_sessions_on_user_id"
-    t.index ["zone_id"], name: "index_sessions_on_zone_id"
+    t.index ["user_id"], name: "index_trainings_on_user_id"
+    t.index ["zone_id"], name: "index_trainings_on_zone_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -76,6 +76,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_27_143006) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "sessions", "users"
-  add_foreign_key "sessions", "zones"
+  add_foreign_key "trainings", "users"
+  add_foreign_key "trainings", "zones"
 end
