@@ -1,102 +1,25 @@
-<head>
-<style>
-/* Style the modal */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.5);
-}
 
-/* Style the modal content */
-.modal-content {
-  background-color: #fefefe;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-}
-
-/* Style the close button */
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.modal-input {
-  width: 62px;
-  height: 47px;
-  flex-shrink: 0;
-  border-radius: 3px;
-  border: 1px solid #000;
-  background: #FFF;
-  box-shadow: 2px 3px 3px 0px rgba(0, 0, 0, 0.25);
-  margin: 5px; /* Adjust the margin as needed */
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
+  <h1>Pages#home</h1>
+  <p>Find me in app/views/pages/home.html.erb</p>
 
 
-</style>
-</head>
-
-<body>
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
-
-
-<svg width="390" height="844" viewBox="0 0 390 844" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <g clip-path="url(#clip0_101_501)">
-    <rect width="390" height="844" fill="white"/>
-    <!-- ... Include all your SVG paths and other elements here ... -->
-<path class="clickable-zone" d="M109 96.5H1L0.5 338.5H58L140.5 102.5L109 96.5Z" fill="#FFD644" zone_id="1"/>   <!-- zone jaune haut gauche -->
-<path class="clickable-zone" d="M109 748.5H1L0.5 506.5H58L140.5 742.5L109 748.5Z" fill="#FFD644" zone_id="2"/> <!-- zone jaune bas gauche -->
-<path class="clickable-zone" d="M319.5 278.5L319 279L318.5 279.5L235 350.5V338H60.5H58.5H58L140.5 102C147.833 104.167 162.5 108.6 162.5 109C162.5 109.4 173.167 113.167 178.5 115L200 127C205.833 130.667 217.4 138 217 138C216.6 138 229.5 147.667 236 152.5L254.5 171L275 195.5L291.5 219L304 242.5L315 264L319.5 278.5Z" fill="#FF9900" zone_id="3"/> <!-- zone orange haut droite -->
-<path class="clickable-zone" d="M319.5 570L319 569.5L318.5 569L235 498V510.5H60.5H58.5H58L140.5 746.5C147.833 744.333 162.5 739.9 162.5 739.5C162.5 739.1 173.167 735.333 178.5 733.5L200 721.5C205.833 717.833 217.4 710.5 217 710.5C216.6 710.5 229.5 700.833 236 696L254.5 677.5L275 653L291.5 629.5L304 606L315 584.5L319.5 570Z" fill="#FF9900" zone_id="4"/> <!-- zone orange bas droite -->
-<path class="clickable-zone" d="M141 0.5V102.5L154 105.5L169 111.5L183.5 118L199 126L216.5 137.5L234 151.5L249 165L264.5 182L272 191.5L280 203L294 223.5L303.5 241L313.5 261L320.5 278L389 218.5V0.5H141Z" fill="#E22B2B" zone_id="5"/> <!-- zone rouge haut droite -->
-<path class="clickable-zone" d="M141 844.5V742.5L154 739.5L169 733.5L183.5 727L199 719L216.5 707.5L234 693.5L249 680L264.5 663L272 653.5L280 642L294 621.5L303.5 604L313.5 584L320.5 567L389 626.5V844.5H141Z" fill="#E22B2B" zone_id="6"/> <!-- zone rouge bas droite -->
-<path class="clickable-zone" d="M141 0V101.5L124 99L104 96.5H1.5V0H141Z" fill="#F18F8F" zone_id="7"/> <!-- zone rose haut gauche -->
-<path class="clickable-zone" d="M141 844.5V743L124 745.5L104 748H1.5V844.5H141Z" fill="#F18F8F" zone_id="8"/> <!-- zone rose bas gauche -->
-<path class="clickable-zone" d="M390 218L235 350L235.508 499L390 631V218Z" fill="#888888" zone_id="9"/>  <!-- zone grise milieux droite -->
-<rect class="clickable-zone" x="0.5" y="338.5" width="233" height="173" fill="#FF0000" stroke="black" stroke-width="3" zone_id="10"/> <!-- zone rouge milieux -->
-    <!-- ... Add more paths for other zones ... -->
-  </g>
-</svg>
-
-  <script>
-      document.addEventListener("DOMContentLoaded", function () {
-    const clickableElements = document.querySelectorAll(".clickable-zone");
-
-    clickableElements.forEach(function (element) {
-      element.addEventListener("click", function () {
-        const fillColor = element.getAttribute("fill");
-        const zoneId = element.getAttribute("data-zone-id");
-
-        console.log("Code hexadécimal de la couleur :", fillColor);
-        console.log("ID de la zone :", zoneId);
-
-        document.getElementById("zone-id-input").value = zoneId;
-
-        showModal(zoneId);
-      });
-    });
-  });
-  </script>
+  <svg width="390" height="844" viewBox="0 0 390 844" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g clip-path="url(#clip0_101_501)">
+      <rect width="390" height="844" fill="white"/>
+      <!-- ... Include all your SVG paths and other elements here ... -->
+      <path class="clickable-zone" d="M109 96.5H1L0.5 338.5H58L140.5 102.5L109 96.5Z" fill="#FFD644" data-zone-id="1"/>   <!-- zone jaune haut gauche -->
+      <path class="clickable-zone" d="M109 748.5H1L0.5 506.5H58L140.5 742.5L109 748.5Z" fill="#FFD644" data-zone-id="2"/> <!-- zone jaune bas gauche -->
+      <path class="clickable-zone" d="M319.5 278.5L319 279L318.5 279.5L235 350.5V338H60.5H58.5H58L140.5 102C147.833 104.167 162.5 108.6 162.5 109C162.5 109.4 173.167 113.167 178.5 115L200 127C205.833 130.667 217.4 138 217 138C216.6 138 229.5 147.667 236 152.5L254.5 171L275 195.5L291.5 219L304 242.5L315 264L319.5 278.5Z" fill="#FF9900" data-zone-id="3"/> <!-- zone orange haut droite -->
+      <path class="clickable-zone" d="M319.5 570L319 569.5L318.5 569L235 498V510.5H60.5H58.5H58L140.5 746.5C147.833 744.333 162.5 739.9 162.5 739.5C162.5 739.1 173.167 735.333 178.5 733.5L200 721.5C205.833 717.833 217.4 710.5 217 710.5C216.6 710.5 229.5 700.833 236 696L254.5 677.5L275 653L291.5 629.5L304 606L315 584.5L319.5 570Z" fill="#FF9900" data-zone-id="4"/> <!-- zone orange bas droite -->
+      <path class="clickable-zone" d="M141 0.5V102.5L154 105.5L169 111.5L183.5 118L199 126L216.5 137.5L234 151.5L249 165L264.5 182L272 191.5L280 203L294 223.5L303.5 241L313.5 261L320.5 278L389 218.5V0.5H141Z" fill="#E22B2B" data-zone-id="5"/> <!-- zone rouge haut droite -->
+      <path class="clickable-zone" d="M141 844.5V742.5L154 739.5L169 733.5L183.5 727L199 719L216.5 707.5L234 693.5L249 680L264.5 663L272 653.5L280 642L294 621.5L303.5 604L313.5 584L320.5 567L389 626.5V844.5H141Z" fill="#E22B2B" data-zone-id="6"/> <!-- zone rouge bas droite -->
+      <path class="clickable-zone" d="M141 0V101.5L124 99L104 96.5H1.5V0H141Z" fill="#F18F8F" data-zone-id="7"/> <!-- zone rose haut gauche -->
+      <path class="clickable-zone" d="M141 844.5V743L124 745.5L104 748H1.5V844.5H141Z" fill="#F18F8F" data-zone-id="8"/> <!-- zone rose bas gauche -->
+      <path class="clickable-zone" d="M390 218L235 350L235.508 499L390 631V218Z" fill="#888888" data-zone-id="9"/>  <!-- zone grise milieux droite -->
+      <rect class="clickable-zone" x="0.5" y="338.5" width="233" height="173" fill="#FF0000" stroke="black" stroke-width="3" data-zone-id="10"/> <!-- zone rouge milieux -->
+      <!-- ... Add more paths for other zones ... -->
+    </g>
+  </svg>
 
   <div id="custom-modal" class="modal">
     <div class="modal-content">
@@ -106,34 +29,7 @@
       <input type="number" inputmode="numeric" placeholder="Total Shots" id="shots-made">
       <input type="number" inputmode="numeric" placeholder="Made Shots" id="shots-missed">
       <button onclick="submitForm()">Submit</button>
+      <!-- Use a unique ID for the modal content div -->
+      <div id="custom-modal-content"></div>
     </div>
   </div>
-
-  <script>
-    function openModal() {
-      document.getElementById('custom-modal').style.display = 'block';
-    }
-
-    function closeModal() {
-      document.getElementById('custom-modal').style.display = 'none';
-    }
-  </script>
-
-  <script>
-    function submitForm() {
-      const shotsMade = document.getElementById('shots-made').value;
-      const shotsMissed = document.getElementById('shots-missed').value;
-      const zoneId = document.getElementById("zone-id-input").value;
-
-      // Perform actions with the entered values (e.g., validation, calculation)
-      closeModal();
-    }
-  </script>
-
-<div id="custom-modal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <p id="color-code-text"></p>
-  </div>
-</div>
-</body>
