@@ -1,43 +1,9 @@
-<div>
-<div class="ms-5">
+<div data-controller="zone">
   <%= render "terrain" %>
-</div>
-  <script>
 
-  document.addEventListener("DOMContentLoaded", function () {
-    const clickableElements = document.querySelectorAll(".clickable-zone");
-
-    clickableElements.forEach(function (element) {
-      element.addEventListener("click", function () {
-        document.getElementById('training_zone_id').value = element.getAttribute("data-zone-id");
-        console.log("Zone ID:", element.getAttribute("data-zone-id"));
-        openModal();
-      });
-    });
-  });
-
-  function closeModal() {
-    document.getElementById('custom-modal').style.display = 'none';
-  }
-
-  function openModal() {
-    document.getElementById('custom-modal').style.display = 'block';
-  }
-
-  function submitForm() {
-    const shotsMade = document.getElementById('shots-made').value;
-    const shotsMissed = document.getElementById('shots-missed').value;
-    const zoneId = document.getElementById("zone-id-input").value;
-    console.log("Shots Made:", shotsMade);
-    console.log("Shots Missed:", shotsMissed);
-    console.log("Zone ID:", zoneId);
-    closeModal();
-  }
-  </script>
-
-  <div id="custom-modal" class="modal">
+  <div id="custom-modal" class="modal" data-zone-target="modal">
       <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
+        <span class="close" data-zone-target="close">&times;</span>
         <div class="container mt-4">
           <div class="row">
             <div class="col-6 m-auto">
