@@ -1,4 +1,5 @@
 <%= simple_form_for(@training) do |f| %>
+  <%= f.input :zone_id, as: :hidden, value: "" %>
   <%= f.input :shot_made %>
   <%= f.input :shot_total %>
   <%= f.submit "DONE", class: "btn btn-primary"%>
