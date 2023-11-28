@@ -1,28 +1,48 @@
 <!-- app/views/profils/show.html.erb -->
-<div style="background-color: #FFE6C7; padding: 20px;">
-<h1>Profil de <%= @profil.first_name %></h1>
+<%= render "shared/navbar" %>
+<div class="container" style="background-color: #F5841A; padding: 20px;">
+<div class="text-center"><h1><%= @profil.first_name %></h1>
 
 <div>
-  <strong>Nom d'utilisateur:</strong> <%= @profil.username %>
+  <strong>User</strong> <%= @profil.username %>
 </div>
 
 <div>
   <strong>Email:</strong> <%= @profil.email %>
 </div>
-
+</div>
 <!-- Ajoutez d'autres informations de profil ici en fonction de votre modèle User -->
 
 <!-- Exemple avec des informations spécifiques à une application de basket-ball -->
-
+<div class="text-center">
 <div>
-  <h2>Statistiques de basket-ball</h2>
+  <h2>Stats</h2>
   <div>
-    <strong>Points par match:</strong>
+    <strong>Previous seshs </strong>
   </div>
-  <div>
-    <strong>Rebonds par match:</strong>
-  </div>
+  <br>
   <!-- Ajoutez d'autres statistiques ici -->
-</div>
+<div class="d-flex flex-column">
+  <% @profil.trainings.order(created_at: :desc).limit(5).each do |training| %>
+    <div class="card" style="border: 1px solid #ddd; padding: 10px; margin: 10px; background-color: #F2E8C6;">
+      <div>
+        <strong>Training Date:</strong> <%= training.created_at.strftime("%d %B") %>
+      </div>
+      <div>
+        <strong>Total Shots:</strong> <%= training.shot_total %>
+      </div>
+      <div>
+        <strong> Made Shots:</strong> <%= training.shot_made %>
+      </div>
+      <div>
+        <strong> Accuracy:</strong> <%= training.shooting_efficiency %>%
+      </div>
+      <div>
+        <strong>Zone:</strong> <%= training.zone_id %>
+      </div>
+    </div>
+  <% end %>
+  </div>
 </div>
 <!-- Vous pouvez également inclure des liens pour éditer le profil, changer le mot de passe, etc. en fonction de vos besoins -->
+</div>
