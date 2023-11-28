@@ -1,12 +1,23 @@
-  <script src="application.js"></script>
-  <script src="start_training.js"></script>
+<script src="application.js"></script>
+<script src="start_training.js"></script>
 
-  <div id="basketball-container" class="basketball" onclick="startAnimation()">
-    <div id="basketball-ball" class="ball">
-      <div class="lines"></div>
-      <div id="startText">START SESSION</div>
-    </div>
-    <div class="shadow"></div>
-    <button id="startButton">Start Animation</button>
+<div id="basketball-container" class="basketball" onclick="startAnimation()">
+  <div id="basketball-ball" class="ball">
+    <div class="lines"></div>
+    <div id="startText">START SESSION</div>
   </div>
-  <%= javascript_include_tag 'controllers/start_training' %>
+  <div class="shadow"></div>
+  <button id="startButton">Start Animation</button>
+  <div class="container center">
+<div class="card" onclick="this.classList.toggle('expanded')">
+  <div class="text1">
+    <div class="text-content">
+      <h1 class="title">Mes Stats</h1>
+    </div>
+  </div>
+  <svg class="chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 35" width="30"><path d="M5 30L50 5l45 25" fill="none" stroke="#000" stroke-width="5"/></svg>
+</div>
+
+
+
+<%= javascript_include_tag 'controllers/start_training' %>
