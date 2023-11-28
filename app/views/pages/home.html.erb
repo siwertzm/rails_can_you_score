@@ -1,3 +1,12 @@
-  <h1>Pages#home</h1>
-  <p>Find me in app/views/pages/home.html.erb</p>
-  <%= link_to new_training_path  %>
+  <script src="application.js"></script>
+  <script src="start_training.js"></script>
+
+  <div id="basketball-container" class="basketball" onclick="startAnimation()">
+    <div id="basketball-ball" class="ball">
+      <div class="lines"></div>
+      <div id="startText">START SESSION</div>
+    </div>
+    <div class="shadow"></div>
+    <button id="startButton">Start Animation</button>
+  </div>
+  <%= javascript_include_tag 'controllers/start_training' %>
