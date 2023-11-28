@@ -11,7 +11,7 @@ class TrainingsController < ApplicationController
     @training = Training.new(training_params)
     @training.user = current_user
     if @training.save
-      redirect_to training_path
+      redirect_to new_training_path
     else
       render :new, status: :unprocessable_entity
     end
