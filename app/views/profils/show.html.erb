@@ -1,0 +1,28 @@
+<!-- app/views/profils/show.html.erb -->
+<div style="background-color: #FFE6C7; padding: 20px;">
+<h1>Profil de <%= @profil.first_name %></h1>
+
+<div>
+  <strong>Nom d'utilisateur:</strong> <%= @profil.username %>
+</div>
+
+<div>
+  <strong>Email:</strong> <%= @profil.email %>
+</div>
+
+<!-- Ajoutez d'autres informations de profil ici en fonction de votre modèle User -->
+
+<!-- Exemple avec des informations spécifiques à une application de basket-ball -->
+
+<div>
+  <h2>Statistiques de basket-ball</h2>
+  <div>
+    <strong>Points par match:</strong>
+  </div>
+  <div>
+    <strong>Rebonds par match:</strong>
+  </div>
+  <!-- Ajoutez d'autres statistiques ici -->
+</div>
+</div>
+<!-- Vous pouvez également inclure des liens pour éditer le profil, changer le mot de passe, etc. en fonction de vos besoins -->
