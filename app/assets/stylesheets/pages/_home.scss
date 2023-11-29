@@ -5,7 +5,7 @@
 
   @media (max-width: 428px) {
     width: 90%; // Reduce the width of the card on small screens
-    left: 5%; // Adjust the left position
+    margin: 0 auto; // Center the card
     transform: none; // Remove the transform
   }
 }
