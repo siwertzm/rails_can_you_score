@@ -30,7 +30,7 @@ class LeaderboardsController < ApplicationController
   def average_shooting_efficiency(user)
     return 0 if user.trainings.empty?
 
-    total_efficiency = user.trainings.sum { |training| training.shooting_efficiency }
-    total_efficiency / user.trainings.size
+    total_efficiency.to_i = user.trainings.sum { |training| training.shooting_efficiency }
+    total_efficiency.to_i / user.trainings.size
   end
 end
