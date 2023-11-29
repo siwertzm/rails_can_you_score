@@ -1,3 +1,37 @@
-  <h1>Pages#home</h1>
-  <p>Find me in app/views/pages/home.html.erb</p>
-  <%= link_to "training", new_training_path  %>
+<script src="application.js"></script>
+<script src="start_training.js"></script>
+
+<div id="basketball-container" class="basketball">
+  <div id="basketball-ball" class="ball" onclick="startAnimation()">
+    <div class="lines"></div>
+    <div id="startText" onclick="startAnimation()">START SESSION</div>
+  </div>
+  <div class="shadow"></div>
+  <button id="startButton">Start Animation</button>
+  <%= javascript_include_tag 'controllers/start_training' %>
+
+
+<div class="container1">
+        <div class="card1">
+            <div class="face face1">
+            <div class="texthome">
+            <h1>Mes stats</h1>
+            </div>
+                <div class="content1">
+                </div>
+            </div>
+            <div class="face face2">
+                <div class="content">
+                  <ul>
+                    <li>Pourcentage de réussite au tir à trois points : 42%</li>
+                    <li>Pourcentage de réussite au tir à deux points : 55%</li>
+                    <li>Pourcentage de réussite aux lancers francs : 80%</li>
+                  </ul>
+                </div>
+            </div>
+        </div>
+        </div>
+
+<div class="footer1">
+<%= image_tag("nba_banner.png", alt: "NBA Banner") %>
+</div>

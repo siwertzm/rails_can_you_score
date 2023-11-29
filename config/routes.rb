@@ -1,7 +1,16 @@
 Rails.application.routes.draw do
+
   devise_for :users
   root to: "pages#home"
   resources :trainings
+  resources :profils
+  resources :leaderboards, only: [:index] do
+    collection do
+      get :filter_by_zone
+      get :index_filtered
+    end
+  end
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
