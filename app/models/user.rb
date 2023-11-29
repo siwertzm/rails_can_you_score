@@ -4,4 +4,11 @@ class User < ApplicationRecord
   has_many :trainings
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  def average_shooting_efficiency
+    return 0 if trainings.empty?
+
+    total_efficiency = trainings.sum { |training| training.shooting_efficiency }
+    total_efficiency / trainings.size
+  end
 end
