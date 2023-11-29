@@ -22,11 +22,35 @@
             </div>
             <div class="face face2">
                 <div class="content">
-                  <ul>
-                    <li>Pourcentage de réussite au tir à trois points : 42%</li>
-                    <li>Pourcentage de réussite au tir à deux points : 55%</li>
-                    <li>Pourcentage de réussite aux lancers francs : 80%</li>
-                  </ul>
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">
+                          <h3>Zone</h3>
+                        </th>
+                        <th scope="col">
+                          <h3>Paniers</h3>
+                        </th>
+                        <th scope="col">
+                          <h3>Réussite</h3>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% current_user.trainings.limit(3).each do |t| %>
+                        <tr>
+                          <th scope="row">
+                            <%= t.zone.name %>
+                          </th>
+                          <th scope="row">
+                            <%= t.shot_made %> / <%= t.shot_total %>
+                          </th>
+                          <th scope="row">
+                            <%= (t.shot_made.to_f / t.shot_total.to_f * 100).round(1) %>%
+                          </th>
+                        </tr>
+                      <% end %>
+                    </tbody>
+                  </table>
                 </div>
             </div>
         </div>
