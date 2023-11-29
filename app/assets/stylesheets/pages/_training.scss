@@ -1,0 +1,115 @@
+
+#basketball-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: auto;
+  margin: 0;
+  padding-top: 70px; /* Ajustez cette valeur pour changer l'espace entre le haut de l'écran et le contenu */
+}
+
+.ball {
+  position: absolute;
+  background-color: #e76f51;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  border: 3px solid #333;
+  margin-bottom: 0;
+}
+
+@keyframes bounce {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  25% { transform: translate3d(0, +115px, 0) rotate(90deg); }
+  50% { transform: translate3d(0, 0, 0) rotate(180deg); }
+  75% { transform: translate3d(0, +115px, 0) rotate(270deg); }
+  100% { transform: translate3d(0, 0, 0) rotate(360deg); }
+}
+
+.animate .ball {
+  animation: bounce 0.5s ease-in; /* Durée de rebond réduite à 0.2 seconde */
+}
+
+.ball:before,
+.ball:after {
+  content: "";
+  position: absolute;
+  background-color: #333;
+  width: 110px;
+  height: 3px;
+  top: 50px;
+  left: -5px;
+}
+
+.ball:before {
+  transform: rotate(45deg);
+}
+
+.ball:after {
+  transform: rotate(-45deg);
+}
+
+.lines {
+  position: absolute;
+  border-radius: 50%;
+  border: 3px solid #333;
+  width: 70px;
+  height: 70px;
+  left: -20px;
+  top: -20px;
+}
+
+.lines:before {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  border: 3px solid #333;
+  width: 70px;
+  height: 70px;
+  top: 65px;
+  left: 60px;
+}
+
+
+@keyframes scale {
+  0% { transform: scaleX(1); }
+  25% { transform: scaleX(0.7); }
+  50% { transform: scaleX(1); }
+  75% { transform: scaleX(0.7); }
+  100% { transform: scaleX(1); }
+}
+
+#startButton {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  font-size: 18px;
+  padding: 10px 20px;
+  cursor: pointer;
+  z-index: 1;
+  visibility: hidden; /* Utiliser visibility: hidden au lieu de display: none; */
+
+  @media (max-width: 320px) {
+    /* Adjust the button position for iPhone SE or screens with smaller widths */
+    top: 50% !important; /* Adjust as needed */
+    left: 50% !important; /* Adjust as needed */
+    transform: translate(-50%, -50%) !important; /* This will center the button */
+    font-size: 14px; /* Adjust as needed */
+  }
+}
+
+#startText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Graffiti'; /* Remplacez 'Graffiti' par la police graffiti que vous souhaitez utiliser */
+  font-size: 20px; /* Ajustez la taille du texte selon vos besoins */
+  color: #fff; /* Couleur du texte (blanc dans cet exemple) */
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Ajoute une ombre pour améliorer la visibilité */
+  z-index: 2; /* Assurez-vous que le texte est au-dessus du ballon */
+}
