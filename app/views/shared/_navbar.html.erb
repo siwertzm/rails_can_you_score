@@ -1,7 +1,7 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
     <%= link_to root_path, class: "navbar-brand" do %>
-      <%= image_tag "logo_score.svg", class: "navbar-logo" %>
+      <%= image_tag "logo_score.png", class: "navbar-logo" %>
     <% end %>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,8 +14,12 @@
           <li class="nav-item active">
             <%= link_to "Profile", profil_path(current_user), class: "nav-link" %>
           </li>
-          <li class="nav-item ">
+          <li class="nav-item">
             <%= link_to "Leaderboards", leaderboards_path, class: "nav-link" %>
+          </li>
+          <hr>
+          <li class="nav-item">
+            <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
           </li>
         <% else %>
           <li class="nav-item">
