@@ -1,32 +1,40 @@
 <!-- app/views/profils/show.html.erb -->
-<div class="container" style="background-color: #F5841A; padding: 20px;">
-  <div class="text-center">
-    <h1><%= @profil.first_name %> <%= @profil.last_name %></h1>
-
-    <div>
-      <strong>Username</strong> <%= @profil.username %>
-    </div>
-
-    <div>
-      <strong>Email:</strong> <%= @profil.email %>
+<div class="container">
+  <div class="banner" style="background: url(<%= asset_path 'nba_banner.png' %>) no-repeat center center; background-size: cover; height: 200px; position: relative;">
+    <div style="border-radius: 50%; width: 120px; height: 120px; background-color: white; position: absolute; bottom: -60px; left: 50%; transform: translateX(-50%);">
+      <img src="https://kitt.lewagon.com/placeholder/users/arthur-littm" alt="Logo Score" style="border-radius: 50%; width: 110px; height: 110px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
     </div>
   </div>
 
-  <div class="text-center">
+  <div class="card" style="background-color: white; padding: 20px; margin-top: 70px;">
+    <div class="text-center">
+      <h1><%= @profil.first_name %> <%= @profil.last_name %></h1>
+
+      <div>
+        <strong>Username</strong> <%= @profil.username %>
+      </div>
+
+      <div>
+        <strong>Email:</strong> <%= @profil.email %>
+      </div>
+    </div>
+  </div>
+  <div class="text-center" style="margin-top: 20px;">
     <div>
       <h2>Stats</h2>
 
       <p>Average efficiency: <%= @profil.average_shooting_efficiency.to_i %>%</p>
     </div>
 
-    <div>
-      <strong>Previous seshs </strong>
-    </div>
+   <div class="text-center" style="margin-top: 30px;">
+  <div>
+    <button style="background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;">Previous seshs</button>
+  </div>
     <br>
 
     <div class="d-flex flex-column">
       <% @profil.trainings.order(created_at: :desc).limit(5).each do |training| %>
-        <div class="card" style="border: 1px solid #ddd; padding: 10px; margin: 10px; background-color: #F2E8C6;">
+        <div class="card" style="border: 1px solid #ddd; padding: 10px; margin: 10px; background-color: #e76f51;">
           <div>
             <strong>Training Date:</strong> <%= training.created_at.strftime("%d %B") %>
           </div>
