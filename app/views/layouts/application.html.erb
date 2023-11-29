@@ -11,10 +11,10 @@
 
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
+    <link rel="manifest" href="<%= asset_path 'manifest.json' %>">
   </head>
 
   <body>
-    <%= render "shared/navbar" %>
     <%= yield %>
     <%= render "shared/flashes" %>
   </body>
