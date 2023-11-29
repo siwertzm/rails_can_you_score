@@ -30,7 +30,7 @@
         <th scope="row"><%= index + 1 %></th>
         <td ><%= link_to "#{training.user.first_name} #{training.user.last_name}", profil_path(training.user), class:"text-dark text-decoration-none" %></td>
         <td><strong><%= training.zone_id %></strong></td>
-        <td><strong><%= training.shooting_efficiency %>%</strong></td>
+        <td><strong><%= (training.shooting_efficiency).round(1) %>%</strong></td>
       </tr>
     <% end %>
   </tbody>
