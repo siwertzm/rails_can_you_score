@@ -4,9 +4,9 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  height: 100vh;
+  height: auto;
   margin: 0;
-  padding-top: 50px; /* Ajustez cette valeur pour changer l'espace entre le haut de l'écran et le contenu */
+  padding-top: 70px; /* Ajustez cette valeur pour changer l'espace entre le haut de l'écran et le contenu */
 }
 
 .ball {
@@ -17,18 +17,19 @@
   height: 100px;
   overflow: hidden;
   border: 3px solid #333;
+  margin-bottom: 0;
 }
 
 @keyframes bounce {
   0% { transform: translate3d(0, 0, 0) rotate(0deg); }
-  25% { transform: translate3d(0, -185px, 0) rotate(90deg); }
+  25% { transform: translate3d(0, +115px, 0) rotate(90deg); }
   50% { transform: translate3d(0, 0, 0) rotate(180deg); }
-  75% { transform: translate3d(0, -185px, 0) rotate(270deg); }
+  75% { transform: translate3d(0, +115px, 0) rotate(270deg); }
   100% { transform: translate3d(0, 0, 0) rotate(360deg); }
 }
 
 .animate .ball {
-  animation: bounce 0.2s ease-in; /* Durée de rebond réduite à 0.2 seconde */
+  animation: bounce 0.5s ease-in; /* Durée de rebond réduite à 0.2 seconde */
 }
 
 .ball:before,

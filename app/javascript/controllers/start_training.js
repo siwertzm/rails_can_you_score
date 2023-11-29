@@ -11,5 +11,5 @@ function startAnimation() {
   setTimeout(function() {
     // Changer l'URL de la page ici
     window.location.href = '/trainings/new';
-  }, 200); // 200 millisecondes, ajustez selon vos besoins
+  }, 400); // ajustez vitesse de redirection
 }
