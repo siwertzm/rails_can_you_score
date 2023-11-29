@@ -1,42 +1,36 @@
-<h1>Leaderboard</h1>
+<!-- app/views/leaderboards/index.html.erb -->
 
-<%= form_tag(leaderboards_path, method: :get) do %>
-  <%= select_tag(:zone_id, options_for_select([["All", ""], ["Zone 1", 1], ["Zone 2", 2], ["Zone 3", 3], ["Zone 4", 4], ["Zone 5", 5], ["Zone 6", 6], ["Zone 7", 7], ["Zone 8", 8], ["Zone 9", 9], ["Zone 10", 10], ["Zone 11", 11]])) %>
-  <%= submit_tag("Filter by Zone") %>
-<% end %>
+<h1 class="text-center mt-3 mb-3">Leaderboard</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>
-        <strong>Rank</strong>
-      </th>
-      <th>
-        <strong>Username</strong>
-      </th>
-      <th>
-        <strong>Zone</strong>
-      </th>
-      <th>
-        <strong>Shots efficiency</strong>
-      </th>
-    </tr>
-  </thead>
+<div class="container-search row align-items-center">
+  <%= form_tag(leaderboards_path, method: :get, class: "mb-4") do %>
+    <div class="form-group d-flex justify-content-start">
+      <%= label_tag "zone_id", "" %>
+      <%= select_tag(:zone_id, options_for_select([["All", ""], ["Paint", 1], [" Free Throw", 2], ["Three Front", 3], ["Right Zero", 4], ["Three Right Zero", 5], ["Right Elbow", 6], ["Three Right Elbow", 7], ["Left zero", 8], ["Three Left Zero", 9], ["Left Elbow", 10], ["Three Left Elbow", 11]], params[:zone_id]), class: "form-control", style: "width: 31.8%; margin-left: 10px;") %>
+    <%= submit_tag("Filter", class: "custom-button ml-2") %>
+    </div>
+  <% end %>
+</div>
+
+
+
+
+<table class="table table-striped">
+<thead class="bg-dark text-white">
+  <tr>
+    <th scope="col" class="py-2">Rank</th>
+    <th scope="col" class="py-2">Username</th>
+    <th scope="col" class="py-2">Zone</th>
+    <th scope="col" class="py-2">Shots Efficiency</th>
+  </tr>
+</thead>
   <tbody>
     <% @best_trainings.each_with_index do |training, index| %>
       <tr>
-        <th>
-          <strong>Rank <%= index + 1 %>:</strong>
-        </th>
-        <th>
-          <%= link_to "#{training.user.first_name} #{training.user.last_name}", profil_path(training.user) %>
-        </th>
-        <th>
-          <%= "#{training.zone_id}" %>
-        </th>
-        <th>
-          <%= training.shooting_efficiency %>%
-        </th>
+        <th scope="row"><%= index + 1 %></th>
+        <td ><%= link_to "#{training.user.first_name} #{training.user.last_name}", profil_path(training.user), class:"text-dark text-decoration-none" %></td>
+        <td><strong><%= training.zone_id %></strong></td>
+        <td><strong><%= (training.shooting_efficiency).round(1) %>%</strong></td>
       </tr>
     <% end %>
   </tbody>

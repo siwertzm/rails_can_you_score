@@ -4,7 +4,7 @@
   transform: translateX(-50%);
   top:120px;
 
-  @media (max-width: 420px) {
+  @media (max-width: 300px) {
     width: 90%; // Reduce the width of the card on small screens
     margin: 0 auto; // Center the card
     transform: none; // Remove the transform

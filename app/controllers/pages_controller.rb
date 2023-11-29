@@ -5,5 +5,7 @@ class PagesController < ApplicationController
       format.html
       format.svg { render plain: File.read(Rails.root.join('app', 'assets', 'images', 'basketball_court.svg')), content_type: 'image/svg+xml' }
     end
+
+    @trainings = Training.all
   end
 end
