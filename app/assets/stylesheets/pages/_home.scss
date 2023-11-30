@@ -1,8 +1,12 @@
 
+.table {
+  background-color: #e07768;
+}
+
 .card1{
   left: 50%;
   transform: translateX(-50%);
-  top:120px;
+  top:200px;
 
   @media (max-width: 300px) {
     width: 90%; // Reduce the width of the card on small screens
