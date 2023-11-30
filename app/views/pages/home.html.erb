@@ -6,37 +6,31 @@
     <div class="lines"></div>
     <div id="startText" onclick="startAnimation()">START</div>
   </div>
+
   <div class="shadow"></div>
   <button id="startButton">Start Animation</button>
   <%= javascript_include_tag 'controllers/start_training' %>
 
   <% if current_user %>
     <div class="container1">
-      <div class="card1">
-        <div class="face face1">
-          <div class="texthome">
-            <h1>Mes stats</h1>
-          </div>
-          <div class="content1">
-          </div>
-        </div>
-        <div class="face face2">
-          <div class="content">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th scope="col">
-                    <h3>Zone</h3>
-                  </th>
-                  <th scope="col">
-                    <h3>Paniers</h3>
-                  </th>
-                  <th scope="col">
-                      <h3>Réussite</h3>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
+  <div class="card1">
+    <div class="content">
+      <h1>Mes stats</h1>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">
+              <h3>Zone</h3>
+            </th>
+            <th scope="col">
+              <h3>Paniers</h3>
+            </th>
+            <th scope="col">
+              <h3>Réussite</h3>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
                 <% current_user.trainings.order(created_at: :desc).limit(3).each do |t| %>
                   <tr>
                     <th scope="row">
@@ -51,59 +45,18 @@
                   </tr>
                 <% end %>
               </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+      </table>
     </div>
-  <% else %>
-    <div class="container1">
-      <div class="card1">
-        <div class="face face1">
-          <div class="texthome">
-            <h1>Last Stats</h1>
-          </div>
-          <div class="content1">
-          </div>
-        </div>
-        <div class="face face2">
-          <div class="content">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th scope="col">
-                    <h3>Zone</h3>
-                  </th>
-                  <th scope="col">
-                    <h3>Paniers</h3>
-                  </th>
-                  <th scope="col">
-                      <h3>Réussite</h3>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <% @trainings.limit(3).each do |t| %>
-                  <tr>
-                    <th scope="row">
-                      <%= t.zone.name %>
-                    </th>
-                    <th scope="row">
-                      <%= t.shot_made %> / <%= t.shot_total %>
-                    </th>
-                    <th scope="row">
-                      <%= (t.shot_made.to_f / t.shot_total.to_f * 100).round(1) %>%
-                    </th>
-                  </tr>
-                <% end %>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+  </div>
+</div>
+<% else %>
+<div class="container1">
+  <div class="card1">
+    <div class="content1">
+      <h1>Last Stats</h1>
     </div>
-  <% end %>
-
+  </div>
+<% end %>
 <div class="footer1">
 <%= image_tag("nba_banner.png", alt: "NBA Banner") %>
 </div>
