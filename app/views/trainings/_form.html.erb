@@ -1,6 +1,7 @@
-<%= simple_form_for(@training) do |f| %>
+<%= simple_form_for @training, html: { class: "d-flex flex-column align-items-center" } do |f| %>
   <%= f.input :zone_id, value: "", as: :hidden, input_html: { data: { zone_target: "zoneId" } } %>
-  <%= f.input :shot_made %>
-  <%= f.input :shot_total %>
-  <%= f.submit "DONE", class: "btn btn-primary"%>
+  <%= f.input :shot_made, label: false, input_html: { class: 'input-box' } %>
+  <p class="division"></p>
+  <%= f.input :shot_total, label: false, input_html: { class: 'input-box' }  %>
+  <%= f.submit "Valider", class: "btn btn-primary" %>
 <% end %>
