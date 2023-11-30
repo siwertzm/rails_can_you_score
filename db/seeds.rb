@@ -1,5 +1,4 @@
 puts 'Créé les 11 zones, 10 users avec 5 sessions chacuns...'
-Zone.destroy_all
 
 # zones = ["P", "FT", "TF", "RZ", "TRZ", "RE", "TRE", "LZ", "TLZ", "LE", "TLE"]
 
@@ -92,9 +91,9 @@ zone = Zone.create(
 zone.save!
 
 usertest = User.create(
-  first_name: Faker::Name.first_name,
-  last_name: Faker::Name.last_name,
-  username: Faker::Internet.username,
+  first_name: "Mariuel",
+  last_name: "Johardan",
+  username: "gregbgdu77",
   email: "test@test.fr",
   password: "azerty"
 )
