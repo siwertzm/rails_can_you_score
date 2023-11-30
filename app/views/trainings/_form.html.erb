@@ -1,6 +1,6 @@
 <%= simple_form_for(@training) do |f| %>
   <%= f.input :zone_id, value: "", as: :hidden, input_html: { data: { zone_target: "zoneId" } } %>
-  <%= f.input :shot_made %>
-  <%= f.input :shot_total %>
+  <%= f.input :shot_made, label: "Tirs rentrés"  %>
+  <%= f.input :shot_total, label: "Tirs tentés" %>
   <%= f.submit "DONE", class: "btn btn-primary"%>
 <% end %>
