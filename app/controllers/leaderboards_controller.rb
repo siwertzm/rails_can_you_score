@@ -11,8 +11,6 @@ class LeaderboardsController < ApplicationController
     end
   end
 
-
-
   def filtered_trainings
     if params[:zone_id].present? && params[:zone_id] != ""
       Training.where(zone_id: params[:zone_id])

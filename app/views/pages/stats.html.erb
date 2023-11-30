@@ -1,0 +1,64 @@
+<h2 class="text-center">All Trainings</h2>
+
+<div class="d-flex flex-column">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Training Date</th>
+        <th>Total Shots</th>
+        <th>Made Shots</th>
+        <th>Accuracy</th>
+        <th>Zone</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @best_trainings.each do |training| %>
+        <tr>
+          <td><%= training.created_at.strftime("%d %B") %></td>
+          <td><%= training.shot_total %></td>
+          <td><%= training.shot_made %></td>
+          <td><%= training.shooting_efficiency.to_i %>%</td>
+          <td><%= training.zone_id %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <canvas id="statsChart" width="430" height="300" class="mb-5"></canvas>
+</div>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var trainingDates = <%= @best_trainings.map { |t| t.created_at.strftime("%d %B") }.to_json.html_safe %>;
+    var shootingEfficiencies = <%= @best_trainings.map { |t| t.shooting_efficiency.to_i }.to_json.html_safe %>;
+
+    var ctx = document.getElementById('statsChart').getContext('2d');
+    var statsChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: trainingDates,
+        datasets: [{
+          label: 'Shooting Efficiency',
+          data: shootingEfficiencies,
+          borderColor: '#e76f51',
+          borderWidth: 2,
+          fill: false
+        }]
+      },
+      options: {
+        responsive: false,
+        scales: {
+          x: {
+            type: 'category',
+            labels: trainingDates
+          },
+          y: {
+            beginAtZero: true,
+            max: 100
+          }
+        }
+      }
+    });
+  });
+</script>
