@@ -1,7 +1,24 @@
-<h2 class="text-center">All Trainings</h2>
+
+<div class="text-center mt-3">
+    <h2><strong>Overall Evolution</strong></h2>
+</div>
+
+<button onclick="showAllZones()" class="custom-button-small">Show All Zones</button>
+
+<select id="zoneFilter" onchange="filterByZone()" style="padding: 3px; font-size: 16px; border-radius: 5px;">
+  <option value="">Filter</option>
+  <% @profil.trainings.distinct.pluck(:zone_id).each do |zone_id| %>
+    <% zone = Zone.find(zone_id) %>
+    <option value="<%= zone.id %>"><%= zone.name %></option>
+  <% end %>
+</select>
+
+</select>
+  <canvas id="statsChart" width="410" height="300" class="me-3"></canvas>
+<h2 class="text-center mt-3 pt-2 border-top"><strong>Latest Trainings</strong></h2>
 
 <div class="d-flex flex-column">
-  <table class="table">
+  <table class="table table-striped">
     <thead>
       <tr>
         <th>Training Date</th>
@@ -12,9 +29,9 @@
       </tr>
     </thead>
     <tbody>
-      <% @best_trainings.each do |training| %>
+      <% @latest_trainings_for_table.each do |training| %>
         <tr>
-          <td><%= training.created_at.strftime("%d %B") %></td>
+          <td><%= training.created_at.strftime("%d/%m/%y %Hh%M") %></td>
           <td><%= training.shot_total %></td>
           <td><%= training.shot_made %></td>
           <td><%= training.shooting_efficiency.to_i %>%</td>
@@ -23,25 +40,37 @@
       <% end %>
     </tbody>
   </table>
-
-  <canvas id="statsChart" width="430" height="300" class="mb-5"></canvas>
+  <div class="text-center">
+  </div>
 </div>
 
-
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    var trainingDates = <%= @best_trainings.map { |t| t.created_at.strftime("%d %B") }.to_json.html_safe %>;
-    var shootingEfficiencies = <%= @best_trainings.map { |t| t.shooting_efficiency.to_i }.to_json.html_safe %>;
 
-    var ctx = document.getElementById('statsChart').getContext('2d');
-    var statsChart = new Chart(ctx, {
+  function showAllZones() {
+    window.location.href = "<%= stats_page_path %>";
+  }
+  function filterByZone() {
+    const zoneId = document.getElementById("zoneFilter").value;
+    if (zoneId === "") {
+      window.location.href = "<%= stats_page_path %>";
+    } else {
+      window.location.href = "<%= stats_page_path %>?zone_id=" + zoneId;
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const trainingDates = <%= @latest_trainings_for_table.reverse.map { |t| t.created_at.strftime("%d/%m/%y %Hh%M") }.to_json.html_safe %>;
+    const shootingEfficiencies = <%= @latest_trainings_for_table.reverse.map { |t| t.shooting_efficiency.to_i }.to_json.html_safe %>;
+
+    const ctx = document.getElementById('statsChart').getContext('2d');
+    const statsChart = new Chart(ctx, {
       type: 'line',
       data: {
         labels: trainingDates,
         datasets: [{
-          label: 'Shooting Efficiency',
+          label: 'Shooting Efficiency Per Session',
           data: shootingEfficiencies,
-          borderColor: '#e76f51',
+          borderColor: '#00000',
           borderWidth: 2,
           fill: false
         }]
@@ -51,11 +80,16 @@
         scales: {
           x: {
             type: 'category',
-            labels: trainingDates
+            labels: trainingDates,
           },
           y: {
             beginAtZero: true,
-            max: 100
+            max: 100,
+            ticks: {
+              callback: function(value) {
+                return value + '%';
+              }
+            }
           }
         }
       }
