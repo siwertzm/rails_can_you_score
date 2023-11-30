@@ -1,14 +1,95 @@
 puts 'Créé les 11 zones, 10 users avec 5 sessions chacuns...'
+Zone.destroy_all
 
-zones = ["P", "FT", "TF", "RZ", "TRZ", "RE", "TRE", "LZ", "TLZ", "LE", "TLE"]
-compteur = 0
-11.times do
-  zone = Zone.create(
-    name: zones[compteur]
-  )
-  zone.save!
-  compteur += 1
-end
+# zones = ["P", "FT", "TF", "RZ", "TRZ", "RE", "TRE", "LZ", "TLZ", "LE", "TLE"]
+
+zone = Zone.create(
+  name: "P",
+  orientation: "Face",
+  position: "Raquette",
+  point: 2
+)
+zone.save!
+
+zone = Zone.create(
+  name: "FT",
+  orientation: "Face",
+  position: "Lancer Franc",
+  point: 1
+)
+zone.save!
+
+zone = Zone.create(
+  name: "TF",
+  orientation: "Face",
+  position: "Face",
+  point: 3
+)
+zone.save!
+
+zone = Zone.create(
+  name: "RZ",
+  orientation: "Droite",
+  position: "Ligne de fond",
+  point: 2
+)
+zone.save!
+
+zone = Zone.create(
+  name: "TRZ",
+  orientation: "Droite",
+  position: "Ligne de fond",
+  point: 3
+)
+zone.save!
+
+zone = Zone.create(
+  name: "RE",
+  orientation: "Droite",
+  position: "Coude",
+  point: 2
+)
+zone.save!
+
+zone = Zone.create(
+  name: "TRE",
+  orientation: "Droite",
+  position: "Coude",
+  point: 3
+)
+zone.save!
+
+zone = Zone.create(
+  name: "LZ",
+  orientation: "Gauche",
+  position: "Ligne de fond",
+  point: 2
+)
+zone.save!
+
+zone = Zone.create(
+  name: "TLZ",
+  orientation: "Gauche",
+  position: "Ligne de fond",
+  point: 3
+)
+zone.save!
+
+zone = Zone.create(
+  name: "LE",
+  orientation: "Gauche",
+  position: "Coude",
+  point: 2
+)
+zone.save!
+
+zone = Zone.create(
+  name: "TLE",
+  orientation: "Gauche",
+  position: "Coude",
+  point: 3
+)
+zone.save!
 
 usertest = User.create(
   first_name: Faker::Name.first_name,
