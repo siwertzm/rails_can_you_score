@@ -113,3 +113,21 @@
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Ajoute une ombre pour améliorer la visibilité */
   z-index: 2; /* Assurez-vous que le texte est au-dessus du ballon */
 }
+
+.division {
+  color: black;
+  background-color: black;
+  height: 3px;
+  width: 72px;
+}
+
+.input-box {
+  height: 72px;
+  width: 72px;
+  font-size: 200%;
+  text-align: center;
+}
+
+.input-validation{
+  width: 10px;
+}
