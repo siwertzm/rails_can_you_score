@@ -12,7 +12,7 @@ zone.save!
 
 zone = Zone.create(
   name: "FT",
-  orientation: "Face",
+  orientation: "",
   position: "Lancer Franc",
   point: 1
 )
@@ -20,7 +20,7 @@ zone.save!
 
 zone = Zone.create(
   name: "TF",
-  orientation: "Face",
+  orientation: "",
   position: "Face",
   point: 3
 )
