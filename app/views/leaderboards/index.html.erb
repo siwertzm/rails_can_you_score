@@ -7,7 +7,7 @@
     <div class="form-group d-flex justify-content-start">
       <%= label_tag "zone_id", "" %>
       <%= select_tag(:zone_id, options_for_select([["All", ""], ["Paint", 1], [" Free Throw", 2], ["Three Front", 3], ["Right Zero", 4], ["Three Right Zero", 5], ["Right Elbow", 6], ["Three Right Elbow", 7], ["Left zero", 8], ["Three Left Zero", 9], ["Left Elbow", 10], ["Three Left Elbow", 11]], params[:zone_id]), class: "form-control", style: "width: 31.8%; margin-left: 10px;") %>
-    <%= submit_tag("Filter", class: "custom-button ml-2") %>
+    <%= submit_tag("Filter", class: "custom-button") %>
     </div>
   <% end %>
 </div>

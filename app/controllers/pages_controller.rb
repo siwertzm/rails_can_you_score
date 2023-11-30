@@ -10,8 +10,17 @@ class PagesController < ApplicationController
   end
 
   def stats
-    @user = current_user
-    @best_trainings = @user.trainings.to_a.sort_by { |training| -training.shooting_efficiency }
-    # Add more stats as needed
+    @profil = current_user
+    @best_trainings = @profil.trainings.to_a.sort_by { |training| -training.shooting_efficiency }
+    if params[:zone_id]
+      @latest_trainings_for_table = @profil.trainings
+        .where(zone_id: params[:zone_id])
+        .select("*, CASE WHEN shot_total > 0 THEN (shot_made::float / shot_total) * 100 ELSE 0 END AS shooting_efficiency")
+        .order(created_at: :desc)
+    else
+      @latest_trainings_for_table = @profil.trainings
+        .select("*, CASE WHEN shot_total > 0 THEN (shot_made::float / shot_total) * 100 ELSE 0 END AS shooting_efficiency")
+        .order(created_at: :desc)
+    end
   end
 end
