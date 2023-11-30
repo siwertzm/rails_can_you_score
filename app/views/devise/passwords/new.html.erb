@@ -1,4 +1,9 @@
-<h2>Forgot your password?</h2>
+<div class="container custom-form-container" style="max-height: 75vh; padding: 0.5rem 1rem 1rem 1rem; background-color: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); margin: 20px auto; max-width: 90%; height: auto;">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-md-6 custom-form-column mx-auto text-center">
+      <%= image_tag("cys-logo-cleaned-up.png", alt: "CYS Logo", style: "max-width: 50%; height: auto;") %>
+      <h2 class="custom-form-header mt-0 text-center" style="font-size: 1.5rem;"> <strong>Forgot your password?</strong></h2>
+
 
 <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
   <%= f.error_notification %>
@@ -11,8 +16,12 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Send me reset password instructions" %>
+    <%= f.button :submit, "Send me reset password instructions", class: "custom-button-small"  %>
   </div>
 <% end %>
-
+</div>
+</div>
+</div>
+<div class="container text-center">
 <%= render "devise/shared/links" %>
+</div>

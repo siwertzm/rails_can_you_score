@@ -32,26 +32,33 @@
   </div>
     <br>
 
-    <div class="d-flex flex-column">
-      <% @profil.trainings.order(created_at: :desc).limit(5).each do |training| %>
-        <div class="card" style="border: 1px solid #ddd; padding: 10px; margin: 10px; background-color: #e76f51;">
-          <div>
-            <strong>Training Date:</strong> <%= training.created_at.strftime("%d %B") %>
-          </div>
-          <div>
-            <strong>Total Shots:</strong> <%= training.shot_total %>
-          </div>
-          <div>
-            <strong> Made Shots:</strong> <%= training.shot_made %>
-          </div>
-          <div>
-            <strong> Accuracy:</strong> <%= training.shooting_efficiency %>%
-          </div>
-          <div>
-            <strong>Zone:</strong> <%= training.zone_id %>
-          </div>
-        </div>
-      <% end %>
+
+  <h2>Best Trainings</h2>
+
+<div class="d-flex flex-column">
+  <% @best_trainings.each do |training| %>
+    <div class="card" style="border: 1px solid #ddd; padding: 10px; margin: 10px; background-color: #e76f51;">
+      <div>
+        <strong>Training Date:</strong> <%= training.created_at.strftime("%d %B") %>
+      </div>
+      <div>
+        <strong>Total Shots:</strong> <%= training.shot_total %>
+      </div>
+      <div>
+        <strong>Made Shots:</strong> <%= training.shot_made %>
+      </div>
+      <div>
+        <strong>Accuracy:</strong> <%= training.shooting_efficiency %>%
+      </div>
+      <div>
+        <strong>Zone:</strong> <%= training.zone_id %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+</div>
+</div>
     </div>
   </div>
 </div>
