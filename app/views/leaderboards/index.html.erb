@@ -2,36 +2,40 @@
 
 <h1 class="text-center mt-3 mb-3">Leaderboard</h1>
 
-<div class="container-search row align-items-center">
+<div class="d-flex" style="width: 100%;">
   <%= form_tag(leaderboards_path, method: :get, class: "mb-4") do %>
     <div class="form-group d-flex justify-content-start">
+      <%= label_tag "user_id", "" %>
+      <%= text_field_tag :username, params[:username], placeholder: "Username", class: "form-control", style: "width: 35%; margin-left: 10px;" %>
       <%= label_tag "zone_id", "" %>
-      <%= select_tag(:zone_id, options_for_select([["All", ""], ["Paint", 1], [" Free Throw", 2], ["Three Front", 3], ["Right Zero", 4], ["Three Right Zero", 5], ["Right Elbow", 6], ["Three Right Elbow", 7], ["Left zero", 8], ["Three Left Zero", 9], ["Left Elbow", 10], ["Three Left Elbow", 11]], params[:zone_id]), class: "form-control", style: "width: 31.8%; margin-left: 10px;") %>
-    <%= submit_tag("Filter", class: "custom-button") %>
+      <%= select_tag(:zone_id, options_for_select([["All", ""], ["Paint", 1], [" Free Throw", 2], ["Three Front", 3], ["Right Zero", 4], ["Three Right Zero", 5], ["Right Elbow", 6], ["Three Right Elbow", 7], ["Left zero", 8], ["Three Left Zero", 9], ["Left Elbow", 10], ["Three Left Elbow", 11]], params[:zone_id]), class: "form-control", style: "width: 25%; margin-left: 10px;") %>
+      <%= submit_tag("Filter", class: "custom-button") %>
+      <%= link_to '<i class="fas fa-xmark fa-1x"></i>'.html_safe, leaderboards_path, class: "custom-button me-2" %>
     </div>
   <% end %>
 </div>
 
 
 
-
-<table class="table table-striped">
-<thead class="bg-dark text-white">
-  <tr>
-    <th scope="col" class="py-2">Rank</th>
-    <th scope="col" class="py-2">Username</th>
-    <th scope="col" class="py-2">Zone</th>
-    <th scope="col" class="py-2">Shots Efficiency</th>
-  </tr>
-</thead>
-  <tbody>
-    <% @best_trainings.each_with_index do |training, index| %>
-      <tr>
-        <th scope="row"><%= index + 1 %></th>
-        <td ><%= link_to "#{training.user.first_name} #{training.user.last_name}", profil_path(training.user), class:"text-dark text-decoration-none" %></td>
-        <td><strong><%= training.zone_id %></strong></td>
-        <td><strong><%= (training.shooting_efficiency).round(1) %>%</strong></td>
+<div class="d-flex justify-content-center align-item-center">
+  <table class="table table-striped">
+    <thead class="bg-dark text-white">
+      <tr class="text-center">
+        <th scope="col" class="py-2">Rank</th>
+        <th scope="col" class="py-2">Username</th>
+        <th scope="col" class="py-2">Zone</th>
+        <th scope="col" class="py-2">Efficiency</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @best_trainings.each_with_index do |training, index| %>
+        <tr class="text-center">
+          <th scope="row"><%= index + 1 %></th>
+          <td ><%= link_to "#{training.user.username}", profil_path(training.user), class:"text-dark text-decoration-none" %></td>
+          <td><strong><%= training.zone.name %></strong></td>
+          <td><strong><%= (training.shooting_efficiency).round(1) %>%</strong></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
