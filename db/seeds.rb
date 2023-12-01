@@ -99,7 +99,7 @@ usertest = User.create(
 )
 usertest.save!
 
-5.times do
+150.times do
   training = Training.create(
     shot_total: 20,
     shot_made: rand(19),

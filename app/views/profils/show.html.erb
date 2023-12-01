@@ -1,21 +1,29 @@
   <!-- app/views/profils/show.html.erb -->
-  <div class="container">
-    <div class="banner" style="background: url(<%= asset_path 'nba_banner.png' %>) no-repeat center center; background-size: cover; height: 200px; position: relative;">
-      <div style="border-radius: 50%; width: 120px; height: 120px; background-color: white; position: absolute; bottom: -60px; left: 50%; transform: translateX(-50%);">
-        <% if @profil.photo.attached? == true  %>
-          <%= cl_image_tag @profil.photo.key, height: 120, width: 120, radius: 50, crop: :fill, gravity: :face %>
-        <% else %>
-          <%= cl_image_tag("uk7594qzhdhrmsmdfnbb", height: 120, width: 120, radius: 50, crop: :fill, gravity: :face ) %>
-        <% end %>
-      </div>
+<div class="container">
+  <div class="banner" style="background: url(<%= asset_path 'nba_banner.png' %>) no-repeat center center; background-size: cover; height: 200px; position: relative;">
+    <div style="border-radius: 50%; width: 120px; height: 120px; background-color: white; position: absolute; bottom: -60px; left: 50%; transform: translateX(-50%);">
+      <% if @profil.photo.attached? == true  %>
+        <%= cl_image_tag @profil.photo.key, height: 120, width: 120, radius: 50, crop: :fill, gravity: :face %>
+      <% else %>
+        <%= cl_image_tag("uk7594qzhdhrmsmdfnbb", height: 120, width: 120, radius: 50, crop: :fill, gravity: :face ) %>
+      <% end %>
     </div>
+
+    <div style="position: absolute; bottom: -60px; right: 90px; display: flex; align-items: center;">
+    <% if current_user == @profil %>
+      <%= link_to "<i class='fas fa-pen fa-2x'></i>".html_safe, edit_user_registration_path, class: "btn text-warning" %>
+      <% end %>
+
+    </div>
+  </div>
+</div>
+
 
     <div class="card" style="background-color: white; padding: 20px; margin-top: 70px;">
       <div class="text-center">
         <h1><strong><%= @profil.username %></strong></h1>
       </div>
     </div>
-    <%= link_to "Edit My Profile", edit_user_registration_path, class: "btn btn-primary" %>
 
     <div class="text-center" style="margin-top: 20px;">
       <div>
