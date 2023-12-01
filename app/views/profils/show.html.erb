@@ -1,7 +1,7 @@
 <!-- app/views/profils/show.html.erb -->
 <div class="container">
   <div class="banner" style="background: url(<%= asset_path 'nba_banner.png' %>) no-repeat center center; background-size: cover; height: 200px; position: relative;">
-    <div style="border-radius: 50%; width: 120px; height: 120px; background-color: transparent; position: absolute; bottom: -60px; left: 50%; transform: translateX(-50%); border: 3px solid #FF6000;">
+    <div style="border-radius: 50%; width: 120px; height: 120px; background-color: white; position: absolute; bottom: -60px; left: 50%; transform: translateX(-50%);">
       <% if @profil.photo.attached? == true  %>
         <%= cl_image_tag @profil.photo.key, height: 120, width: 120, radius: 50, crop: :fill, gravity: :face %>
       <% else %>
