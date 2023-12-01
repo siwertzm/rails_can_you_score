@@ -1,18 +1,16 @@
 class LeaderboardsController < ApplicationController
   def index
-    if params[:zone_id].present?
-      @best_trainings = filtered_trainings.sort_by do |training|
-        -shooting_efficiency(training)
-      end
-    else
-      @best_trainings = Training.all.sort_by do |training|
-        -shooting_efficiency(training)
-      end
+    @best_trainings = filtered_trainings.sort_by do |training|
+      -shooting_efficiency(training)
     end
   end
 
   def filtered_trainings
-    if params[:zone_id].present? && params[:zone_id] != ""
+    if params[:zone_id].present? && params[:zone_id] != "" && params[:username].present? && params[:username] != ""
+      Training.where(zone_id: params[:zone_id], user_id: User.where("username LIKE ?", "%#{params[:username]}%").ids)
+    elsif params[:username].present? && params[:username] != ""
+      Training.where(user_id: User.where("username LIKE ?", "%#{params[:username]}%").ids)
+    elsif params[:zone_id].present? && params[:zone_id] != ""
       Training.where(zone_id: params[:zone_id])
     else
       Training.all

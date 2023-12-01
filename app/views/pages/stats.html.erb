@@ -1,4 +1,5 @@
-<div class="text-center mt-3">
+
+<div class="text-center my-3">
     <h2><strong>Overall Evolution</strong></h2>
 </div>
 
@@ -19,7 +20,7 @@
 <div class="d-flex flex-column">
   <table class="table table-striped text-center">
     <thead>
-      <tr>
+      <tr class="text-center">
         <th>Training Date</th>
         <th>Total Shots</th>
         <th>Made Shots</th>
@@ -29,12 +30,12 @@
     </thead>
     <tbody>
       <% @latest_trainings_for_table.each do |training| %>
-        <tr>
-          <td><%= training.created_at.strftime("%d/%m/%y %Hh%M") %></td>
+        <tr class="text-center">
+          <td><%= training.created_at.strftime("%d/%m/%y") %></td>
           <td><%= training.shot_total %></td>
           <td><%= training.shot_made %></td>
           <td><%= training.shooting_efficiency.to_i %>%</td>
-          <td><%= training.zone_id %></td>
+          <td><%= training.zone.name %></td>
         </tr>
       <% end %>
     </tbody>
