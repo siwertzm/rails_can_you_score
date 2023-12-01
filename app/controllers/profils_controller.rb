@@ -5,7 +5,7 @@ class ProfilsController < ApplicationController
                         .select("*, CASE WHEN shot_total > 0 THEN (shot_made::float / shot_total) * 100 ELSE 0 END AS shooting_efficiency")
                         .order('shooting_efficiency DESC')
                         .limit(3)
-    @selected_zone_id = @profil.trainings.last.zone_id
+    @selected_zone_id = @profil.trainings.last&.zone_id
   end
 
   def shooting_efficiency(training)
