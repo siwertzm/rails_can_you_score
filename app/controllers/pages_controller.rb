@@ -7,6 +7,7 @@ class PagesController < ApplicationController
     end
 
     @trainings = Training.all
+    @best_trainings = @trainings.to_a.sort_by { |training| -training.shooting_efficiency }
   end
 
   def stats
