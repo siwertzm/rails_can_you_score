@@ -1,6 +1,10 @@
+.card1 .content h1 {
+  color: #FFA559;
+}
 
 .table {
-  background-color: #e07768;
+  background-color: #FF6000;
+  box-shadow: 0px 0px 4px #FFA559;
 }
 
 .card1{
@@ -44,7 +48,7 @@
 }
 
 .container1 .card1:nth-child(1) .icon {
-  background: #e07768;
+  background: #FF6000;
 }
 
 .container1 .card1:nth-child(2) .icon {
@@ -83,7 +87,7 @@
 }
 
 .container1 .card1:hover .face.face1{
-  background: #e76f51;
+  background: #FF6000;
   transform: translateY(0px);
 }
 
