@@ -10,12 +10,21 @@
      </div>
   </div>
 
+    <div style="position: absolute; bottom: -60px; right: 90px; display: flex; align-items: center;">
+    <% if current_user == @profil %>
+      <%= link_to "<i class='fas fa-pen fa-2x'></i>".html_safe, edit_user_registration_path, class: "btn text-warning" %>
+      <% end %>
+
+    </div>
+  </div>
+</div>
+
+
     <div class="card" style="background-color: white; padding: 20px; margin-top: 70px;">
       <div class="text-center">
         <h1><strong><%= @profil.username %></strong></h1>
       </div>
     </div>
-    <%= link_to "Edit My Profile", edit_user_registration_path, class: "btn btn-primary" %>
 
     <div class="text-center" style="margin-top: 20px;">
       <div>
