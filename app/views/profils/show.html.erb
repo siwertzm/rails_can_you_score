@@ -23,6 +23,13 @@
   </div>
 </div>
 
+<% if current_user != @profil %>
+  <% if current_user.followees.include?(@profil) %>
+    <%= link_to "Unfollow", unfollow_profil_path(@profil), class: "btn btn-primary", data: { turbo_method: :delete } %>
+  <% else %>
+    <%= link_to "Follow", follow_profil_path(@profil), class: "btn btn-primary", data: { turbo_method: :post } %>
+  <% end %>
+<% end %>
 
 <div class="d-flex flex-column">
   <% @profil.trainings.order(created_at: :desc).limit(5).each do |training| %>

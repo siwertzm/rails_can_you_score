@@ -163,6 +163,10 @@ usertest = User.create(
 usertest.save!
 usertest.photo.attach(io: URI.open("https://ca.slack-edge.com/T02NE0241-U060NKA1WMP-a65364e0f59b-512"), filename: "file#{usertest.username}")
 
+followtest = Follow.create(follower_id: 1, followed_id: 2)
+followtest.save!
+followtest = Follow.create(follower_id: 2, followed_id: 1)
+followtest.save!
 
 15.times do
   training = Training.create(
