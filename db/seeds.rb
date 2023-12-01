@@ -99,15 +99,15 @@ usertest = User.create(
 )
 usertest.save!
 
-150.times do
-  training = Training.create(
-    shot_total: 20,
-    shot_made: rand(19),
-    user_id: usertest.id,
-    zone_id: Zone.find(rand(1..11)).id
-  )
-  training.save!
-end
+# 150.times do
+#   training = Training.create(
+#     shot_total: 20,
+#     shot_made: rand(19),
+#     user_id: usertest.id,
+#     zone_id: Zone.find(rand(1..11)).id
+#   )
+#   training.save!
+# end
 
 # 10.times do
 #   user = User.create(
