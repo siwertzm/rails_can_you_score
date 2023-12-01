@@ -6,8 +6,7 @@ class PagesController < ApplicationController
       format.svg { render plain: File.read(Rails.root.join('app', 'assets', 'images', 'basketball_court.svg')), content_type: 'image/svg+xml' }
     end
 
-    @trainings = Training.all
-    @best_trainings = @trainings.to_a.sort_by { |training| -training.shooting_efficiency }
+    @best_trainings = Training.all.sort_by { |training| -training.shooting_efficiency }
   end
 
   def stats
