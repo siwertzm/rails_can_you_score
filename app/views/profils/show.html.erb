@@ -1,7 +1,7 @@
 <!-- app/views/profils/show.html.erb -->
 <div class="container">
   <div class="banner" style="background: url(<%= asset_path 'nba_banner.png' %>) no-repeat center center; background-size: cover; height: 200px; position: relative;">
-    <div style="border-radius: 50%; width: 120px; height: 120px; background-color: white; position: absolute; bottom: -60px; left: 50%; transform: translateX(-50%); border: 3px solid #FF6000;">
+    <div style="border-radius: 50%; width: 120px; height: 120px; background-color: white; position: absolute; bottom: -60px; left: 50%; transform: translateX(-50%); border: 3px solid #FF3115;">
       <% if @profil.photo.attached? == true  %>
         <%= cl_image_tag @profil.photo.key, height: 120, width: 120, radius: 50, crop: :fill, gravity: :face %>
       <% else %>
@@ -10,9 +10,9 @@
      </div>
   </div>
 </div>
-  <div class="card" style="background-color: #454545; padding: 20px; margin-top: 70px;">
+  <div class="card" style="background-color: #fffff; padding: 20px; margin-top: 70px;">
     <div class="text-center">
-      <h1 style="color: #FFA559;"><strong><%= @profil.username %></strong></h1>
+      <h1 style="color: #FF3115;"><strong><%= @profil.username %></strong></h1>
     </div>
      </div>
   </div>
