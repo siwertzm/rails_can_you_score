@@ -1,5 +1,5 @@
 
-<div class="text-center mt-3">
+<div class="text-center my-3">
     <h2><strong>Overall Evolution</strong></h2>
 </div>
 
@@ -18,9 +18,9 @@
 <h2 class="text-center mt-3 pt-2 border-top"><strong>Latest Trainings</strong></h2>
 
 <div class="d-flex flex-column">
-  <table class="table table-striped">
+  <table class="table table-striped text-center">
     <thead>
-      <tr>
+      <tr class="text-center">
         <th>Training Date</th>
         <th>Total Shots</th>
         <th>Made Shots</th>
@@ -30,12 +30,12 @@
     </thead>
     <tbody>
       <% @latest_trainings_for_table.each do |training| %>
-        <tr>
-          <td><%= training.created_at.strftime("%d/%m/%y %Hh%M") %></td>
+        <tr class="text-center">
+          <td><%= training.created_at.strftime("%d/%m/%y") %></td>
           <td><%= training.shot_total %></td>
           <td><%= training.shot_made %></td>
           <td><%= training.shooting_efficiency.to_i %>%</td>
-          <td><%= training.zone_id %></td>
+          <td><%= training.zone.name %></td>
         </tr>
       <% end %>
     </tbody>
@@ -59,7 +59,7 @@
   }
 
   document.addEventListener('DOMContentLoaded', function() {
-    const trainingDates = <%= @latest_trainings_for_table.reverse.map { |t| t.created_at.strftime("%d/%m/%y %Hh%M") }.to_json.html_safe %>;
+    const trainingDates = <%= @latest_trainings_for_table.reverse.map { |t| t.created_at.strftime("") }.to_json.html_safe %>;
     const shootingEfficiencies = <%= @latest_trainings_for_table.reverse.map { |t| t.shooting_efficiency.to_i }.to_json.html_safe %>;
 
     const ctx = document.getElementById('statsChart').getContext('2d');
@@ -68,7 +68,7 @@
       data: {
         labels: trainingDates,
         datasets: [{
-          label: 'Shooting Efficiency Per Session',
+          label: '',
           data: shootingEfficiencies,
           borderColor: '#00000',
           borderWidth: 2,

@@ -1,4 +1,4 @@
-puts 'Créé les 11 zones, 10 users avec 5 sessions chacuns...'
+puts 'Créé les 11 zones'
 
 # zones = ["P", "FT", "TF", "RZ", "TRZ", "RE", "TRE", "LZ", "TLZ", "LE", "TLE"]
 
@@ -12,7 +12,7 @@ zone.save!
 
 zone = Zone.create(
   name: "FT",
-  orientation: "",
+  orientation: "Face",
   position: "Lancer Franc",
   point: 1
 )
@@ -20,7 +20,7 @@ zone.save!
 
 zone = Zone.create(
   name: "TF",
-  orientation: "",
+  orientation: "Face",
   position: "Face",
   point: 3
 )
@@ -99,7 +99,7 @@ usertest = User.create(
 )
 usertest.save!
 
-5.times do
+150.times do
   training = Training.create(
     shot_total: 20,
     shot_made: rand(19),
@@ -109,24 +109,24 @@ usertest.save!
   training.save!
 end
 
-10.times do
-  user = User.create(
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
-    username: Faker::Internet.username,
-    email: Faker::Internet.email,
-    password: "azerty"
-  )
-  user.save!
+# 10.times do
+#   user = User.create(
+#     first_name: Faker::Name.first_name,
+#     last_name: Faker::Name.last_name,
+#     username: Faker::Internet.username,
+#     email: Faker::Internet.email,
+#     password: "azerty"
+#   )
+#   user.save!
 
-  5.times do
-    training = Training.create(
-      shot_total: 20,
-      shot_made: rand(19),
-      user_id: User.find_by(username: user.username).id,
-      zone_id: Zone.find(rand(1..11)).id
-    )
-    training.save!
-  end
-end
+#   5.times do
+#     training = Training.create(
+#       shot_total: 20,
+#       shot_made: rand(19),
+#       user_id: User.find_by(username: user.username).id,
+#       zone_id: Zone.find(rand(1..11)).id
+#     )
+#     training.save!
+#   end
+# end
 puts 'Finished!'
