@@ -27,8 +27,8 @@
 
     <div class="d-flex flex-column">
     <% if @profil.trainings.any? %>
-      <% @profil.trainings.order(created_at: :desc).limit(5).each do |training| %>
-        <div class="card" style="border: 1px solid #ddd; padding: 10px; margin: 10px; background-color: #e76f51;">
+      <% @profil.trainings.order(created_at: :desc).limit(3).each do |training| %>
+        <div class="card" style=" padding: 10px; margin: 10px; background-color: #e76f51;">
     <div class="card-body d-flex">
 
       <svg width="155" height="396" viewBox="0 0 430 932" fill="none" xmlns="http://www.w3.org/2000/svg" style="float: left; margin-bottom: -90px;">
