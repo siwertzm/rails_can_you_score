@@ -1,3 +1,5 @@
+@import "vars";
+
 .navbar-lewagon {
   background: #ffffff;
 }
@@ -11,7 +13,7 @@
 }
 .navbar-nav .nav-link {
   font-weight: bold;
-  color: #FF3115;
+  color: $base-color;
 }
 
 .navbar-lewagon .navbar-brand img {
