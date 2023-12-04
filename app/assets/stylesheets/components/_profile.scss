@@ -1,4 +1,38 @@
+@import "vars";
+
 .highlighted-zone {
-  fill: #FF6000 !important;
+  fill: $base-color !important;
   filter: url(#f3d);
+}
+
+.terrain {
+  background-color: $base-gris;
+}
+
+.carte-scrore{
+  position: relative;
+}
+
+.test{
+  background-color: $base-gris;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
+}
+
+.note{
+  position: absolute;
+  bottom: 1rem;
+}
+
+.score {
+  color: black;
+  font-size: 4em;
+  font-weight: bold;
+}
+
+.text{
+  margin-top: -20px;
+  color: $base-color;
 }

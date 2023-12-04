@@ -1,30 +1,28 @@
 <!-- app/views/leaderboards/index.html.erb -->
-
-<h1 class="text-center mt-3 mb-3">Leaderboard</h1>
+<h1 class="text-center mt-3 mb-3">Classement</h1>
 
 <div class="d-flex" style="width: 100%;">
   <%= form_tag(leaderboards_path, method: :get, class: "mb-4") do %>
     <div class="form-group d-flex justify-content-start">
       <%= label_tag "user_id", "" %>
-      <%= text_field_tag :username, params[:username], placeholder: "Username", class: "form-control", style: "width: 35%; margin-left: 10px;" %>
+      <%= text_field_tag :username, params[:username], placeholder: "Nom", class: "form-control", style: "width: 35%; margin-left: 10px;" %>
       <%= label_tag "zone_id", "" %>
-      <%= select_tag(:zone_id, options_for_select([["All", ""], ["Paint", 1], [" Free Throw", 2], ["Three Front", 3], ["Right Zero", 4], ["Three Right Zero", 5], ["Right Elbow", 6], ["Three Right Elbow", 7], ["Left zero", 8], ["Three Left Zero", 9], ["Left Elbow", 10], ["Three Left Elbow", 11]], params[:zone_id]), class: "form-control", style: "width: 25%; margin-left: 10px;") %>
-      <%= submit_tag("Filter", class: "custom-button") %>
+      <%= select_tag(:zone_id, options_for_select([["Tout", ""], ["Raquette", 1], ["Lancer franc", 2], ["3 points de face", 3], ["2 points fond droite", 4], ["3 points fond droite", 5], ["2 points angle droite", 6], ["3 points angle droite", 7], ["2 points fond gauche", 8], ["3 points fond gauche", 9], ["2 points fond gauche", 10], ["3 points angle gauche", 11]], params[:zone_id]), class: "form-control", style: "width: 25%; margin-left: 10px;") %>
+      <%= submit_tag("Filtrer", class: "custom-button") %>
       <%= link_to '<i class="fas fa-xmark fa-1x"></i>'.html_safe, leaderboards_path, class: "custom-button me-2" %>
     </div>
   <% end %>
 </div>
 
 
-
 <div class="d-flex justify-content-center align-item-center">
   <table class="table table-striped">
     <thead class="bg-dark text-white">
       <tr class="text-center">
-        <th scope="col" class="py-2">Rank</th>
-        <th scope="col" class="py-2">Username</th>
+        <th scope="col" class="py-2">Rang</th>
+        <th scope="col" class="py-2">Nom</th>
         <th scope="col" class="py-2">Zone</th>
-        <th scope="col" class="py-2">Efficiency</th>
+        <th scope="col" class="py-2">Précision</th>
       </tr>
     </thead>
     <tbody>

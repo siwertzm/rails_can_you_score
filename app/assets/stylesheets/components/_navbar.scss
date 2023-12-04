@@ -1,5 +1,7 @@
+@import "vars";
+
 .navbar-lewagon {
-  background: #454545;
+  background: #ffffff;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -10,7 +12,8 @@
   width: 40px;
 }
 .navbar-nav .nav-link {
-  color: #FFA559;
+  font-weight: bold;
+  color: $base-color;
 }
 
 .navbar-lewagon .navbar-brand img {

@@ -1,12 +1,12 @@
 
 <div class="text-center my-3">
-    <h2><strong>Overall Evolution</strong></h2>
+    <h2><strong>Statistiques</strong></h2>
 </div>
 
-<button onclick="showAllZones()" class="custom-button-small">Show All Zones</button>
+<button onclick="showAllZones()" class="custom-button-small">Toutes les zones</button>
 
 <select id="zoneFilter" onchange="filterByZone()" style="padding: 3px; font-size: 16px; border-radius: 5px;">
-  <option value="">Filter</option>
+  <option value="">Filtrer</option>
   <% @profil.trainings.distinct.pluck(:zone_id).each do |zone_id| %>
     <% zone = Zone.find(zone_id) %>
     <option value="<%= zone.id %>"><%= zone.name %></option>
@@ -15,16 +15,16 @@
 
 </select>
   <canvas id="statsChart" width="410" height="300" class="me-3"></canvas>
-<h2 class="text-center mt-3 pt-2 border-top"><strong>Latest Trainings</strong></h2>
+<h2 class="text-center mt-3 pt-2 border-top"><strong>Détails</strong></h2>
 
 <div class="d-flex flex-column">
   <table class="table table-striped text-center">
     <thead>
       <tr class="text-center">
-        <th>Training Date</th>
-        <th>Total Shots</th>
-        <th>Made Shots</th>
-        <th>Accuracy</th>
+        <th>Date</th>
+        <th>Total</th>
+        <th>Rentrés</th>
+        <th>Précision</th>
         <th>Zone</th>
       </tr>
     </thead>
@@ -70,7 +70,7 @@
         datasets: [{
           label: '',
           data: shootingEfficiencies,
-          borderColor: '#00000',
+          borderColor: '#FF3115',
           borderWidth: 2,
           fill: false
         }]
