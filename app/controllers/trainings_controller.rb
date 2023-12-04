@@ -11,6 +11,8 @@ class TrainingsController < ApplicationController
     @training = Training.new(training_params)
     @training.user = current_user
     if @training.save
+      @notif = Notif.new(user: current_user, training: @training)
+      @notif.save!
       redirect_to new_training_path
     else
       render :new, status: :unprocessable_entity
