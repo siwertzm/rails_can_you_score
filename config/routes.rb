@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       delete 'unfollow'
     end
   end
+  resources :notifs, only: [:destroy]
   resources :leaderboards, only: [:index] do
     collection do
       get :filter_by_zone
