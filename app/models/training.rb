@@ -19,6 +19,6 @@ class Training < ApplicationRecord
   private
 
   def shot_made_cannot_be_greater_than_shot_total
-    errors.add(:shot_made, "ne peut pas être supérieur à shot_total") if shot_made > shot_total
+    errors.add(:shot_made, "") if shot_made > shot_total
   end
 end
