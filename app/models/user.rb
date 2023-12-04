@@ -20,4 +20,9 @@ class User < ApplicationRecord
     total_efficiency = trainings.sum { |training| training.shooting_efficiency }
     total_efficiency / trainings.size
   end
+
+  validates :username, presence: true, uniqueness: true, length: { maximum: 20 }
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :email, presence: true, format: { with: Devise.email_regexp }
 end
