@@ -189,6 +189,18 @@ followtest.save!
   training.save!
 end
 
+playground = Playground.create(
+  name: "Playground Charles-Moureu",
+  address: "34 rue Baudricourt, 75013 Paris"
+)
+playground.save!
+
+playground = Playground.create(
+  name: "Playground Duperré",
+  address: "22 rue Duperré, 75009 Paris"
+)
+playground.save!
+
 # usertest = User.create(
 #   first_name: "Lebron",
 #   last_name: "James",
