@@ -3,7 +3,12 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
   resources :trainings
-  resources :profils
+  resources :profils do
+    member do
+      post 'follow'
+      delete 'unfollow'
+    end
+  end
   resources :leaderboards, only: [:index] do
     collection do
       get :filter_by_zone

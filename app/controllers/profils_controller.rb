@@ -8,6 +8,18 @@ class ProfilsController < ApplicationController
     @selected_zone_id = @profil.trainings.last&.zone_id
   end
 
+  def follow
+    @profil = User.find(params[:id])
+    Follow.create(follower: current_user, followed: @profil)
+    redirect_to profil_path(@profil)
+  end
+
+  def unfollow
+    @profil = User.find(params[:id])
+    Follow.find_by(follower: current_user, followed: @profil).destroy
+    redirect_to profil_path(@profil)
+  end
+
   def shooting_efficiency(training)
     return 0 if training.shot_total.zero?
 

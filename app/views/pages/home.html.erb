@@ -12,10 +12,10 @@
   <%= javascript_include_tag 'controllers/start_training' %>
 
   <% if current_user %>
-    <div class="container1 text-center">
-      <div class="card1">
-        <div class="content">
-          <h1 class=""><strong>3 dernières sessions</strong></h1>
+    <div class="text-center">
+      <div class="d-flex flex-column justify-content-center mt-5">
+        <div class="mt-5">
+          <h1 class="mt-4"><strong>3 dernières sessions</strong></h1>
           <table class="table table-striped">
             <thead>
               <tr>
@@ -41,6 +41,39 @@
                   </th>
                   <th scope="row">
                     <%= (t.shot_made.to_f / t.shot_total.to_f * 100).round(1) %>%
+                  </th>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="mt-2">
+          <h1 class=""><strong>Your friends</strong></h1>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">
+                  <h3>Username</h3>
+                </th>
+                <th scope="col">
+                  <h3>Zone</h3>
+                </th>
+                <th scope="col">
+                  <h3>Paniers</h3>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <% current_user.followees.each do |t| %>
+                <tr>
+                  <th scope="row">
+                    <%= link_to "#{t.username}", profil_path(t), class:"text-dark text-decoration-none" %>
+                  </th>
+                  <th scope="row">
+                    <%= t.trainings.last.zone.name%>
+                  </th>
+                  <th scope="row">
+                    <%= t.trainings.last.shot_made %> / <%= t.trainings.last.shot_total %>
                   </th>
                 </tr>
               <% end %>
