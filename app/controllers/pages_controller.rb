@@ -9,6 +9,7 @@ class PagesController < ApplicationController
     @best_trainings = Training.all.sort_by { |training| -training.shooting_efficiency }
   end
 
+
   def stats
     @profil = current_user
     @best_trainings = @profil.trainings.to_a.sort_by { |training| -training.shooting_efficiency }
