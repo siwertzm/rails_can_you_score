@@ -9,6 +9,11 @@ class PagesController < ApplicationController
     @best_trainings = Training.all.sort_by { |training| -training.shooting_efficiency }
   end
 
+  def zone_info
+    @zone = Zone.find(params[:id])
+    render json: {name: @zone.name, description: @zone.description}
+  end
+
   def stats
     @profil = current_user
     @best_trainings = @profil.trainings.to_a.sort_by { |training| -training.shooting_efficiency }

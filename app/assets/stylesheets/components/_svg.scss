@@ -3,11 +3,6 @@
   z-index: 1000;
 }
 
-svg1 {
-  position: absolute;
-  top: 60px;
-  left: 0;
-  width: 100vw;
-  height: calc(100vh - 60px);
-  z-index: 1;
+.terrainSvg {
+  background-color: $base-gris;
 }
