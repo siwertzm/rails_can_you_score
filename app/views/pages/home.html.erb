@@ -53,7 +53,7 @@
             <thead>
               <tr>
                 <th scope="col">
-                  <h3>Usernam</h3>
+                  <h3>Username</h3>
                 </th>
                 <th scope="col">
                   <h3>Zone</h3>
@@ -67,7 +67,7 @@
               <% current_user.followees.each do |t| %>
                 <tr>
                   <th scope="row">
-                    <%= t.username %>
+                    <%= link_to "#{t.username}", profil_path(t), class:"text-dark text-decoration-none" %>
                   </th>
                   <th scope="row">
                     <%= t.trainings.last.zone.name%>

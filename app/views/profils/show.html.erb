@@ -15,7 +15,7 @@
     <% if current_user.followees.include?(@profil) %>
       <%= link_to "<i class='fas fa-heart fa-2x'></i>".html_safe, unfollow_profil_path(@profil), class: "text-danger", data: { turbo_method: :delete } %>
     <% else %>
-      <%= link_to "<i class='fas fa-heart fa-2x'></i>".html_safe, follow_profil_path(@profil), class: "text-black", data: { turbo_method: :post } %>
+      <%= link_to image_tag('icons/heart.svg', size: '32x32'), follow_profil_path(@profil), class: "text-black", data: { turbo_method: :post } %>
     <% end %>
   <% end %>
 </div>
