@@ -16,22 +16,22 @@
       <div class="text-center">
         <div class="d-flex flex-column justify-content-center mt-5">
           <div class="mt-5">
-            <h1 class="mt-4"><strong>3 dernières sessions</strong></h1>
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th scope="col">
+            <h1 class="mt-4 pb-2"><strong>3 dernières sessions</strong></h1>
+            <table class="table table-striped rounded-table border border-4">
+              <thead class="table-light">
+                <tr class="">
+                  <th scope="col" class="">
                     <h3>Zone</h3>
                   </th>
-                  <th scope="col">
+                  <th scope="col" class="">
                     <h3>Paniers</h3>
                   </th>
-                  <th scope="col">
+                  <th scope="col" class="">
                     <h3>Réussite</h3>
                   </th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody class="table-group-divider">
                 <% current_user.trainings.order(created_at: :desc).limit(3).each do |t| %>
                   <tr>
                     <th scope="row">
@@ -49,9 +49,9 @@
             </table>
           </div>
           <div class="mt-2">
-            <h1 class=""><strong>Your friends</strong></h1>
-            <table class="table table-striped">
-              <thead>
+            <h1 class="pb-2"><strong>Your friends</strong></h1>
+            <table class="table table-striped rounded-table border border-4">
+              <thead class="table-light">
                 <tr>
                   <th scope="col">
                     <h3>Username</h3>
@@ -88,8 +88,8 @@
         <div class="card1">
           <div class="content1">
             <h1><strong>Meilleures sessions</strong></h1>
-            <table class="table table-striped">
-              <thead>
+            <table class="table table-striped rounded-table border border-4">
+              <thead class="table-light">
                 <tr>
                   <th scope="col">
                     <h3>Nom</h3>
