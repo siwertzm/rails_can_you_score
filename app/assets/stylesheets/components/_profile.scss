@@ -7,6 +7,8 @@
 
 .terrain {
   background-color: $base-gris;
+  border-start-start-radius: 10px;
+  overflow: hidden;
 }
 
 .carte-scrore{

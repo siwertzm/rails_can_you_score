@@ -212,6 +212,19 @@
   border-radius: 4px;
 }
 
+.button-start {
+  text-align: center;
+  background-color: $base-color;
+  position: absolute;
+  bottom: 15%;
+  left: 50%; // Centrer horizontalement
+  transform: translateX(-50%); // Décaler de moitié sa propre largeur
+  width: 80%;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  border-radius: 10px;
+}
+
 .button-sign-in {
   text-align: center;
   background-color: $base-gris;
@@ -227,7 +240,7 @@
 
 
 .rounded-table{
-  border-radius: 2rem;
+  border-radius: 10px;
   overflow: hidden;
   background: $base-gris;
 }

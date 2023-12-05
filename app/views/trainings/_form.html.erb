@@ -10,7 +10,7 @@
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     var shotMadeInput = document.getElementById('training_shot_made');
-    var shotTotalInput = document.getElementById('training_shot_made');
+    var shotTotalInput = document.getElementById('training_shot_total');
     var submitButton = document.querySelector('.custom-button');
     console.log(shotMadeInput);
     console.log(shotTotalInput);
@@ -19,13 +19,14 @@
     function checkValues() {
       var shotMade = parseInt(shotMadeInput.value);
       var shotTotal = parseInt(shotTotalInput.value);
+      console.log(shotMade);
+      console.log(shotTotal);
       if (shotMade > shotTotal) {
         submitButton.disabled = true;
       } else {
         submitButton.disabled = false;
       }
     }
-
     shotMadeInput.addEventListener('input', checkValues);
     shotTotalInput.addEventListener('input', checkValues);
   });
