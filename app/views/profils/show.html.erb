@@ -104,7 +104,7 @@
             </div>
             <div class="note">
               <div class="score ms-3">
-                80%
+                <%= ((@profil.trainings.where(zone_id: zone.id).sum(:shot_made).to_f/@profil.trainings.where(zone_id: zone.id).sum(:shot_total).to_i)*100).to_i %>%
               </div>
               <div class="text ms-3">
                 <h4>de réussite</h4>
