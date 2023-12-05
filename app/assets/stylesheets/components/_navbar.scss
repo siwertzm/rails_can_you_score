@@ -11,6 +11,13 @@
   margin-right: -16px;
 }
 
+#navbarNotif {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 400px; // Ajustez cette valeur en fonction de vos besoins
+}
+
 .notif{
   position: absolute;
   align-items: center;
