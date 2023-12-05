@@ -1,7 +1,7 @@
 <!-- app/views/profils/show.html.erb -->
 <%= render "shared/navbar" %>
 <div class="container">
-  <div class="banner" style="background: url(<%= asset_path 'nba_banner.png' %>) no-repeat center center; background-size: cover; height: 200px; position: relative;">
+  <div class="banner" style="background: url(<%= @profil.banner.attached? ? cl_image_path(@profil.banner.key) : asset_path('nba_banner.png') %>) no-repeat center center; background-size: cover; height: 200px; position: relative;">
     <div style="border-radius: 50%; width: 120px; height: 120px; background-color: white; position: absolute; bottom: -60px; left: 50%; transform: translateX(-50%);">
       <% if @profil.photo.attached? == true  %>
         <%= cl_image_tag @profil.photo.key, height: 120, width: 120, radius: 50, crop: :fill, gravity: :face %>
@@ -18,14 +18,17 @@
     <% else %>
       <%= link_to image_tag('icons/heart.svg', size: '32x32'), follow_profil_path(@profil), class: "text-black", data: { turbo_method: :post } %>
     <% end %>
+  <% else %>
+    <%= link_to "Déconnexion", destroy_user_session_path, data: {turbo_method: :delete}, style: "color: #454545;"  %>
   <% end %>
 </div>
 <div class="mt-4 p-4">
-  <div class="text-center">
-    <h1 class="text"><strong><%= @profil.username %></strong></h1>
+  <div class="text-center" style= "margin-top: 50px">
+  <h1 class="text">
+    <strong><%= @profil.username %></strong><% if current_user == @profil %><%= link_to edit_user_registration_path, class: 'btn btn-default', style: 'margin-left: 0; color:#454545' do %><i class="fas fa-pen"></i><% end %><% end %>
+  </h1>
   </div>
 </div>
-
 
 <div class="text-center" style="margin-top: 20px;">
   <div>
@@ -101,4 +104,8 @@
       </div>
     </div>
   <% end %>
+</div>
+
+<div style="position: fixed; bottom: 0; width: 100%;">
+  <%= render 'shared/footnav' %>
 </div>

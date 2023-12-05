@@ -2,7 +2,26 @@
 
 .alert {
   position: fixed;
-  bottom: 16px;
-  right: 16px;
+  bottom: 0;
+  width: 100%;
   z-index: 1000;
+}
+
+.custom-alert {
+  /* Ajoutez vos styles personnalisés pour l'alerte ici */
+  background-color: #FF3115;
+  color: black;
+  border-radius: 10px;
+  /* etc. */
+}
+
+.custom-close-button {
+  /* Ajoutez vos styles personnalisés pour le bouton de fermeture ici */
+  color: #FF3115;
+  /* etc. */
+}
+
+.custom-alert {
+  width: 100%;
+  box-sizing: border-box;
 }
