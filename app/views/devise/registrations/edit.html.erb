@@ -8,7 +8,7 @@
     <%= f.error_notification class: 'custom-alert' %>
 
         <div class="form-inputs">
-          <%= f.input :email, required: true, autofocus: true %>
+          <%= f.error_notification class: 'custom-alert' %>
 
           <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
             <p>En attente de confirmation pour: <%= resource.unconfirmed_email %></p>
