@@ -13,6 +13,7 @@
 
 .carte-scrore{
   position: relative;
+  width: 193px;
 }
 
 .test{
@@ -23,9 +24,17 @@
   flex-shrink: 0;
 }
 
+.fleche{
+  position: absolute;
+  top: 50%;
+  right: 0.5em;
+  color: $base-color;
+  transform: translate(-50%, -50%);
+}
+
 .note{
   position: absolute;
-  bottom: 1rem;
+  bottom: 0.5rem;
 }
 
 .score {
@@ -42,4 +51,13 @@
 .photo-upload-label {
   cursor: pointer;
   /* Ajoutez d'autres styles ici pour personnaliser l'apparence de l'icône */
+}
+
+.sessions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.sessions .ses {
+  flex: 0 0 50%;
 }

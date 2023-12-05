@@ -1,6 +1,7 @@
 class ProfilsController < ApplicationController
   def show
     @profil = User.find(params[:id])
+    @zones = Zone.all
     @best_trainings = @profil.trainings
                         .select("*, CASE WHEN shot_total > 0 THEN (shot_made::float / shot_total) * 100 ELSE 0 END AS shooting_efficiency")
                         .order('shooting_efficiency DESC')
