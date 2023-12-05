@@ -1,7 +1,11 @@
 @import "vars";
+.navbar{
+  --bs-navbar-toggler-border-color: rgba(var(--bs-emphasis-color-rgb), 0.0) !important;
+  --bs-navbar-color: $base-gris;
+}
 
 .navbar-lewagon {
-  background: #ffffff;
+  background: $light-gray;
   position: relative;
 }
 .navbar-lewagon .navbar-collapse {
@@ -9,6 +13,13 @@
 }
 .navbar-lewagon .navbar-brand {
   margin-right: -16px;
+}
+
+#navbarNotif {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 400px; // Ajustez cette valeur en fonction de vos besoins
 }
 
 .notif{

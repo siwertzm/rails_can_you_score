@@ -6,3 +6,27 @@
   <%= link_to "Ajouter un lieux <i class='fas fa-arrow-right'></i>".html_safe, root_path, class:"text-decoration-none text-black mt-1" %>
   <%= f.submit "Valider", class: "custom-button mt-3" %>
 <% end %>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var shotMadeInput = document.getElementById('training_shot_made');
+    var shotTotalInput = document.getElementById('training_shot_made');
+    var submitButton = document.querySelector('.custom-button');
+    console.log(shotMadeInput);
+    console.log(shotTotalInput);
+    console.log(submitButton);
+
+    function checkValues() {
+      var shotMade = parseInt(shotMadeInput.value);
+      var shotTotal = parseInt(shotTotalInput.value);
+      if (shotMade > shotTotal) {
+        submitButton.disabled = true;
+      } else {
+        submitButton.disabled = false;
+      }
+    }
+
+    shotMadeInput.addEventListener('input', checkValues);
+    shotTotalInput.addEventListener('input', checkValues);
+  });
+</script>

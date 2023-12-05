@@ -19,7 +19,7 @@
       <%= link_to image_tag('icons/heart.svg', size: '32x32'), follow_profil_path(@profil), class: "text-black", data: { turbo_method: :post } %>
     <% end %>
   <% else %>
-    <%= link_to "Déconnexion", destroy_user_session_path, data: {turbo_method: :delete}, style: "color: #454545;"  %>
+    <%= link_to "Déconnexion", destroy_user_session_path, data: {turbo_method: :delete}, class: "text-decoration-none text-black" %>
   <% end %>
 </div>
 <div class="mt-4 p-4">
