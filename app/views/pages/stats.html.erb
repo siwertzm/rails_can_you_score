@@ -1,15 +1,15 @@
-
+<%= render "shared/navbar" %>
 <div class="text-center my-3">
     <h2><strong>Statistiques</strong></h2>
 </div>
 
-<button onclick="showAllZones()" class="custom-button-small">Toutes les zones</button>
+<button onclick="showAllZones()" class="custom-button-small">Total</button>
 
 <select id="zoneFilter" onchange="filterByZone()" style="padding: 3px; font-size: 16px; border-radius: 5px;">
   <option value="">Filtrer</option>
   <% @profil.trainings.distinct.pluck(:zone_id).each do |zone_id| %>
     <% zone = Zone.find(zone_id) %>
-    <option value="<%= zone.id %>"><%= zone.name %></option>
+    <option value="<%= zone.id %>"><%= zone.description %></option>
   <% end %>
 </select>
 
@@ -42,6 +42,9 @@
   </table>
   <div class="text-center">
   </div>
+</div>
+<div style="position: fixed; bottom: 0; width: 100%;">
+  <%= render 'shared/footnav' %>
 </div>
 
 <script>

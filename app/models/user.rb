@@ -13,10 +13,17 @@ class User < ApplicationRecord
   has_many :following_users, foreign_key: :followed_id, class_name: 'Follow'
   has_many :followers, through: :following_users, source: :follower
 
+  has_many :notifs, dependent: :destroy
+
   def average_shooting_efficiency
     return 0 if trainings.empty?
 
     total_efficiency = trainings.sum { |training| training.shooting_efficiency }
     total_efficiency / trainings.size
   end
+
+  validates :username, presence: true, uniqueness: true, length: { maximum: 20 }
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :email, presence: true, format: { with: Devise.email_regexp }
 end

@@ -1,35 +1,39 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <div class="container-fluid">
-    <%= link_to root_path, class: "navbar-brand" do %>
+  <div class="container-fluid d-flex justify-content-center">
+    <%= link_to root_path, class: "navbar-brand d-flex justify-content-center" do %>
       <%= image_tag "canyouscore.svg", class: "navbar-logo" %>
     <% end %>
+    <div class="notif">
+      <% if user_signed_in? %>
+        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNotif" aria-controls="navbarNotif" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="fas fa-bell"></span>
+        </button>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
-        <% if user_signed_in? %>
-          <li class="nav-item active">
-            <%= link_to "Profil", profil_path(current_user), class: "nav-link" %>
-          </li>
-          <li class="nav-item active">
-            <%= link_to "Statistiques", stats_page_path(current_user), class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Classement", leaderboards_path, class: "nav-link" %>
-          </li>
-          <hr>
-          <li class="nav-item">
-            <%= link_to "Déconnexion", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
-          </li>
-        <% else %>
-          <li class="nav-item">
-            <%= link_to "Connexion", new_user_session_path, class: "nav-link" %>
-          </li>
-        <% end %>
-      </ul>
+        <div class="collapse navbar-collapse" id="navbarNotif">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <% current_user.followees.each do |f| %>
+                <% f.notifs.each do |n| %>
+                  <div class="notification">
+                    <% if n.user.photo.attached? == true  %>
+                      <%= cl_image_tag n.user.photo.key, class: "avatar-large" %>
+                    <% else %>
+                      <%= cl_image_tag("uk7594qzhdhrmsmdfnbb", class: "avatar-large" ) %>
+                    <% end %>
+                    <div class="notification-content">
+                      <p><small>Session du <%= n.training.created_at.strftime("%d/%m/%y") %></small></p>
+                      <p><%= n.user.username %> a shooté à <%= n.training.shooting_efficiency.to_i %>%</p>
+                    </div>
+                    <div class="notification-actions">
+                      <%= link_to '<i class="far fa-trash-alt"></i>'.html_safe, notif_path(n), data: { turbo_method: :delete } %>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+            </li>
+          </ul>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

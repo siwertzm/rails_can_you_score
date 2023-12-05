@@ -12,3 +12,4 @@ import "bootstrap"
 //= require_tree .
 
 //= require start_training
+

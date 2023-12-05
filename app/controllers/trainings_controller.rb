@@ -11,8 +11,12 @@ class TrainingsController < ApplicationController
     @training = Training.new(training_params)
     @training.user = current_user
     if @training.save
-      redirect_to new_training_path
+      @notif = Notif.new(user: current_user, training: @training)
+      @notif.save!
+      flash[:notice] = "Session enregistré avec succès."
+      redirect_to root_path
     else
+      flash[:alert] = "Le nombre de shoot réussit doit etre inférieure au shoot total."
       render :new, status: :unprocessable_entity
     end
   end
