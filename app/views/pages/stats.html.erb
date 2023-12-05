@@ -1,4 +1,3 @@
-
 <div class="text-center my-3">
     <h2><strong>Statistiques</strong></h2>
 </div>
@@ -13,8 +12,7 @@
   <% end %>
 </select>
 
-</select>
-  <canvas id="statsChart" width="410" height="300" class="me-3"></canvas>
+<canvas id="statsChart" width="410" height="300" class="me-3"></canvas>
 <h2 class="text-center mt-3 pt-2 border-top"><strong>Détails</strong></h2>
 
 <div class="d-flex flex-column">
@@ -43,56 +41,179 @@
   <div class="text-center">
   </div>
 </div>
+<canvas id="followersChart" width="410" height="300" class="me-3"></canvas>
+<h2 class="text-center mt-3 pt-2 border-top"><strong>Stats des copains</strong></h2>
+<div class="d-flex flex-column">
+  <table class="table table-striped text-center">
+    <thead>
+      <tr class="text-center">
+        <th>Date</th>
+        <th><strong>Copain</strong></th>
+        <th>Rentré</th>
+        <th><strong>Précision</strong></th>
+        <th>Zone</th>
+      </tr>
+    </thead>
+     <tbody>
+  <% if @followers_trainings.present? %>
+    <% @followers_trainings.each do |follower_training| %>
+      <% if params[:zone_id].blank? || follower_training.zone.id == params[:zone_id].to_i %>
+        <tr class="text-center">
+            <td><%= follower_training.created_at.strftime("%d/%m/%y") %></td>
+            <td><strong><%= link_to "#{follower_training.user.username}", profil_path(follower_training.user), class: "text-dark text-decoration-none" %></strong></td>
+            <td><%= "#{follower_training.shot_made}/#{follower_training.shot_total}" %></td>
+            <td><strong><%= follower_training.shooting_efficiency.to_i %>%</strong></td>
+            <td><%= follower_training.zone.name %></td>
+           </tr>
+      <% end %>
+    <% end %>
+  <% else %>
+    <tr>
+      <td colspan="5">No data available</td>
+    </tr>
+  <% end %>
+</tbody>
+  </table>
+</div>
+
+<% zone_id = params[:zone_id] %>
 
 <script>
+let statsChart;
+let barChart;
 
-  function showAllZones() {
+function showAllZones() {
+  window.location.href = "<%= stats_page_path %>";
+}
+
+function filterByZone() {
+  const zoneId = document.getElementById("zoneFilter").value;
+
+  if (zoneId === "") {
     window.location.href = "<%= stats_page_path %>";
-  }
-  function filterByZone() {
-    const zoneId = document.getElementById("zoneFilter").value;
-    if (zoneId === "") {
-      window.location.href = "<%= stats_page_path %>";
-    } else {
-      window.location.href = "<%= stats_page_path %>?zone_id=" + zoneId;
-    }
-  }
+  } else {
+    const zoneIds = [zoneId];
 
-  document.addEventListener('DOMContentLoaded', function() {
-    const trainingDates = <%= @latest_trainings_for_table.reverse.map { |t| t.created_at.strftime("") }.to_json.html_safe %>;
-    const shootingEfficiencies = <%= @latest_trainings_for_table.reverse.map { |t| t.shooting_efficiency.to_i }.to_json.html_safe %>;
+    <% @followers_trainings.each do |follower_training| %>
+      zoneIds.push("<%= follower_training.zone.id %>");
+    <% end %>
 
-    const ctx = document.getElementById('statsChart').getContext('2d');
-    const statsChart = new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: trainingDates,
-        datasets: [{
-          label: '',
-          data: shootingEfficiencies,
-          borderColor: '#FF3115',
-          borderWidth: 2,
-          fill: false
-        }]
-      },
-      options: {
-        responsive: false,
-        scales: {
-          x: {
-            type: 'category',
-            labels: trainingDates,
-          },
-          y: {
-            beginAtZero: true,
-            max: 100,
-            ticks: {
-              callback: function(value) {
-                return value + '%';
-              }
+    const combinedZoneIds = zoneIds.join(',');
+
+    window.location.href = "<%= stats_page_path %>?zone_id=" + combinedZoneIds;
+  }
+}
+
+function updateCharts() {
+  const zoneId = document.getElementById("zoneFilter").value;
+
+  fetch(`/stats.json?zone_id=${zoneId}`)
+    .then(response => response.json())
+    .then(data => {
+      const newTrainingDates = data.latest_trainings_for_table.map(t => t.created_at);
+      const newShootingEfficiencies = data.latest_trainings_for_table.map(t => t.shooting_efficiency);
+
+      statsChart.data.labels = newTrainingDates;
+      statsChart.data.datasets[0].data = newShootingEfficiencies;
+
+      barChart.data.labels = newTrainingDates;
+      barChart.data.datasets = data.followers_trainings_data.map((follower, index) => ({
+        label: follower.label,
+        data: follower.trainings.map(training => training.shooting_efficiency),
+        backgroundColor: getRandomColor(),
+        borderWidth: 2
+      }));
+
+      statsChart.update();
+      barChart.update();
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const trainingDates = <%= @latest_trainings_for_table.reverse.map { |t| t.created_at.strftime("") }.to_json.html_safe %>;
+  const shootingEfficiencies = <%= @latest_trainings_for_table.reverse.map { |t| t.shooting_efficiency.to_i }.to_json.html_safe %>;
+  const followersData = <%= @followers_trainings_data.to_json.html_safe %>;
+  const ctx = document.getElementById('statsChart').getContext('2d');
+
+  statsChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: trainingDates,
+      datasets: [{
+        label: '',
+        data: shootingEfficiencies,
+        borderColor: '#89A894',
+        backgroundColor: getRandomColor(),
+        borderWidth: 2,
+        fill: false
+      }]
+    },
+    options: {
+      responsive: false,
+      scales: {
+        x: {
+          type: 'category',
+          labels: trainingDates,
+        },
+        y: {
+          beginAtZero: true,
+          max: 100,
+          ticks: {
+            callback: function(value) {
+              return value + '%';
             }
           }
         }
       }
-    });
+    }
   });
+
+  const barCtx = document.getElementById('followersChart').getContext('2d');
+  barChart = new Chart(barCtx, {
+    type: 'line',
+    data: {
+      labels: trainingDates,
+      datasets: followersData.map((follower, index) => ({
+        label: follower.label,
+        data: follower.trainings.map(training => training.shooting_efficiency),
+        backgroundColor: getRandomColor(),
+        borderWidth: 2
+      }))
+    },
+    options: {
+      responsive: false,
+      scales: {
+        x: {
+          type: 'category',
+          labels: trainingDates,
+        },
+        y: {
+          beginAtZero: true,
+          max: 100,
+          ticks: {
+            callback: function(value) {
+              return value + '%';
+            }
+          }
+        }
+      }
+    }
+  });
+
+  console.log('Training Dates:', trainingDates);
+  console.log('Followers Data:', followersData);
+
+  function getRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
+  document.getElementById("zoneFilter").addEventListener("change", updateCharts);
+  updateCharts();
+});
+
 </script>
