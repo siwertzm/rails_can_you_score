@@ -1,6 +1,7 @@
 class Training < ApplicationRecord
   belongs_to :user, dependent: :destroy
   belongs_to :zone
+  belongs_to :playground, optional: true
 
   has_many :notifs, dependent: :destroy
 
