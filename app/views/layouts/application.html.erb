@@ -19,9 +19,6 @@
   </head>
 
   <body>
-    <% unless controller_name == 'trainings' && action_name == 'new' %>
-      <%= render "shared/navbar" %>
-    <% end %>
     <%= yield %>
     <%= render "shared/flashes" %>
   </body>

@@ -169,3 +169,63 @@
     position: relative; // Change the position to relative
   }
 }
+
+.player {
+  position: absolute;
+  top: 0;
+  margin: 0 auto;
+  height: 100vh;
+}
+
+.homepage {
+  position: relative;
+  height: 100vh;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: url('fond.jpg');
+    background-size: 180%;
+    background-position: center top 60%;
+    background-repeat: no-repeat;
+    filter: grayscale(100%);
+    z-index: -1;
+  }
+}
+
+.title {
+  padding-top: 5rem;
+}
+
+.title2 {
+  padding-top: 2rem;
+}
+
+.button-sign {
+  text-align: center;
+  background-color: $base-color;
+  position: absolute;
+  bottom: 12%;
+  left: 50%; // Centrer horizontalement
+  transform: translateX(-50%); // Décaler de moitié sa propre largeur
+  width: 80%;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  border-radius: 4px;
+}
+
+.button-sign-in {
+  text-align: center;
+  background-color: $base-gris;
+  position: absolute;
+  bottom: 4%;
+  left: 50%; // Centrer horizontalement
+  transform: translateX(-50%); // Décaler de moitié sa propre largeur
+  width: 80%;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  border-radius: 4px;
+}
