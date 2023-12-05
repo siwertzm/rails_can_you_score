@@ -11,6 +11,11 @@ class PagesController < ApplicationController
     @best_trainings = Training.all.sort_by { |training| -training.shooting_efficiency }
   end
 
+  def zone_info
+    @zone = Zone.find(params[:id])
+    render json: {name: @zone.name, description: @zone.description}
+  end
+
   def stats
     set_best_trainings
     set_latest_trainings_for_table

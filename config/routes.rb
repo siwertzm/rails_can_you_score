@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       delete 'unfollow'
     end
   end
+  get 'pages/zone_info/:id', to: 'pages#zone_info', as: 'zone_info_page'
   resources :notifs, only: [:destroy]
   resources :leaderboards, only: [:index] do
     collection do
