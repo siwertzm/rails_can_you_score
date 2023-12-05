@@ -11,7 +11,7 @@ export default class extends Controller {
         const url = element.href;
         setTimeout(() => {
           window.location.href = url;
-        }, 700);
+        }, 500);
       });
     });
   }
