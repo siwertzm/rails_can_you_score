@@ -79,13 +79,12 @@
 
 <% zone_id = params[:zone_id] %>
 <div style="position: fixed; bottom: 0; width: 100%;">
-  <%= render 'shared/footnav' %>
 </div>
 
 <script>
+const statsData = <%= raw @stats_data.to_json %>;
 let statsChart;
 let barChart;
-
 function showAllZones() {
   window.location.href = "<%= stats_page_path %>";
 }
@@ -111,7 +110,11 @@ function filterByZone() {
 function updateCharts() {
   const zoneId = document.getElementById("zoneFilter").value;
 
-  fetch(`/stats.json?zone_id=${zoneId}`)
+  fetch(`/pages/stats.json?zone_id=${zoneId}`, {
+    headers: {
+      'Accept': 'application/json'
+    }
+  })
     .then(response => response.json())
     .then(data => {
       const newTrainingDates = data.latest_trainings_for_table.map(t => t.created_at);
@@ -128,15 +131,33 @@ function updateCharts() {
         borderWidth: 2
       }));
 
+
+      userAndFollowersChart.data.labels = statsData.labels;
+      userAndFollowersChart.data.datasets = statsData.datasets;
+
       statsChart.update();
       barChart.update();
+      userAndFollowersChart.update();
     });
+
 }
+
+function fillMissingData(trainings, uniqueDates) {
+  const filledData = uniqueDates.map(date => {
+    const trainingForDate = trainings.find(training => new Date(training.created_at).getTime() === date.getTime());
+
+    return trainingForDate ? trainingForDate.shooting_efficiency : null;
+  });
+
+  return filledData;
+}
+
 
 document.addEventListener('DOMContentLoaded', function() {
   const trainingDates = <%= @latest_trainings_for_table.reverse.map { |t| t.created_at.strftime("") }.to_json.html_safe %>;
   const shootingEfficiencies = <%= @latest_trainings_for_table.reverse.map { |t| t.shooting_efficiency.to_i }.to_json.html_safe %>;
   const followersData = <%= @followers_trainings_data.to_json.html_safe %>;
+
   const ctx = document.getElementById('statsChart').getContext('2d');
 
   statsChart = new Chart(ctx, {
@@ -177,7 +198,7 @@ document.addEventListener('DOMContentLoaded', function() {
     type: 'line',
     data: {
       labels: trainingDates,
-      datasets: followersData.map((follower, index) => ({
+      datasets: followersData.map((follower) => ({
         label: follower.label,
         data: follower.trainings.map(training => training.shooting_efficiency),
         backgroundColor: getRandomColor(),
@@ -219,5 +240,4 @@ document.addEventListener('DOMContentLoaded', function() {
   document.getElementById("zoneFilter").addEventListener("change", updateCharts);
   updateCharts();
 });
-
 </script>

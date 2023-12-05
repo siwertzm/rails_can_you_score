@@ -21,7 +21,23 @@ class PagesController < ApplicationController
     set_latest_trainings_for_table
     set_followers_trainings_data
     set_followers_trainings
+
+    respond_to do |format|
+      format.html
+      format.json do
+        render json: {
+          latest_trainings_for_table: @latest_trainings_for_table,
+          followers_trainings_data: @followers_trainings_data,
+          user_data: {
+            label: @profil.username,
+            trainings: set_follower_trainings(@profil)
+          },
+          followers_data: @followers_trainings_data
+        }
+      end
+    end
   end
+
 
   def set_user_profile
     @profil = current_user
