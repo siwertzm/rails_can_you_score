@@ -2,23 +2,20 @@
 
 .navbar-lewagon {
   background: #ffffff;
+  position: relative;
 }
-
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
 }
-
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
-}
-.navbar-nav .nav-link {
-  font-weight: bold;
-  color: $base-color;
+.navbar-lewagon .navbar-brand {
+  margin-right: -16px;
 }
 
-.navbar-lewagon .navbar-brand img {
-  width: 150px; // Ajustez cette valeur en fonction de la taille souhaitée
-  height: auto; // Cela garantit que l'image conserve ses proportions
+.notif{
+  position: absolute;
+  align-items: center;
+  justify-content: end;
+  right: 1rem;
 }
 
 .notification {
@@ -54,4 +51,115 @@
   color: #999999;
   margin-left: 16px;
   font-size: 14px;
+}
+.general{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.navigation {
+  position: relative;
+  width: 100%;
+  height: 70px;
+  background: $base-gris;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px 10px 0 0;
+  box-shadow: 0px -10px 0 0 #F4F4F4;
+}
+.navigation #ul1 {
+  display: flex;
+  margin-bottom: -16px;
+  margin-left: -32px;
+}
+.navigation #ul1 .list {
+  position: relative;
+  list-style: none;
+  height: 70px;
+  width: 70px;
+  z-index: 1;
+}
+.navigation #ul1 .list a {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+  font-weight: 500;
+}
+.navigation #ul1 .list a .icon{
+  position: relative;
+  display: block;
+  line-height: 58px;
+  font-size: 1.5em;
+  text-align: center;
+  transition: 0.5s;
+  color: #F4F4F4;
+}
+.navigation #ul1 .list.active a .icon{
+  transform: translateY(-35px);
+}
+.navigation #ul1 .list a .texte{
+  position: absolute;
+  color: #F4F4F4;
+  font-weight: 400;
+  font-size: 0.75em;
+  letter-spacing: 0.05em;
+  transition: 0.5s;
+  opacity: 0;
+  transform: translateY(20px);
+}
+.navigation #ul1 .list.active a .texte{
+  opacity: 1;
+  transform: translateY(10px);
+}
+.indicator{
+  position: absolute;
+  top: -50%;
+  width: 70px;
+  height: 70px;
+  background: $base-color;
+  border-radius: 50%;
+  border: 6px solid #F4F4F4;
+  transition: 0.5s;
+}
+.indicator::before{
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -22px;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  border-top-right-radius: 20px;
+  box-shadow: 1px -10px 0 0 #F4F4F4;
+}
+.indicator::after{
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -22px;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  border-top-left-radius: 20px;
+  box-shadow: -1px -10px 0 0 #F4F4F4;
+}
+.navigation #ul1 .list:nth-child(1).active ~ .indicator{
+  transform: translateX(calc(70px * 0));
+}
+.navigation #ul1 .list:nth-child(2).active ~ .indicator{
+  transform: translateX(calc(70px * 1));
+}
+.navigation #ul1 .list:nth-child(3).active ~ .indicator{
+  transform: translateX(calc(70px * 2));
+}
+.navigation #ul1 .list:nth-child(4).active ~ .indicator{
+  transform: translateX(calc(70px * 3));
+}
+.navigation #ul1 .list:nth-child(5).active ~ .indicator{
+  transform: translateX(calc(70px * 4));
 }
