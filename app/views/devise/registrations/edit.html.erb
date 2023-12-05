@@ -4,11 +4,11 @@
 
       <h2 class="custom-form-header mt-0 text-center" style="font-size: 1.5rem;"><strong>Éditer</strong></h2>
 
-      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-        <%= f.error_notification %>
+     <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multipart: true }) do |f| %>
+    <%= f.error_notification class: 'custom-alert' %>
 
         <div class="form-inputs">
-          <%= f.input :email, required: true, autofocus: true %>
+          <%= f.error_notification class: 'custom-alert' %>
 
           <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
             <p>En attente de confirmation pour: <%= resource.unconfirmed_email %></p>
@@ -19,14 +19,27 @@
           <%= f.input :first_name, required: true, input_html: { autocomplete: "first_name" } %>
           <%= f.input :last_name, required: true, input_html: { autocomplete: "last_name" } %>
           <%= f.input :username, required: true, input_html: { autocomplete: "username" } %>
-          <%= f.input :photo, as: :file %>
-                    <%= f.input :current_password, hint: "We need your current password to confirm your changes", required: true, input_html: { autocomplete: "current-password" } %>
 
-        </div>
+<div style="display: flex; justify-content: space-between;">
+  <div style="width: 45%; display: flex; flex-direction: column; align-items: center;">
+    <label>Photo</label>
+    <label class="custom-file-upload">
+      <%= f.input :photo, as: :file, label: false %>
+    </label>
+  </div>
+  <div style="width: 45%; display: flex; flex-direction: column; align-items: center;">
+    <label>Banner</label>
+    <label class="custom-file-upload">
+      <%= f.input :banner, as: :file, label: false %>
+    </label>
+  </div>
+</div>
 
-        <div class="form-actions">
-          <%= f.button :submit, "Éditer", class: "custom-button-small" %>
-        </div>
+<%= f.input :current_password, hint: "We need your current password to confirm your changes", required: true, input_html: { autocomplete: "current-password" } %>
+
+<div class="form-actions">
+  <%= f.button :submit, "Éditer", class: "custom-button-small" %>
+</div>
       <% end %>
 
       <div>
