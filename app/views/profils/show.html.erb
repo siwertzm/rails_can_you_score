@@ -36,7 +36,7 @@
   </div>
 </div>
 
-<div class="d-flex flex-column">
+<div class="d-flex flex-column pb-5 mb-5">
   <% @profil.trainings.order(created_at: :desc).limit(5).each do |training| %>
     <div class="rounded-5 m-4 shadow">
       <div class="d-flex rounded-5">
