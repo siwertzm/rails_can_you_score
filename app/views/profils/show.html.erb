@@ -30,7 +30,10 @@
 
 <div class="text-center" style="margin-top: 20px;">
   <div>
-    <h2 style="color: #454545;">Average efficiency: <strong><%= @profil.average_shooting_efficiency.to_i %>%</strong></h2>
+    <h2 style="color: #454545;">Réussite globale: <strong></h2>
+    <div class="score ms-3">
+      <%= @profil.average_shooting_efficiency.to_i %>%</strong>
+   </div>
   </div>
 </div>
 
