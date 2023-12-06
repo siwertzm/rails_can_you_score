@@ -6,7 +6,12 @@
     <div class="notif">
       <% if user_signed_in? %>
         <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNotif" aria-controls="navbarNotif" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="fas fa-bell"></span>
+          <div class="position-relative">
+            <span class="fas fa-bell"></span>
+            <% if current_user.followees.each { |f| f.notifs != [] }%>
+              <div class="pastille"></div>
+            <% end %>
+          </div>
         </button>
 
         <div class="collapse navbar-collapse mt-4 pt-2" id="navbarNotif">
