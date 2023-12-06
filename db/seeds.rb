@@ -101,94 +101,6 @@ zone = Zone.create(
 )
 zone.save!
 
-usertest = User.create(
-  first_name: "Greg",
-  last_name: "Jordan",
-  username: "Greg",
-  email: "greg@test.fr",
-  password: "azerty"
-)
-usertest.photo.attach(io: URI.open("https://ca.slack-edge.com/T02NE0241-U060B0PEXFV-9c38947096ac-512"), filename: "file#{usertest.username}")
-
-usertest.save!
-
-3.times do
-  training = Training.create(
-    shot_total: 20,
-    shot_made: rand(19),
-    user_id: usertest.id,
-    zone_id: Zone.find(rand(1..11)).id
-  )
-  training.save!
-end
-
-usertest = User.create(
-  first_name: "Marius",
-  last_name: "Jordan",
-  username: "Marius",
-  email: "marius@test.fr",
-  password: "azerty"
-)
-usertest.save!
-usertest.photo.attach(io: URI.open("https://ca.slack-edge.com/T02NE0241-U060CSG0CPN-c8b17f95a54a-512"), filename: "file#{usertest.username}")
-
-
-3.times do
-  training = Training.create(
-    shot_total: 20,
-    shot_made: rand(19),
-    user_id: usertest.id,
-    zone_id: Zone.find(rand(1..11)).id
-  )
-  training.save!
-end
-
-usertest = User.create(
-  first_name: "Johan",
-  last_name: "Jordan",
-  username: "Johan",
-  email: "Johan@test.fr",
-  password: "azerty"
-)
-usertest.save!
-usertest.photo.attach(io: URI.open("https://ca.slack-edge.com/T02NE0241-U060KKV7T6V-2dc8612c00de-512"), filename: "file#{usertest.username}")
-
-
-3.times do
-  training = Training.create(
-    shot_total: 20,
-    shot_made: rand(19),
-    user_id: usertest.id,
-    zone_id: Zone.find(rand(1..11)).id
-  )
-  training.save!
-end
-
-usertest = User.create(
-  first_name: "Raph",
-  last_name: "Jordan",
-  username: "Raph",
-  email: "raph@test.fr",
-  password: "azerty"
-)
-usertest.save!
-usertest.photo.attach(io: URI.open("https://ca.slack-edge.com/T02NE0241-U060NKA1WMP-a65364e0f59b-512"), filename: "file#{usertest.username}")
-
-followtest = Follow.create(follower_id: 1, followed_id: 2)
-followtest.save!
-followtest = Follow.create(follower_id: 2, followed_id: 1)
-followtest.save!
-
-3.times do
-  training = Training.create(
-    shot_total: 20,
-    shot_made: rand(19),
-    user_id: usertest.id,
-    zone_id: Zone.find(rand(1..11)).id
-  )
-  training.save!
-end
-
 playground = Playground.create(
   name: "Playground Charles-Moureu",
   address: "34 rue Baudricourt, 75013 Paris",
@@ -272,6 +184,95 @@ playground = Playground.create(
   court: "https://media.timeout.com/images/106037643/1372/1029/image.webp"
 )
 playground.save!
+
+usertest = User.create(
+  first_name: "Greg",
+  last_name: "Jordan",
+  username: "Greg",
+  email: "greg@test.fr",
+  password: "azerty"
+)
+usertest.photo.attach(io: URI.open("https://ca.slack-edge.com/T02NE0241-U060B0PEXFV-9c38947096ac-512"), filename: "file#{usertest.username}")
+
+usertest.save!
+
+10.times do
+  training = Training.create(
+    shot_total: 20,
+    shot_made: rand(19),
+    user_id: usertest.id,
+    zone_id: Zone.find(rand(1..11)).id,
+    playground_id: Playground.find(rand(1..12)).id
+  )
+  training.save!
+end
+
+usertest = User.create(
+  first_name: "Marius",
+  last_name: "Jordan",
+  username: "Marius",
+  email: "marius@test.fr",
+  password: "azerty"
+)
+usertest.save!
+usertest.photo.attach(io: URI.open("https://ca.slack-edge.com/T02NE0241-U060CSG0CPN-c8b17f95a54a-512"), filename: "file#{usertest.username}")
+
+
+10.times do
+  training = Training.create(
+    shot_total: 20,
+    shot_made: rand(19),
+    user_id: usertest.id,
+    zone_id: Zone.find(rand(1..11)).id,
+    playground_id: Playground.find(rand(1..12)).id
+  )
+  training.save!
+end
+
+usertest = User.create(
+  first_name: "Johan",
+  last_name: "Jordan",
+  username: "Johan",
+  email: "Johan@test.fr",
+  password: "azerty"
+)
+usertest.save!
+usertest.photo.attach(io: URI.open("https://ca.slack-edge.com/T02NE0241-U060KKV7T6V-2dc8612c00de-512"), filename: "file#{usertest.username}")
+
+
+10.times do
+  training = Training.create(
+    shot_total: 20,
+    shot_made: rand(19),
+    user_id: usertest.id,
+    zone_id: Zone.find(rand(1..11)).id,
+    playground_id: Playground.find(rand(1..12)).id
+  )
+  training.save!
+end
+
+usertest = User.create(
+  first_name: "Raph",
+  last_name: "Jordan",
+  username: "Raph",
+  email: "raph@test.fr",
+  password: "azerty"
+)
+usertest.save!
+usertest.photo.attach(io: URI.open("https://ca.slack-edge.com/T02NE0241-U060NKA1WMP-a65364e0f59b-512"), filename: "file#{usertest.username}")
+
+10.times do
+  training = Training.create(
+    shot_total: 20,
+    shot_made: rand(19),
+    user_id: usertest.id,
+    zone_id: Zone.find(rand(1..11)).id,
+    playground_id: Playground.find(rand(1..12)).id
+  )
+  training.save!
+end
+
+
 
 # usertest = User.create(
 #   first_name: "Lebron",
