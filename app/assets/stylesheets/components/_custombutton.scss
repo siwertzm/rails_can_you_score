@@ -48,12 +48,12 @@
 }
 
 .custom-button-reservation{
-  background-color: #000000;
-  color: #ffffff; /* White text color */
+  background-color: $base-gris;
+  color: #ffffff;
   border: none;
   border-radius: 4px;
   padding: 10px 20px;
-  font-size: 18px;
+  font-size: 16px;
   cursor: pointer
 }
 

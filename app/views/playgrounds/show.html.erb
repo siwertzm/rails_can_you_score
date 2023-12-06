@@ -1,13 +1,16 @@
-
-<div class="container m-3 mx-3 mt-5">
+<%= render "shared/navbar" %>
+<body>
+<div class="container mt-1">
   <img src="<%= @playground.court %>" alt="Playground Picture" style="max-width: 100%; height: auto;">
-<div class="border-top mt-4 py-3 bg-dark text-white text-center">
-    <h1><%= @playground.name %></h1>
+
+<div class="border-top mt-4 mb-3 py-3 bg-white text-dark text-center">
+    <h1><strong><%= @playground.name %></strong></h1>
   <h2><%= @playground.address %></h2>
+  </div>
   </div>
 
 
-<h1 class="text-center">Leaderboard</h1>
+<h1 class="text-center"><strong>Leaderboard</strong></h1>
 
 <table class="table table-striped rounded-table">
   <thead class="fs-3">
@@ -29,7 +32,7 @@
     <% end %>
   </tbody>
 </table>
-</div>
+</body>
 <div style="position: fixed; bottom: 0; width: 100%;">
   <%= render 'shared/footnav' %>
 </div>
