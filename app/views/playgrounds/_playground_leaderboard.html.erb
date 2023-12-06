@@ -1,13 +1,4 @@
-
-<div class="container m-3 mx-3 mt-5">
-  <img src="<%= @playground.court %>" alt="Playground Picture" style="max-width: 100%; height: auto;">
-<div class="border-top mt-4 py-3 bg-dark text-white text-center">
-    <h1><%= @playground.name %></h1>
-  <h2><%= @playground.address %></h2>
-  </div>
-
-
-<h1 class="text-center">Leaderboard</h1>
+<h1>Playground Leaderboard</h1>
 
 <table class="table table-striped rounded-table">
   <thead class="fs-3">
@@ -29,7 +20,3 @@
     <% end %>
   </tbody>
 </table>
-</div>
-<div style="position: fixed; bottom: 0; width: 100%;">
-  <%= render 'shared/footnav' %>
-</div>

@@ -17,24 +17,30 @@ class PlaygroundsController < ApplicationController
     @playground_leaderboard = calculate_playground_leaderboard(@playground)
   end
 
-  def calculate_playground_leaderboard(playground)
-  # Retrieve the relevant trainings for this playground
-  playground_trainings = Training.where(playground_id: playground.id)
+  private
 
-  # Calculate leaderboard information based on the retrieved trainings
-  leaderboard_info = playground_trainings.map do |training|
-    {
-      user: training.user,
-      zone: training.zone,
-      shooting_efficiency: shooting_efficiency(training)
-      # Add any other information you want to include in the leaderboard
-    }
+  def calculate_playground_leaderboard(playground)
+    filtered_trainings = get_filtered_trainings(playground)
+
+    best_trainings = filtered_trainings.sort_by do |training|
+      -shooting_efficiency(training)
+    end
+
+    # Return the calculated leaderboard information
+    best_trainings
   end
 
-  # Sort the leaderboard_info by shooting efficiency in descending order
-  leaderboard_info.sort_by! { |info| -info[:shooting_efficiency] }
+  def get_filtered_trainings(playground)
+    if params[:zone_id].present?
+      playground.trainings.where(zone_id: params[:zone_id])
+    else
+      playground.trainings
+    end
+  end
 
-  # Return the calculated leaderboard information
-  leaderboard_info
+  def shooting_efficiency(training)
+    return 0 if training.shot_total.zero?
+
+    (training.shot_made.to_f / training.shot_total) * 100
   end
 end
