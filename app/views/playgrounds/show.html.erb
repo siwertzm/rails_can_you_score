@@ -1,0 +1,10 @@
+<div class="container bg-dark text-white">
+<h2><%= @playground.address %></h2>
+<h2><%= @playground.name %></h2>
+</div>
+<h3>Favoris de <%= current_user.username %></h3>
+<ul>
+  <% current_user.favorite_playgrounds.each do |favorite| %>
+    <li><%= link_to favorite.playground.name, playground_path(favorite.playground) %></li>
+  <% end %>
+</ul>
