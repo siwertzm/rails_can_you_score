@@ -76,6 +76,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_06_125559) do
     t.float "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "court"
   end
 
   create_table "trainings", force: :cascade do |t|

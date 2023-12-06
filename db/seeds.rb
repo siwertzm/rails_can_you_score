@@ -191,13 +191,85 @@ end
 
 playground = Playground.create(
   name: "Playground Charles-Moureu",
-  address: "34 rue Baudricourt, 75013 Paris"
+  address: "34 rue Baudricourt, 75013 Paris",
+  court: "https://media.timeout.com/images/106037645/1372/1029/image.webp"
 )
 playground.save!
 
 playground = Playground.create(
   name: "Playground Duperré",
-  address: "22 rue Duperré, 75009 Paris"
+  address: "22 rue Duperré, 75009 Paris",
+  court: "https://media.timeout.com/images/106037656/1372/1029/image.webp"
+)
+playground.save!
+
+playground = Playground.create(
+  name: "Playground du Champ-de-Mars",
+  address: "2 allée Adrienne-Lecouvreur, 75017 Paris",
+  court: "https://media.timeout.com/images/106037640/1372/1029/image.webp"
+)
+playground.save!
+
+playground = Playground.create(
+  name: "Playground Sérurier",
+  address: "29 boulevard Sérurier, 75019 Paris",
+  court: "https://media.timeout.com/images/106037650/1372/1029/image.webp"
+)
+playground.save!
+
+playground = Playground.create(
+  name: "Playground Jemmapes",
+  address: "142 quai de Jemmapes, 75010 Paris",
+  court: "https://media.timeout.com/images/106037644/1372/1029/image.webp"
+)
+playground.save!
+
+playground = Playground.create(
+  name: "Playground Paturle",
+  address: "14 rue Paturle, 75014 Paris",
+  court: "https://media.timeout.com/images/105417459/1372/1029/image.webp"
+)
+playground.save!
+
+playground = Playground.create(
+  name: "Playground Bir-Hakeim",
+  address: "77 quai Branly, 75015 Paris",
+  court: "https://media.timeout.com/images/105268984/1372/1029/image.webp"
+)
+playground.save!
+
+playground = Playground.create(
+  name: "Playground Charenton",
+  address: "68 boulevard Poniatowski, 75012 Paris",
+  court: "https://media.timeout.com/images/106037651/1372/1029/image.webp"
+)
+playground.save!
+
+playground = Playground.create(
+  name: "Playground Vincent-Auriol",
+  address: "61 boulevard Vincent-Auriol, 75013 Paris",
+  court: "https://media.timeout.com/images/106037646/1372/1029/image.webp"
+)
+playground.save!
+
+playground = Playground.create(
+  name: "Playground Stalingrad",
+  address: "234 boulevard de la Villette, 75019 Paris",
+  court: "https://media.timeout.com/images/106037641/1372/1029/image.webp"
+)
+playground.save!
+
+playground = Playground.create(
+  name: "Playground Luquet",
+  address: "4 rue du Transvaal, 75020 Paris",
+  court: "https://media.timeout.com/images/106037649/1372/1029/image.webp"
+)
+playground.save!
+
+playground = Playground.create(
+  name: "Terrain Saint-Paul",
+  address: "9 rue Charlemagne, 75004 Paris",
+  court: "https://media.timeout.com/images/106037643/1372/1029/image.webp"
 )
 playground.save!
 
