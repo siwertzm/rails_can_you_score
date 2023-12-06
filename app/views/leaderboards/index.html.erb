@@ -27,12 +27,20 @@
       </tr>
     </thead>
     <tbody>
-      <% @best_trainings.each_with_index do |training, index| %>
+      <% @profiles.each_with_index do |user, index| %>
         <tr class="text-center">
           <th scope="row"><%= index + 1 %></th>
-          <td ><%= link_to "#{training.user.username}", profil_path(training.user), class:"text-dark text-decoration-none" %></td>
-          <td><strong><%= training.zone.name %></strong></td>
-          <td><strong><%= (training.shooting_efficiency).round(1) %>%</strong></td>
+          <td ><%= link_to "#{user.username}", profil_path(user), class:"text-dark" %></td>
+          <% if params[:zone_id].present? %>
+            <td><%= Zone.find(params[:zone_id]).name %></td>
+          <% else %>
+            <td><strong>All</strong></td>
+          <% end %>
+          <% if params[:zone_id].present? %>
+            <td><strong><%= user.average_shooting_efficiency_by_zone(params[:zone_id]).round(1) %> %</strong></td>
+          <% else %>
+            <td><strong><%= user.average_shooting_efficiency.round(1) %> %</strong></td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>
