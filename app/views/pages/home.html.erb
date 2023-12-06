@@ -5,7 +5,7 @@
     <%= render "shared/navbar" %>
     <div class="mb-5 pb-5">
       <div id="basketball-container" class="basketball">
-        <%= link_to "debut", new_training_path, class:"button-start text-decoration-none text-white" %>
+        <%= link_to "Commencer une session", new_training_path, class:"button-start text-decoration-none text-white" %>
 
         <% if current_user %>
           <div class="text-center px-3">
@@ -16,10 +16,10 @@
                   <thead class="table-light">
                     <tr class="">
                       <th scope="col" class="">
-                        <h3>Zone</h3>
+                        <h3>Tirs</h3>
                       </th>
                       <th scope="col" class="">
-                        <h3>Paniers</h3>
+                        <h3>Score</h3>
                       </th>
                       <th scope="col" class="">
                         <h3>Réussite</h3>
@@ -30,7 +30,11 @@
                     <% current_user.trainings.order(created_at: :desc).limit(3).each do |t| %>
                       <tr>
                         <th scope="row">
-                          <%= t.zone.name %>
+                          <% if t.zone.position == "Lancer Franc" || t.zone.position == "Raquette" %>
+                            <%= t.zone.position %>
+                          <% else %>
+                            <%= t.zone.point %> points
+                          <% end %>
                         </th>
                         <th scope="row">
                           <%= t.shot_made %> / <%= t.shot_total %>
@@ -51,16 +55,16 @@
     <div style="position: fixed; bottom: 0; width: 100%;">
       <%= render 'shared/footnav' %>
     </div>
-  <% else %>
-    <div class="homepage">
-      <%= link_to root_path do %>
-        <%= image_tag 'icons/title.svg', class: 'mx-auto d-block title' %>
-      <% end %>
-      <%= image_tag 'icons/GroupPlayer.svg', class: 'player' %>
-      <div>
-        <%= link_to "Connexion", new_user_session_path, class: "button-sign text-decoration-none text-white" %>
-        <%= link_to "Inscription", new_user_registration_path, class: "button-sign-in text-decoration-none text-white" %>
-      </div>
+  </div>
+<% else %>
+  <div class="homepage">
+    <%= link_to root_path do %>
+      <%= image_tag 'icons/title.svg', class: 'mx-auto d-block title' %>
+    <% end %>
+    <%= image_tag 'icons/GroupPlayer.svg', class: 'player' %>
+    <div>
+      <%= link_to "Connexion", new_user_session_path, class: "button-sign text-decoration-none text-white" %>
+      <%= link_to "Inscription", new_user_registration_path, class: "button-sign-in text-decoration-none text-white" %>
     </div>
   </div>
 <% end %>

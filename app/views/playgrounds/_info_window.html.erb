@@ -1,2 +1,9 @@
-<h2><%= playground.name %></h2>
-<p><%= playground.address %></p>
+<h2 class="text-decoration-none text-dark"><%= link_to "#{playground.name}", playground_path(playground) %></h2>
+<p><%= link_to "#{playground.address}", playground_path(playground) %></p>
+
+<% unless current_user.favorite_playgrounds.map(&:playground_id).include?(playground.id) %>
+  <%= simple_form_for FavoritePlayground.new, remote: true do |f| %>
+    <%= f.hidden_field :playground_id, value: playground.id %>
+    <%= f.submit "Ajouter aux favoris", class: "btn btn-primary" %>
+  <% end %>
+<% end %>
