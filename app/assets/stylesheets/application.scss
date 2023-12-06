@@ -31,3 +31,8 @@ $base-color: #FF3115 !default;
   border-radius: 10px;
   overflow: hidden;
 }
+
+.form-control:focus{
+  border-color: $base-color;
+  box-shadow: 0px 0px 0px 1px $base-color;
+}
