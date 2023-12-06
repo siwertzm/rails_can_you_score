@@ -1,13 +1,8 @@
 @import "vars";
 
 #basketball-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  height: auto;
-  margin: 0;
-  padding-top: 70px; /* Ajustez cette valeur pour changer l'espace entre le haut de l'écran et le contenu */
+  margin-top: -90px;
+
 }
 
 .ball {

@@ -44,7 +44,7 @@
 </div>
 <canvas id="followersChart" width="410" height="300" class="me-3"></canvas>
 <h2 class="text-center mt-3 pt-2 border-top"><strong>Stats des copains</strong></h2>
-<div class="d-flex flex-column">
+<div class="d-flex flex-column pb-5 mb-5">
   <table class="table table-striped text-center">
     <thead>
       <tr class="text-center">
@@ -56,24 +56,24 @@
       </tr>
     </thead>
      <tbody>
-  <% if @followers_trainings.present? %>
-    <% @followers_trainings.each do |follower_training| %>
-      <% if params[:zone_id].blank? || follower_training.zone.id == params[:zone_id].to_i %>
-        <tr class="text-center">
-            <td><%= follower_training.created_at.strftime("%d/%m/%y") %></td>
-            <td><strong><%= link_to "#{follower_training.user.username}", profil_path(follower_training.user), class: "text-dark text-decoration-none" %></strong></td>
-            <td><%= "#{follower_training.shot_made}/#{follower_training.shot_total}" %></td>
-            <td><strong><%= follower_training.shooting_efficiency.to_i %>%</strong></td>
-            <td><%= follower_training.zone.name %></td>
-           </tr>
+      <% if @followers_trainings.present? %>
+        <% @followers_trainings.each do |follower_training| %>
+          <% if params[:zone_id].blank? || follower_training.zone.id == params[:zone_id].to_i %>
+            <tr class="text-center">
+                <td><%= follower_training.created_at.strftime("%d/%m/%y") %></td>
+                <td><strong><%= link_to "#{follower_training.user.username}", profil_path(follower_training.user), class: "text-dark text-decoration-none" %></strong></td>
+                <td><%= "#{follower_training.shot_made}/#{follower_training.shot_total}" %></td>
+                <td><strong><%= follower_training.shooting_efficiency.to_i %>%</strong></td>
+                <td><%= follower_training.zone.name %></td>
+              </tr>
+          <% end %>
+        <% end %>
+      <% else %>
+        <tr>
+          <td colspan="5">No data available</td>
+        </tr>
       <% end %>
-    <% end %>
-  <% else %>
-    <tr>
-      <td colspan="5">No data available</td>
-    </tr>
-  <% end %>
-</tbody>
+    </tbody>
   </table>
 </div>
 

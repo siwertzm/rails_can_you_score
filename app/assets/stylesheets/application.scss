@@ -18,3 +18,16 @@
 @import"components/svg";
 
 $base-color: #FF3115 !default;
+
+.tot {
+  height: 100vh;
+  background: url('icons/GroupPlayer.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center 150px;
+}
+
+.carte-jouer{
+  border-radius: 10px;
+  overflow: hidden;
+}

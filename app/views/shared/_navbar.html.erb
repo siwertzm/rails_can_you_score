@@ -1,4 +1,4 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon" style="background: transparent;">
   <div class="container-fluid d-flex justify-content-center">
     <%= link_to root_path, class: "navbar-brand d-flex justify-content-center" do %>
       <%= image_tag "canyouscore.svg", class: "navbar-logo" %>
@@ -9,11 +9,11 @@
           <span class="fas fa-bell"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarNotif">
+        <div class="collapse navbar-collapse mt-4 pt-2" id="navbarNotif">
           <ul class="navbar-nav me-auto">
             <li class="nav-item">
               <% current_user.followees.each do |f| %>
-                <% f.notifs.each do |n| %>
+                <% f.notifs.take(3).each do |n| %>
                   <div class="notification">
                     <% if n.user.photo.attached? == true  %>
                       <%= cl_image_tag n.user.photo.key, class: "avatar-large" %>

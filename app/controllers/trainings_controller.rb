@@ -4,7 +4,7 @@ class TrainingsController < ApplicationController
   end
 
   def show
-    @trainings = Training.find(params[:id])
+    @training = Training.find(params[:id])
   end
 
   def create
