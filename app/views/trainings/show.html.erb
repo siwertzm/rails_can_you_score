@@ -1,0 +1,82 @@
+<%= render "shared/navbar" %>
+
+<h1 class="text-center">Session du <%= @training.created_at.strftime("%d/%m/%y") %></h1>
+<div class="p-4 carte-jouer">
+  <div style="height: 200px; border-radius: 10px;"
+    data-controller="map"
+    data-map-markers-value="<%= @markers.to_json %>"
+    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
+</div>
+
+<div class="mx-4 mt-1 shadow carte-jouer">
+  <div class="d-flex">
+    <div class="p-3 terrain">
+      <svg width="155" height="300" viewBox="0 0 430 932" fill="transparent" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="f3d" x="-20%" y="-20%" width="140%" height="140%">
+            <feOffset result="offOut" in="SourceAlpha" dx="5" dy="5" />
+            <feGaussianBlur result="blurOut" in="offOut" stdDeviation="5" />
+            <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
+          </filter>
+        </defs>
+        <rect width="430" height="932" fill="transparent"/>
+        <path d="M2 376V129H42L56 130L68.5 131L83.5 133L95.5 135L110.5 138.5L120 141L137.5 146.5L150.5 151L164.5 157L178.5 163.5L188 168L196.5 172.5L204.5 177.5L211.5 182L215 184L141.5 376H2Z" fill="transparent" stroke="white" stroke-width="8" data-zone-target="clickableZone" data-zone-id="4" class="<%= 'highlighted-zone' if @training.zone.id == 4 %>"/>
+        <path d="M2 556V803H42L56 802L68.5 801L83.5 799L95.5 797L110.5 793.5L120 791L137.5 785.5L150.5 781L164.5 775L178.5 768.5L188 764L196.5 759.5L204.5 754.5L211.5 750L215 748L141.5 556H2Z" fill="FFFFFF" stroke="white" stroke-width="8" data-zone-target="clickableZone" data-zone-id="8" class="<%= 'highlighted-zone' if @training.zone.id == 8 %>"/>
+        <path d="M148 2H2V129H39.5L52 129.5L59.5 130L63 130.5L72.5 131.5L80.5 132.5L88.5 134L93.5 135L102.5 137L107.5 138L115.5 140L123 142L128.5 143.5L133 145L137.5 146.5L143.5 148.5L148 150V2Z" fill="transparent" stroke="white" stroke-width="8" data-zone-target="clickableZone" data-zone-id="5" class="<%= 'highlighted-zone' if @training.zone.id == 5 %>"/>
+        <path d="M148 2H2V129H39.5L52 129.5L59.5 130L63 130.5L72.5 131.5L80.5 132.5L88.5 134L93.5 135L102.5 137L107.5 138L115.5 140L123 142L128.5 143.5L133 145L137.5 146.5L143.5 148.5L148 150V2Z" stroke="white" stroke-width="8"/>
+        <path d="M149 930H2V803H39.7568L52.3425 802.5L59.8938 802L63.4178 801.5L72.9829 800.5L81.0377 799.5L89.0925 798L94.1267 797L103.188 795L108.223 794L116.277 792L123.829 790L129.366 788.5L133.897 787L138.428 785.5L144.469 783.5L149 782V930Z" fill="transparent" stroke="white" stroke-width="8" data-zone-target="clickableZone" data-zone-id="9" class="<%= 'highlighted-zone' if @training.zone.id == 9 %>"/>
+        <path d="M428 2H148V150L150 151L171 160L193.5 171L216.5 185L233.5 197L251.5 211.5L267.5 226.5L279.5 239L302 266L322 295L424.5 193L428 190V2Z" fill="transparent" stroke="white" stroke-width="8" data-zone-target="clickableZone" data-zone-id="7" class="<%= 'highlighted-zone' if @training.zone.id == 7 %>"/>
+        <path d="M428 930H148V782L150 781L171 772L193.5 761L216.5 747L233.5 735L251.5 720.5L267.5 705.5L279.5 693L302 666L322 637L424.5 739L428 742V930Z" fill="transparent" stroke="white" stroke-width="8" data-zone-target="clickableZone" data-zone-id="11" class="<%= 'highlighted-zone' if @training.zone.id == 11 %>"/>
+        <path d="M428 741V190L327.5 289.5L323 293.5L321.5 295L322.5 297L325 301.5L330.5 312C332.167 315.5 335.6 322.6 336 323C336.4 323.4 341.167 335.5 343.5 341.5L349.5 357L354 371.5L359.5 391.5L364 416L366.5 435.5L368 454V473L367 493L365.5 509L362.5 527.5L357.5 550L352 569.5L345.5 588L339 603.5L330.5 622L326 630.5L322.5 637L415 729.5L425 739.5L428 741Z" fill="transparent" stroke="white" stroke-width="8" data-zone-target="clickableZone" data-zone-id="3" class="<%= 'highlighted-zone' if @training.zone.id == 3 %>"/>
+        <path d="M227 376H141.5L214.5 184.5L217.5 186L225.5 191.5L239.5 201.5L262 221L284 244.5L303.5 268L318.5 290.5L326.5 304L334.5 320L340.5 334L346 348L352 364.5L358.5 387.5L363.5 413.5L366 432L368 455V468H227V376Z" fill="transparent" stroke="white" stroke-width="8" data-zone-target="clickableZone" data-zone-id="6" class="<%= 'highlighted-zone' if @training.zone.id == 6 %>"/>
+        <path d="M227 556.5H141.5L214.5 748L217.5 746.5L225.5 741L239.5 731L262 711.5L284 688L303.5 664.5L318.5 642L326.5 628.5L334.5 612.5L340.5 598.5L346 584.5L352 568L358.5 545L363.5 519L366 500.5L368 477.5V464.5H227V556.5Z" fill="transparent" stroke="white" stroke-width="8" data-zone-target="clickableZone" data-zone-id="10" class="<%= 'highlighted-zone' if @training.zone.id == 10 %>"/>
+        <rect x="2" y="376" width="225" height="180" fill="transparent" stroke="white" stroke-width="8" data-zone-target="clickableZone" data-zone-id="1" class="<%= 'highlighted-zone' if @training.zone.id == 1 %>"/>
+        <mask id="path-12-inside-1_172_114" fill="transparent">
+          <path d="M227 558C202.6 558 179.2 548.307 161.946 531.054C144.693 513.8 135 490.4 135 466C135 441.6 144.693 418.2 161.946 400.946C179.2 383.693 202.6 374 227 374V466L227 558Z"/>
+        </mask>
+        <path d="M227 558C202.6 558 179.2 548.307 161.946 531.054C144.693 513.8 135 490.4 135 466C135 441.6 144.693 418.2 161.946 400.946C179.2 383.693 202.6 374 227 374V466L227 558Z" stroke="white" stroke-width="8" stroke-dasharray="2 2" mask="url(#path-12-inside-1_172_114)"/>
+        <mask id="path-13-inside-2_172_114" fill="transparent">
+          <path d="M227 374C251.4 374 274.8 383.693 292.054 400.946C309.307 418.2 319 441.6 319 466C319 490.4 309.307 513.8 292.054 531.054C274.8 548.307 251.4 558 227 558V466L227 374Z"/>
+        </mask>
+        <path d="M227 374C251.4 374 274.8 383.693 292.054 400.946C309.307 418.2 319 441.6 319 466C319 490.4 309.307 513.8 292.054 531.054C274.8 548.307 251.4 558 227 558V466L227 374Z" stroke="white" stroke-width="8" mask="url(#path-13-inside-2_172_114)"/>
+        <circle cx="36" cy="464" r="11.5" stroke="white" stroke-width="8"/>
+        <line x1="24.5" y1="434" x2="24.5" y2="496" stroke="white" stroke-width="8"/>
+        <path d="M262 464C262 483.959 246.479 500 227.5 500C208.521 500 193 483.959 193 464C193 444.041 208.521 428 227.5 428C246.479 428 262 444.041 262 464Z" fill="transparent" stroke="white" stroke-width="8" data-zone-target="clickableZone" data-zone-id="2" class="<%= 'highlighted-zone' if @training.zone.id == 2 %>"/>
+        <defs>
+          <clipPath id="clip0_172_114">
+            <rect width="430" height="932" fill="transparent"/>
+          </clipPath>
+        </defs>
+      </svg>
+    </div>
+    <div class="flex-grow-1 carte-scrore">
+      <div class="m-3">
+        <h4><%= @training.zone.description %></h4>
+      </div>
+      <div class="d-flex flex-wrap justify-content-start">
+        <div class="test ms-3 d-flex flex-column justify-content-center align-items-center position-relative mb-2">
+          <div class="text-white">
+            <%= @training.shot_made %>
+          </div>
+          <div class="text-white">
+            <%= @training.shot_total %>
+          </div>
+          <div class="position-absolute start-50 translate-middle border-top border-1s border-white" style="width: 80%; top: 50%;"></div>
+        </div>
+      </div>
+      <div class="note">
+        <div class="score ms-3">
+          <%= @training.shooting_efficiency.to_i %>%
+        </div>
+        <div class="text ms-3">
+          <h4>de réussite</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="position: fixed; bottom: 0; width: 100%;">
+  <%= render 'shared/footnav' %>
+</div>
