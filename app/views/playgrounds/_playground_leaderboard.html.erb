@@ -1,0 +1,22 @@
+<h1>Playground Leaderboard</h1>
+
+<table class="table table-striped rounded-table">
+  <thead class="fs-3">
+    <tr class="text-center">
+      <th scope="col" class="py-2"><strong>Rang</strong></th>
+      <th scope="col" class="py-2"><strong>Nom</strong></th>
+      <th scope="col" class="py-2"><strong>Zone</strong></th>
+      <th scope="col" class="py-2"><strong>Précision</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @playground_leaderboard.each_with_index do |training, index| %>
+      <tr class="text-center">
+        <th scope="row"><%= index + 1 %></th>
+        <td><%= link_to "#{training.user.username}", profil_path(training.user), class:"text-dark text-decoration-none" %></td>
+        <td><strong><%= training.zone.name %></strong></td>
+        <td><strong><%= (training.shooting_efficiency).round(1) %>%</strong></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

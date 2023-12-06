@@ -1,2 +1,18 @@
-<h2><%= playground.name %></h2>
-<p><%= playground.address %></p>
+<style>
+  .custom-link {
+    text-decoration: none;
+    color: black;
+  }
+  :focus {
+    outline: none;
+  }
+</style>
+<h2 class="text-decoration-none text-dark"><strong><%= link_to "#{playground.name}", playground_path(playground), class: "custom-link" %></strong></h2>
+<h6><strong><%= link_to "#{playground.address}", playground_path(playground), class: "custom-link" %></strong></h3>
+
+<% unless current_user.favorite_playgrounds.map(&:playground_id).include?(playground.id) %>
+  <%= simple_form_for FavoritePlayground.new, remote: true do |f| %>
+    <%= f.hidden_field :playground_id, value: playground.id %>
+    <%= f.submit "Favori", class: "custom-button-reservation" %>
+  <% end %>
+<% end %>

@@ -4,6 +4,15 @@ Rails.application.routes.draw do
   root to: "pages#home"
   resources :trainings
   resources :playgrounds
+  resources :playgrounds do
+    member do
+      get 'check_favorite'
+    end
+  end
+  resources :favorite_playgrounds do
+    post :add_to_favorites, on: :collection
+  end
+  resources :favorite_playgrounds, only: [:create, :destroy]
   resources :profils do
     member do
       post 'follow'
