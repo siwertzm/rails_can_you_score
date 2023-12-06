@@ -16,10 +16,10 @@
                 <thead class="table-light">
                   <tr class="">
                     <th scope="col" class="">
-                      <h3>Zone</h3>
+                      <h3>Tirs</h3>
                     </th>
                     <th scope="col" class="">
-                      <h3>Paniers</h3>
+                      <h3>Score</h3>
                     </th>
                     <th scope="col" class="">
                       <h3>Réussite</h3>
@@ -30,7 +30,11 @@
                   <% current_user.trainings.order(created_at: :desc).limit(3).each do |t| %>
                     <tr>
                       <th scope="row">
-                        <%= t.zone.name %>
+                        <% if t.zone.position == "Lancer Franc" || t.zone.position == "Raquette" %>
+                        <%= t.zone.position %>
+                        <% else %>
+                        <%= t.zone.point %> points
+                        <% end %>
                       </th>
                       <th scope="row">
                         <%= t.shot_made %> / <%= t.shot_total %>
