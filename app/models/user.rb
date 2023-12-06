@@ -13,6 +13,10 @@ class User < ApplicationRecord
   has_many :following_users, foreign_key: :followed_id, class_name: 'Follow'
   has_many :followers, through: :following_users, source: :follower
 
+  has_many :favorite_playgrounds, dependent: :destroy
+
+  has_many :playgrounds, through: :favorite_playgrounds
+
   has_many :notifs, dependent: :destroy
 
   def average_shooting_efficiency
@@ -20,6 +24,13 @@ class User < ApplicationRecord
 
     total_efficiency = trainings.sum { |training| training.shooting_efficiency }
     total_efficiency / trainings.size
+  end
+
+  def average_shooting_efficiency_by_zone(zone_id)
+    return 0 if trainings.empty?
+
+    total = trainings.where(zone_id: zone_id).sum(:shot_made).to_f
+    ((total / trainings.where(zone_id: zone_id).sum(:shot_total).to_i) * 100).to_i
   end
 
   validates :username, presence: true, uniqueness: true, length: { maximum: 20 }

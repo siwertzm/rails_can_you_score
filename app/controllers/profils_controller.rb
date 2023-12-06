@@ -21,24 +21,11 @@ class ProfilsController < ApplicationController
     redirect_to profil_path(@profil)
   end
 
-  def shooting_efficiency(training)
-    return 0 if training.shot_total.zero?
-
-    (training.shot_made.to_f / training.shot_total) * 100
-  end
-
   def best_user_trainings(profil, number_of_trainings)
     best_trainings = profil.trainings.limit(number_of_trainings).sort_by do |training|
       -shooting_efficiency(training)
     end
     puts "Best Trainings: #{best_trainings.inspect}"
     best_trainings
-  end
-
-  def average_shooting_efficiency(user)
-    return 0 if user.trainings.empty?
-
-    total_efficiency = user.trainings.sum { |training| shooting_efficiency(training) }
-    total_efficiency.to_f / user.trainings.size
   end
 end

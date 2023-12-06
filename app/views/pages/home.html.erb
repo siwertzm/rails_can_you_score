@@ -1,55 +1,58 @@
-<div class="tot">
-  <% if current_user %>
-  <script src="application.js"></script>
-  <script src="start_training.js"></script>
-  <%= render "shared/navbar" %>
-  <div class="mb-5 pb-5">
-    <div id="basketball-container" class="basketball">
-      <%= link_to "debut", new_training_path, class:"button-start text-decoration-none text-white" %>
+<% if current_user %>
+  <div class="tot">
+    <%= render "shared/navbar" %>
+    <div class="mb-5 pb-5">
+      <div id="basketball-container" class="basketball">
+        <%= link_to "Commencer une session", new_training_path, class:"button-start text-decoration-none text-white" %>
 
-      <% if current_user %>
-        <div class="text-center px-3">
-          <div class="d-flex flex-column justify-content-center mt-5">
-            <div class="mt-5">
-              <h1 class="mt-4 pb-2"><strong>3 dernières sessions</strong></h1>
-              <table class="table table-striped rounded-table border border-4">
-                <thead class="table-light">
-                  <tr class="">
-                    <th scope="col" class="">
-                      <h3>Zone</h3>
-                    </th>
-                    <th scope="col" class="">
-                      <h3>Paniers</h3>
-                    </th>
-                    <th scope="col" class="">
-                      <h3>Réussite</h3>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody class="table-group-divider">
-                  <% current_user.trainings.order(created_at: :desc).limit(3).each do |t| %>
-                    <tr>
-                      <th scope="row">
-                        <%= t.zone.name %>
+        <% if current_user %>
+          <div class="text-center px-3">
+            <div class="d-flex flex-column justify-content-center mt-5">
+              <div class="mt-5">
+                <h1 class="mt-4 pb-2"><strong>3 dernières sessions</strong></h1>
+                <table class="table table-striped rounded-table border border-4">
+                  <thead class="table-light">
+                    <tr class="">
+                      <th scope="col" class="">
+                        <h3>Tirs</h3>
                       </th>
-                      <th scope="row">
-                        <%= t.shot_made %> / <%= t.shot_total %>
+                      <th scope="col" class="">
+                        <h3>Score</h3>
                       </th>
-                      <th scope="row">
-                        <%= (t.shot_made.to_f / t.shot_total.to_f * 100).round(1) %>%
+                      <th scope="col" class="">
+                        <h3>Réussite</h3>
                       </th>
                     </tr>
-                  <% end %>
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody class="table-group-divider">
+                    <% current_user.trainings.order(created_at: :desc).limit(3).each do |t| %>
+                      <tr>
+                        <th scope="row">
+                          <% if t.zone.position == "Lancer Franc" || t.zone.position == "Raquette" %>
+                            <%= t.zone.position %>
+                          <% else %>
+                            <%= t.zone.point %> points
+                          <% end %>
+                        </th>
+                        <th scope="row">
+                          <%= t.shot_made %> / <%= t.shot_total %>
+                        </th>
+                        <th scope="row">
+                          <%= (t.shot_made.to_f / t.shot_total.to_f * 100).round(1) %>%
+                        </th>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
-  </div>
-  <div style="position: fixed; bottom: 0; width: 100%;">
-    <%= render 'shared/footnav' %>
+    <div style="position: fixed; bottom: 0; width: 100%;">
+      <%= render 'shared/footnav' %>
+    </div>
   </div>
 <% else %>
   <div class="homepage">
@@ -63,4 +66,3 @@
     </div>
   </div>
 <% end %>
-</div>

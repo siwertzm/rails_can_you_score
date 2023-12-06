@@ -13,7 +13,7 @@ class PagesController < ApplicationController
 
   def zone_info
     @zone = Zone.find(params[:id])
-    render json: {name: @zone.name, description: @zone.description}
+    render json: { name: @zone.name, description: @zone.description }
   end
 
   def stats

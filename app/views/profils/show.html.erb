@@ -30,7 +30,10 @@
 
 <div class="text-center" style="margin-top: 20px;">
   <div>
-    <h2 style="color: #454545;">Average efficiency: <strong><%= @profil.average_shooting_efficiency.to_i %>%</strong></h2>
+    <h2 style="color: #454545;">Réussite globale: <strong></h2>
+    <div class="score ms-3">
+      <%= @profil.average_shooting_efficiency.to_i %>%</strong>
+   </div>
   </div>
 </div>
 
@@ -80,7 +83,7 @@
           </div>
           <div class="flex-grow-1 carte-scrore">
             <% if @profil == current_user %>
-              <%= link_to stats_page_path(current_user) do %>
+              <%= link_to stats_page_path(current_user, params: { zone_id: zone.id }) do %>
                 <div class="fleche"><i class="fas fa-angle-right"></i></div>
               <% end %>
             <% end %>

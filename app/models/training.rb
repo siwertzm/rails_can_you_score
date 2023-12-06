@@ -1,4 +1,5 @@
 class Training < ApplicationRecord
+  attr_accessor :use_favorite_playground
   belongs_to :user, dependent: :destroy
   belongs_to :zone
   belongs_to :playground, optional: true
