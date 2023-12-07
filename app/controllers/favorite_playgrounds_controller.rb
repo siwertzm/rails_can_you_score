@@ -8,7 +8,7 @@ class FavoritePlaygroundsController < ApplicationController
 
   if @favorite_playground.save
     respond_to do |format|
-      format.html { redirect_to root_path, notice: 'Playground added to favorites.' }
+      format.html { redirect_to playgrounds_path, notice: 'Terrain mis en favori.' }
       format.js   # Render create.js.erb or create.js.haml
     end
   else
@@ -20,7 +20,7 @@ class FavoritePlaygroundsController < ApplicationController
   end
 
   def destroy
-    favorite_playground = current_user.favorite_playgrounds.find(params[:id])
+    favorite_playground = FavoritePlayground.find_by(playground_id: params[:id], user: current_user)
     favorite_playground.destroy
     redirect_to root_path, notice: 'Playground removed from favorites.'
   end
