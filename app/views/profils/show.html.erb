@@ -2,7 +2,7 @@
 <%= render "shared/navbar" %>
 <div class="container">
   <div class="banner" style="background: url(<%= @profil.banner.attached? ? cl_image_path(@profil.banner.key) : asset_path('nba_banner.png') %>) no-repeat center center; background-size: cover; height: 200px; position: relative; border-top-right-radius: 10px; border-top-left-radius: 10px;">
-    <div style="border-radius: 50%; width: 120px; height: 120px; background-color: white; position: absolute; bottom: -60px; left: 50%; transform: translateX(-50%);">
+    <div style="overflow: hidden; border-radius: 50%; width: 120px; height: 120px; background-color: white; position: absolute; bottom: -60px; left: 50%; transform: translateX(-50%);">
       <% if @profil.photo.attached? == true  %>
         <%= cl_image_tag @profil.photo.key, height: 120, width: 120, radius: 50, crop: :fill, gravity: :face %>
       <% else %>
@@ -21,14 +21,14 @@
   <% end %>
 </div>
 <div class="mt-4 p-4">
-  <div class="text-center" style= "margin-top: 50px">
+  <div class="text-center" style="margin-top:  <%= @profil == current_user ? "40px" : "0px" %>;">
   <h1 class="text">
     <strong><%= @profil.username %></strong><% if current_user == @profil %><%= link_to edit_user_registration_path, class: 'btn btn-default', style: 'margin-left: 0; color:#454545' do %><i class="fas fa-pen"></i><% end %><% end %>
   </h1>
   </div>
 </div>
-<div class="container">
-  <div class="card my-2">
+<div class="mx-4">
+  <div class="card my-2 carte-jouer shadow">
     <div class="card-body text-center">
       <div>
         <h2 style="color: #454545;"><strong>Réussite globale: </strong></h2>
@@ -60,7 +60,7 @@
 
 
 <div class="d-flex flex-column pb-5 mb-5">
-  <% @zones.each do |zone| %>
+  <% @zones.drop(1).each do |zone| %>
     <% if @profil.trainings.where(zone_id: zone.id) != [] %>
       <div class="m-4 shadow carte-jouer">
         <div class="d-flex">
@@ -140,9 +140,11 @@
       </div>
     <% end %>
   <% end %>
-  <div class="text-center pb-2">
-    <%= link_to "se déconnecter", destroy_user_session_path, data: {turbo_method: :delete}, class: "text-danger" %>
-  </div>
+  <% if @profil == current_user %>
+    <div class="text-center pb-2">
+      <%= link_to "se déconnecter", destroy_user_session_path, data: {turbo_method: :delete}, class: "text-danger" %>
+    </div>
+  <% end %>
 </div>
 
 

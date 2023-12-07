@@ -15,11 +15,11 @@
 <div data-controller="toggle">
   <div class="cacheRaph"></div>
   <canvas id="statsChart" width="410" height="300" class="me-3"></canvas>
-  <div class="position-relative">
+  <div class="position-relative shadow">
     <p class="text-start ps-4 my-3 py-2 border-top border-bottom"><strong>Détails</strong></p>
     <i class="fas fa-angle-down position-absolute end-0 top-0 pt-3 pe-3" data-toggle-target="toggleable"></i>
   </div>
-  <div class="d-flex flex-column d-none" data-toggle-target="tablemoi">
+  <div class="d-flex flex-column d-none pb-5 mb-5" data-toggle-target="tablemoi">
     <table class="table table-striped text-center">
       <thead>
         <tr class="text-center">
@@ -47,10 +47,10 @@
 
   </div>
   <% if @followers_trainings.present? %>
-    <h2 class="text-center my-3 py-2 border-top border-bottom"><strong>Stats des copains</strong></h2>
+    <h2 class="text-center my-3 py-2 border-top border-bottom"><strong>Followers</strong></h2>
     <canvas id="followersChart" width="410" height="300" class="me-3"></canvas>
-    <div class="position-relative pb-5 mb-5" data-toggle-target="titre">
-      <p class="text-start ps-4 my-3 py-2 border-top border-bottom"><strong>Détails</strong></p>
+    <div class="position-relative shadow pb-5 mb-5" data-toggle-target="titre">
+      <p class="text-start ps-4 my-3 py-2 border-top border-bottom shadow"><strong>Détails</strong></p>
       <i class="fas fa-angle-down position-absolute end-0 top-0 pt-3 pe-3" data-toggle-target="toggleable2"></i>
     </div>
     <div class="d-flex flex-column d-none pb-5 mb-5" data-toggle-target="tablemoi2">

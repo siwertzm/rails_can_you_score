@@ -33,10 +33,11 @@
   display: flex;
   align-items: center;
   margin-bottom: 8px;
-  background: white;
+  background: $base-gris;
   padding: 7px 16px;
-  border: 1px solid rgb(235,235,235);
+  border: 1px solid $base-gris;
   border-radius: 10px;
+  color: white;
 }
 
 .notification .notification-content {
@@ -174,4 +175,8 @@
 }
 .navigation #ul1 .list:nth-child(5).active ~ .indicator{
   transform: translateX(calc(70px * 4));
+}
+
+.mini{
+  margin-top: -20px;
 }

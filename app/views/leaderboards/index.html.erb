@@ -14,9 +14,9 @@
       <%= label_tag "user_id", "" %>
       <%= text_field_tag :username, params[:username], placeholder: "Nom", class: "form-control", style: "width: 35%; margin-left: 10px;" %>
       <%= label_tag "zone_id", "" %>
-      <%= select_tag(:zone_id, options_for_select([["Tout", ""], ["Raquette", 1], ["Lancer franc", 2], ["3 points de face", 3], ["2 points fond droite", 4], ["3 points fond droite", 5], ["2 points angle droite", 6], ["3 points angle droite", 7], ["2 points fond gauche", 8], ["3 points fond gauche", 9], ["2 points fond gauche", 10], ["3 points angle gauche", 11]], params[:zone_id]), class: "form-control", style: "width: 25%; margin-left: 10px;") %>
+      <%= select_tag(:zone_id, grouped_options_for_select([["Principaux", [["Tout", ""], ["2 Pts", 20], ["3 Pts", 30], ["Lancer franc", 2]]], ["Détails", [["Raquette", 1], ["3 points de face", 3], ["2 points fond droite", 4], ["3 points fond droite", 5], ["2 points angle droite", 6], ["3 points angle droite", 7], ["2 points fond gauche", 8], ["3 points fond gauche", 9], ["2 points fond gauche", 10], ["3 points angle gauche", 11]]]], params[:zone_id]), class: "form-control", style: "width: 25%; margin-left: 10px;") %>
       <%= submit_tag("Filtrer", class: "custom-button") %>
-      <%= link_to '<i class="fas fa-xmark fa-1x"></i>'.html_safe, leaderboards_path, class: "custom-button me-2" %>
+      <%= link_to '<i class="fas fa-xmark fa-1x"></i>'.html_safe, leaderboards_path, class: "btn" %>
     </div>
   <% end %>
 </div>
@@ -33,17 +33,22 @@
       </tr>
     </thead>
     <tbody>
+
       <% @profiles.each_with_index do |user, index| %>
         <tr class="text-center">
-          <th scope="row " class="<%= top_players_class(index) %>"><%= index + 1 %></th>
-          <td class="<%= top_players_class(index) %>"><%= link_to "#{user.username}", profil_path(user), class:"text-dark text-decoration-none #{top_players_class(index)}" %></td>
-          <% if params[:zone_id].present? %>
+          <th scope="row" class="<%= top_players_class(index) %>"><%= index + 1 %></th>
+          <td class="<%= top_players_class(index) %>"><%= link_to "#{user.username}", profil_path(user), class:"text-dark #{top_players_class(index)}" %></td>
+          <% if (params[:zone_id].present? && !["20", "30"].include?(params[:zone_id])) %>
             <td class="<%= top_players_class(index) %>"><%= Zone.find(params[:zone_id]).name %></td>
+          <% elsif params[:zone_id].present? && ["20", "30"].include?(params[:zone_id]) %>
+            <td class="<%= top_players_class(index) %>"><%= params[:zone_id].to_i / 10 %> pts</td>
           <% else %>
             <td><strong>All</strong></td>
           <% end %>
-          <% if params[:zone_id].present? %>
+          <% if params[:zone_id].present? && !["20", "30"].include?(params[:zone_id]) %>
             <td class="<%= top_players_class(index) %>"><strong><%= user.average_shooting_efficiency_by_zone(params[:zone_id]).round(1) %> %</strong></td>
+          <% elsif params[:zone_id].present? && ["20", "30"].include?(params[:zone_id]) %>
+            <td class="<%= top_players_class(index) %>"><strong><%= user.average_shooting_efficiency_by_group(params[:zone_id]).round(1) %> %</strong></td>
           <% else %>
             <td class="<%= top_players_class(index) %>"><strong><%= user.average_shooting_efficiency.round(1) %> %</strong></td>
           <% end %>
