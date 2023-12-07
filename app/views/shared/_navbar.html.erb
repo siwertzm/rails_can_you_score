@@ -8,7 +8,7 @@
         <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNotif" aria-controls="navbarNotif" aria-expanded="false" aria-label="Toggle navigation">
           <div class="position-relative">
             <span class="fas fa-bell"></span>
-            <% if current_user.followees.each { |f| f.notifs != [] }%>
+            <% if current_user.followees.each { |f| f.notifs == [] }%>
               <div class="pastille"></div>
             <% end %>
           </div>

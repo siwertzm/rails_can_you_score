@@ -22,7 +22,7 @@ class TrainingsController < ApplicationController
       @notif = Notif.new(user: current_user, training: @training)
       @notif.save!
       flash[:notice] = "Session enregistrée avec succès."
-      redirect_to root_path
+      redirect_to new_training_path
     else
       flash[:alert] = "Le nombre de tirs réussis doit être inférieur au nombre total de tirs."
       render :new, status: :unprocessable_entity
@@ -41,6 +41,6 @@ class TrainingsController < ApplicationController
   private
 
   def training_params
-    params.require(:training).permit(:shot_made, :shot_total, :zone_id)
+    params.require(:training).permit(:shot_made, :shot_total, :zone_id, :playground_id)
   end
 end

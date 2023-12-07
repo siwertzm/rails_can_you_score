@@ -1,0 +1,43 @@
+<div class="d-flex" style="width: 100%;">
+  <%= form_tag(playground_path(@playground), method: :get, class: "mb-4") do %>
+    <div class="form-group d-flex justify-content-start">
+          <%= label_tag "user_id", "" %>
+          <%= text_field_tag :username, params[:username], placeholder: "Nom", class: "form-control", style: "width: 35%; margin-left: 10px;" %>
+          <%= label_tag "zone_id", "" %>
+          <%= select_tag(:zone_id, options_for_select([["Tout", ""], ["Raquette", 1], ["Lancer franc", 2], ["3 points de face", 3], ["2 points fond droite", 4], ["3 points fond droite", 5], ["2 points angle droite", 6], ["3 points angle droite", 7], ["2 points fond gauche", 8], ["3 points fond gauche", 9], ["2 points fond gauche", 10], ["3 points angle gauche", 11]], params[:zone_id]), class: "form-control", style: "width: 25%; margin-left: 10px;") %>
+          <%= submit_tag("Filtrer", class: "custom-button") %>
+          <%= link_to '<i class="fas fa-xmark fa-1x"></i>'.html_safe, leaderboards_path, class: "custom-button me-2" %>
+  <% end %>
+</div>
+
+<div class="d-flex justify-content-center align-item-center mb-5 pb-5">
+  <table class="table table-striped rounded-table">
+    <thead class="fs-3">
+      <tr class="text-center">
+        <th scope="col" class="py-2"><strong>Rang</strong></th>
+        <th scope="col" class="py-2"><strong>Nom</strong></th>
+        <th scope="col" class="py-2"><strong>Zone</strong></th>
+        <th scope="col" class="py-2"><strong>Précision</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @profiles.each_with_index do |user, index| %>
+        <tr class="text-center">
+          <th scope="row"><%= index + 1 %></th>
+          <td><%= link_to "#{user.username}", profil_path(user), class:"text-dark text-decoration-none" %></td>
+          <% if params[:zone_id].present? %>
+            <td><%= Zone.find(params[:zone_id]).name %></td>
+          <% else %>
+            <td><strong>All</strong></td>
+          <% end %>
+          <% if params[:zone_id].present? %>
+            <td><strong><%= user.average_shooting_efficiency_by_zone(params[:zone_id]).round(1) %> %</strong></td>
+          <% else %>
+            <td><strong><%= user.average_shooting_efficiency.round(1) %> %</strong></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+</div>
