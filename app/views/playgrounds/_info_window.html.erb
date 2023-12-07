@@ -1,18 +1,75 @@
 <style>
   .custom-link {
     text-decoration: none;
-    color: black;
+    color: black; /* Change la couleur du texte des liens */
+  }
+  .playground-name {
+    color: #FF3115; /* Change la couleur du texte du nom du terrain */
   }
   :focus {
     outline: none;
   }
-</style>
-<h2 class="text-decoration-none text-dark"><strong><%= link_to "#{playground.name}", playground_path(playground), class: "custom-link" %></strong></h2>
-<h6><strong><%= link_to "#{playground.address}", playground_path(playground), class: "custom-link" %></strong></h3>
+  .info-content {
+    display: flex;
+    align-items: center; /* Aligne le texte au centre avec l'image */
+  }
+  .info-content img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    margin-right: 10px;
+  }
 
-<% unless current_user.favorite_playgrounds.map(&:playground_id).include?(playground.id) %>
-  <%= simple_form_for FavoritePlayground.new, remote: true do |f| %>
-    <%= f.hidden_field :playground_id, value: playground.id %>
-    <%= f.submit "Favori", class: "custom-button-reservation" %>
-  <% end %>
+  .info-window {
+  position: relative; /* Ajoute une position relative à la fenêtre d'information */
+}
+
+.favorite-button {
+  position: absolute; /* Positionne le bouton "Favori" absolument par rapport à la fenêtre d'information */
+  top: 0; /* Positionne le bouton "Favori" en haut */
+  left: 0; /* Positionne le bouton "Favori" à droite */
+}
+
+.favorite-button .btn {
+  padding: 0; /* Supprime le padding du bouton */
+  margin: 0; /* Supprime la marge du bouton */
+}
+
+.favorite-button .fas {
+  padding: 0; /* Supprime le padding de l'icône */
+  margin: 0; /* Supprime la marge de l'icône */
+}
+
+.favorite-form {
+  margin-left: 2px; /* Décale le formulaire légèrement vers la droite */
+  margin-top: 3px; /* Décale le formulaire légèrement vers le bas */
+}
+
+.favorite-button a {
+  margin-left: 7px; /* Décale le lien de l'étoile rouge légèrement vers la droite */
+}
+</style>
+
+<h2 class="text-decoration-none text-dark" style="margin-bottom: 20px; margin-top: 20px;"><strong><%= link_to "#{playground.name}", playground_path(playground), class: "custom-link playground-name", style: "text-decoration: underline;" %></strong></h2>
+
+<div class="info-content">
+  <img src="<%= playground.court %>" alt="Playground Picture">
+  <h6><strong><%= link_to "#{playground.address}", playground_path(playground), class: "custom-link" %></strong></h3>
+</div>
+
+<div class="favorite-button">
+<div class= "favorite-form">
+  <% if current_user.favorite_playgrounds.map(&:playground_id).include?(playground.id) %>
+    <%= link_to "<i class='fas fa-star' style='color: #FF3115;'></i>".html_safe, favorite_playground_path(playground), data: { turbo_method: :delete }%>
+    </div>
+  <% else %>
+    <%= simple_form_for FavoritePlayground.new, remote: true, html: { class: "favorite-form" } do |f| %>
+  <%= f.hidden_field :playground_id, value: playground.id %>
+  <%= f.submit "", class: "btn btn-link", style: "background: transparent; border: none; position: absolute; width: 100%; height: 100%; z-index: 1;" %>
+  <span class="fa-stack" style="font-size: 1.1em; position: relative;">
+    <i class="fas fa-star fa-stack-1x" style="color: white;"></i>
+    <i class="far fa-star fa-stack-1x" style="color: #FF3115;"></i>
+  </span>
 <% end %>
+  <% end %>
+</div>
