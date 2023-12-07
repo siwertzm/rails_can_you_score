@@ -1,4 +1,10 @@
 <!-- app/views/leaderboards/index.html.erb -->
+<style>
+.form-control:focus {
+  border-color: black;
+  box-shadow: none;
+}
+</style>
 <%= render "shared/navbar" %>
 <h1 class="text-center mt-3 mb-3">Classement</h1>
 
@@ -30,7 +36,7 @@
       <% @profiles.each_with_index do |user, index| %>
         <tr class="text-center">
           <th scope="row"><%= index + 1 %></th>
-          <td ><%= link_to "#{user.username}", profil_path(user), class:"text-dark" %></td>
+          <td ><%= link_to "#{user.username}", profil_path(user), class:"text-dark text-decoration-none" %></td>
           <% if params[:zone_id].present? %>
             <td><%= Zone.find(params[:zone_id]).name %></td>
           <% else %>
