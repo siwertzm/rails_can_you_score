@@ -118,9 +118,11 @@
       </div>
     <% end %>
   <% end %>
-  <div class="text-center pb-2">
-    <%= link_to "se déconnecter", destroy_user_session_path, data: {turbo_method: :delete}, class: "text-danger" %>
-  </div>
+  <% if @profil == current_user %>
+    <div class="text-center pb-2">
+      <%= link_to "se déconnecter", destroy_user_session_path, data: {turbo_method: :delete}, class: "text-danger" %>
+    </div>
+  <% end %>
 </div>
 
 
