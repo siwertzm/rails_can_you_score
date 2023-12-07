@@ -2,20 +2,17 @@
   <%= f.input :zone_id, value: "", as: :hidden, input_html: { data: { zone_target: "zoneId" } } %>
   <%= f.input :shot_made, label: false, input_html: { class: 'input-box', inputmode: 'numeric' } %>
   <p class="division"></p>
-
-  <%= f.input :shot_total, label: false, input_html: { class: 'input-box', inputmode: 'numeric'  }  %>
-
+  <%= f.input :shot_total, label: false, input_html: { class: 'input-box', inputmode: 'numeric' } %>
   <% if current_user.favorite_playgrounds.present? %>
-    <% favorite_playground_name = current_user.favorite_playgrounds.first.playground.short_name %>
-    <% training.use_favorite_playground = true %>
+    <% favorite_playground = current_user.favorite_playgrounds.first.playground %>
+    <%= f.input :playground_id, as: :hidden, input_html: { value: favorite_playground.id, selected: true } %>
     <div class="d-flex justify-content-center align-items-center">
-    <i class="fa-solid fa-location-dot m-2"></i>
-    <%= "#{favorite_playground_name}" %>
+      <i class="fa-solid fa-location-dot m-2"></i>
+      <%= "#{favorite_playground.short_name}" %>
     </div>
   <% else %>
     <div>Aucun terrain</div>
   <% end %>
-
   <%= f.submit "Valider", class: "custom-button mt-3" %>
 <% end %>
 
