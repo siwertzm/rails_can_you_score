@@ -18,6 +18,8 @@ class User < ApplicationRecord
   has_many :playgrounds, through: :favorite_playgrounds
 
   has_many :notifs, dependent: :destroy
+  has_many :followee_notifs, through: :followees, source: :notifs
+
 
   def average_shooting_efficiency
     return 0 if trainings.empty?

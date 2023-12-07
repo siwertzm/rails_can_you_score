@@ -8,7 +8,7 @@
         <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNotif" aria-controls="navbarNotif" aria-expanded="false" aria-label="Toggle navigation">
           <div class="position-relative">
             <span class="fas fa-bell"></span>
-            <% if current_user.followees.each { |f| f.notifs == [] }%>
+            <% if current_user.followee_notifs.present? %>
               <div class="pastille"></div>
             <% end %>
           </div>
@@ -17,13 +17,19 @@
         <div class="collapse navbar-collapse mt-4 pt-2" id="navbarNotif">
           <ul class="navbar-nav me-auto">
             <li class="nav-item">
-              <% current_user.followees.each do |f| %>
-                <% f.notifs.take(3).each do |n| %>
-                  <div class="notification">
+              <% if current_user.followee_notifs.present? %>
+                <p class="text-end mini">delete all</p>
+              <% end %>
+              <% current_user.followee_notifs.take(3).each do |n| %>
+                  <div class="notification shadow">
                     <% if n.user.photo.attached? == true  %>
-                      <%= cl_image_tag n.user.photo.key, class: "avatar-large" %>
+                      <%= link_to profil_path(n.user_id) do %>
+                        <%= cl_image_tag n.user.photo.key, class: "avatar-large" %>
+                      <% end %>
                     <% else %>
-                      <%= cl_image_tag("uk7594qzhdhrmsmdfnbb", class: "avatar-large" ) %>
+                      <%= link_to profil_path(n.user_id) do %>
+                        <%= cl_image_tag("uk7594qzhdhrmsmdfnbb", class: "avatar-large" ) %>
+                      <% end %>
                     <% end %>
                     <div class="notification-content">
                       <p><small>Session du <%= n.training.created_at.strftime("%d/%m/%y") %></small></p>
@@ -33,7 +39,6 @@
                       <%= link_to '<i class="far fa-trash-alt"></i>'.html_safe, notif_path(n), data: { turbo_method: :delete } %>
                     </div>
                   </div>
-                <% end %>
               <% end %>
             </li>
           </ul>

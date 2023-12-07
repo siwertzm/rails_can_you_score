@@ -50,7 +50,7 @@
 }
 </style>
 
-<h2 class="text-decoration-none text-dark" style="margin-bottom: 20px; margin-top: 20px;"><strong><%= link_to "#{playground.name}", playground_path(playground), class: "custom-link playground-name", style: "text-decoration: underline;" %></strong></h2>
+<h2 class="text-decoration-none text-dark pt-1" style="margin-bottom: 20px; margin-top: 20px;"><strong><%= link_to "#{playground.name}", playground_path(playground), class: "custom-link playground-name", style: "text-decoration: underline;" %></strong></h2>
 
 <div class="info-content">
   <img src="<%= playground.court %>" alt="Playground Picture">
@@ -60,7 +60,7 @@
 <div class="favorite-button">
 <div class= "favorite-form">
   <% if current_user.favorite_playgrounds.map(&:playground_id).include?(playground.id) %>
-    <%= link_to "<i class='fas fa-star' style='color: #FF3115;'></i>".html_safe, favorite_playground_path(playground), data: { turbo_method: :delete }%>
+    <%= link_to "<i class='fas fa-star' style='color: #FF3115;'></i>".html_safe, favorite_playground_path(playground), class: "fa-2x ps-1", data: { turbo_method: :delete }%>
     </div>
   <% else %>
     <%= simple_form_for FavoritePlayground.new, remote: true, html: { class: "favorite-form" } do |f| %>
@@ -68,7 +68,7 @@
   <%= f.submit "", class: "btn btn-link", style: "background: transparent; border: none; position: absolute; width: 100%; height: 100%; z-index: 1;" %>
   <span class="fa-stack" style="font-size: 1.1em; position: relative;">
     <i class="fas fa-star fa-stack-1x" style="color: white;"></i>
-    <i class="far fa-star fa-stack-1x" style="color: #FF3115;"></i>
+    <i class="far fa-star fa-2x" style="color: #FF3115;"></i>
   </span>
 <% end %>
   <% end %>
