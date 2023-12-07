@@ -43,3 +43,19 @@ $base-color: #FF3115 !default;
   margin-right: 5px !important;
   margin-bottom: 10px !important;
 }
+
+.mapboxgl-popup-content {
+  background: $base-gris !important;
+  border-radius: 10px !important;
+  box-shadow: 0 1px 5px rgba(0,0,0,.1) !important;
+  padding: 10px 10px 15px;
+  pointer-events: auto;
+  position: relative;
+}
+
+.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
+  align-self: center;
+  border-bottom: none;
+  border-top-color: $base-gris !important;
+  margin-bottom: 2rem !important;
+}

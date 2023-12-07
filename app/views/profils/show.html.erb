@@ -43,7 +43,7 @@
           <% favorite_playground = current_user.favorite_playgrounds.first.playground %>
           <%= link_to playground_path(favorite_playground), class: "text-dark text-decoration-none" do %>
             <h4 class="card-title">
-              <strong><%= favorite_playground.name %></strong>
+              <strong><i class="fa-solid fa-location-dot m-2"></i><%= favorite_playground.name %></strong>
 
             </h4>
           <% end %>

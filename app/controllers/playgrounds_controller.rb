@@ -6,8 +6,12 @@ class PlaygroundsController < ApplicationController
       {
         lat: playground.latitude,
         lng: playground.longitude,
-        info_window_html: render_to_string(partial: "info_window", locals: { playground: playground }),
-        marker_html: render_to_string(partial: "marker")
+        info_window_html: render_to_string(partial: "info_window", locals: { playground: playground }, class: "shadow"),
+        marker_html: if playground == current_user.favorite_playgrounds.first.playground
+                       render_to_string(partial: "markerfavorite")
+                     else
+                       render_to_string(partial: "marker")
+                     end
       }
     end
   end
