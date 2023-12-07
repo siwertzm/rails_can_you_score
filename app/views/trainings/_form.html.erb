@@ -3,6 +3,10 @@
   <%= f.input :shot_made, label: false, input_html: { class: 'input-box', inputmode: 'numeric' } %>
   <p class="division"></p>
   <%= f.input :shot_total, label: false, input_html: { class: 'input-box', inputmode: 'numeric' } %>
+<<<<<<< HEAD
+
+=======
+>>>>>>> master
   <% if current_user.favorite_playgrounds.present? %>
     <% favorite_playground = current_user.favorite_playgrounds.first.playground %>
     <%= f.input :playground_id, as: :hidden, input_html: { value: favorite_playground.id, selected: true } %>
@@ -15,6 +19,7 @@
   <% end %>
   <%= f.submit "Valider", class: "custom-button mt-3" %>
 <% end %>
+
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
