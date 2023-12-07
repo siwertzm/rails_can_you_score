@@ -44,7 +44,7 @@ class PagesController < ApplicationController
       @profil.trainings
              .select("*, CASE WHEN shot_total > 0 THEN (shot_made::float / shot_total) * 100 ELSE 0 END AS shooting_efficiency")
              .order(created_at: :desc)
-    end
+                                  end
   end
 
   def set_followers_trainings_data
@@ -66,11 +66,11 @@ class PagesController < ApplicationController
               .where(zone_id: zone_id)
               .select("*, CASE WHEN shot_total > 0 THEN (shot_made::float / shot_total) * 100 ELSE 0 END AS shooting_efficiency")
               .order(created_at: :desc)
-    else
-      follower.trainings
+                else
+                  follower.trainings
               .select("*, CASE WHEN shot_total > 0 THEN (shot_made::float / shot_total) * 100 ELSE 0 END AS shooting_efficiency")
               .order(created_at: :desc)
-    end
+                end
 
     trainings.compact || []
   end
