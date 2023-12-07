@@ -3,14 +3,18 @@
     <h2><strong>Statistiques</strong></h2>
 </div>
 
-<button onclick="showAllZones()" class="custom-button-small">Total</button>
-<select id="zoneFilter" onchange="filterByZone()" style="padding: 3px; font-size: 16px; border-radius: 5px;">
-  <option value="">Filtrer</option>
-  <% @profil.trainings.distinct.pluck(:zone_id).each do |zone_id| %>
-    <% zone = Zone.find(zone_id) %>
-    <option value="<%= zone.id %>"><%= zone.description %></option>
-  <% end %>
-</select>
+<div class="d-flex">
+  <select class="form-control ms-2" id="zoneFilter" onchange="filterByZone()" style= "width: 100%;" >
+    <option value="">Filtrer</option>
+    <% @profil.trainings.distinct.pluck(:zone_id).each do |zone_id| %>
+      <% zone = Zone.find(zone_id) %>
+      <option value="<%= zone.id %>"><%= zone.description %></option>
+    <% end %>
+  </select>
+  <button onclick="showAllZones()" class="custom-button me-2">Total</button>
+</div>
+
+
 <h2 class="text-center my-3 py-2 border-top border-bottom"><strong>Mes stats</strong></h2>
 <div data-controller="toggle">
   <div class="cacheRaph"></div>
