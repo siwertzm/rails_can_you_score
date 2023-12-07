@@ -85,3 +85,16 @@
   font-size: 18px;
   cursor: pointer
 }
+
+
+.top-user{
+  th:nth-child(1){
+    background-color: gold;
+  }
+  th:nth-child(2){
+    background-color: rgb(110, 110, 110);
+  }
+  th:nth-child(3){
+    background-color: rgb(255, 119, 0);
+  }
+}
