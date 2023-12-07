@@ -214,6 +214,7 @@
 
 .button-start {
   text-align: center;
+  font-size: large;
   background-color: $base-color;
   position: absolute;
   bottom: 15%;
@@ -257,6 +258,16 @@
     --bs-table-hover-color: #000;
     color: var(--bs-table-color);
     border-color: var(--bs-table-border-color);
+}
+
+.pastille{
+  position: absolute;
+  background-color: $base-color;
+  height: 10px;
+  width: 10px;
+  top: -3px;
+  right: -3px;
+  border-radius: 50%;
 }
 
 .cacheRaph{
