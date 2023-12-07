@@ -35,17 +35,17 @@
     <tbody>
       <% @profiles.each_with_index do |user, index| %>
         <tr class="text-center">
-          <th scope="row"><%= index + 1 %></th>
-          <td ><%= link_to "#{user.username}", profil_path(user), class:"text-dark text-decoration-none" %></td>
+          <th scope="row " class="<%= top_players_class(index) %>"><%= index + 1 %></th>
+          <td class="<%= top_players_class(index) %>"><%= link_to "#{user.username}", profil_path(user), class:"text-dark text-decoration-none #{top_players_class(index)}" %></td>
           <% if params[:zone_id].present? %>
-            <td><%= Zone.find(params[:zone_id]).name %></td>
+            <td class="<%= top_players_class(index) %>"><%= Zone.find(params[:zone_id]).name %></td>
           <% else %>
             <td><strong>All</strong></td>
           <% end %>
           <% if params[:zone_id].present? %>
-            <td><strong><%= user.average_shooting_efficiency_by_zone(params[:zone_id]).round(1) %> %</strong></td>
+            <td class="<%= top_players_class(index) %>"><strong><%= user.average_shooting_efficiency_by_zone(params[:zone_id]).round(1) %> %</strong></td>
           <% else %>
-            <td><strong><%= user.average_shooting_efficiency.round(1) %> %</strong></td>
+            <td class="<%= top_players_class(index) %>"><strong><%= user.average_shooting_efficiency.round(1) %> %</strong></td>
           <% end %>
         </tr>
       <% end %>
