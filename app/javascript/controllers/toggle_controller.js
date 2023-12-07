@@ -6,6 +6,8 @@ export default class extends Controller {
   connect() {
     this.toggleableTarget.addEventListener("click", () => {
       this.tablemoiTarget.classList.toggle("d-none");
+      this.titreTarget.classList.toggle("pb-5");
+      this.titreTarget.classList.toggle("mb-5");
     });
 
     this.toggleable2Target.addEventListener("click", () => {
