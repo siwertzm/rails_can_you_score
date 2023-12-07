@@ -6,10 +6,14 @@
   <%= f.input :shot_total, label: false, input_html: { class: 'input-box', inputmode: 'numeric'  }  %>
 
   <% if current_user.favorite_playgrounds.present? %>
-    <% favorite_playground_name = current_user.favorite_playgrounds.first.playground.name %>
-    <%= f.input :use_favorite_playground, as: :boolean, label: "#{favorite_playground_name}" %>
+    <% favorite_playground_name = current_user.favorite_playgrounds.first.playground.short_name %>
+    <% training.use_favorite_playground = true %>
+    <div class="d-flex justify-content-center align-items-center">
+    <i class="fa-solid fa-location-dot m-2"></i>
+    <%= "#{favorite_playground_name}" %>
+    </div>
   <% else %>
-    <%= f.input :use_favorite_playground, as: :boolean, label: 'Tirez depuis votre terrain favori' %>
+    <div>Aucun terrain</div>
   <% end %>
 
   <%= f.submit "Valider", class: "custom-button mt-3" %>

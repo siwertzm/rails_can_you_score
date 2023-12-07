@@ -8,7 +8,7 @@ class FavoritePlaygroundsController < ApplicationController
 
   if @favorite_playground.save
     respond_to do |format|
-      format.html { redirect_to root_path, notice: 'Playground added to favorites.' }
+      format.html { redirect_to playgrounds_path, notice: 'Terrain mis en favori.' }
       format.js   # Render create.js.erb or create.js.haml
     end
   else
