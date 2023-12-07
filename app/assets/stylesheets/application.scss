@@ -36,3 +36,9 @@ $base-color: #FF3115 !default;
   border-color: $base-color;
   box-shadow: 0px 0px 0px 1px $base-color;
 }
+
+.mapboxgl-popup-close-button {
+  font-size: 25px !important;
+  margin-top: 5px !important;
+  margin-right: 5px !important;
+}
