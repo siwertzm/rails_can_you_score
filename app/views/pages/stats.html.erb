@@ -5,10 +5,16 @@
 
 <div class="d-flex">
   <select class="form-control ms-2" id="zoneFilter" onchange="filterByZone()" style= "width: 100%;" >
-    <option value="">Filtrer</option>
+    <option value="">
+      <% if params[:zone_id].present? %>
+        <%= Zone.find(params[:zone_id]).description %> (<%= Zone.find(params[:zone_id]).name %>)
+      <% else %>
+        Filtrer
+      <% end %>
+    </option>
     <% @profil.trainings.distinct.pluck(:zone_id).each do |zone_id| %>
       <% zone = Zone.find(zone_id) %>
-      <option value="<%= zone.id %>"><%= zone.description %></option>
+      <option value="<%= zone.id %>"><%= zone.description %> (<%= zone.name %>)</option>
     <% end %>
   </select>
   <button onclick="showAllZones()" class="custom-button me-2">Total</button>
