@@ -17,10 +17,7 @@
         <div class="collapse navbar-collapse mt-4 pt-2" id="navbarNotif">
           <ul class="navbar-nav me-auto">
             <li class="nav-item">
-              <% if current_user.followee_notifs.present? %>
-                <p class="text-end mini">delete all</p>
-              <% end %>
-              <% current_user.followee_notifs.take(3).each do |n| %>
+              <% current_user.followee_notifs.where(follow: current_user).take(3).each do |n| %>
                   <div class="notification shadow">
                     <% if n.user.photo.attached? == true  %>
                       <%= link_to profil_path(n.user_id) do %>

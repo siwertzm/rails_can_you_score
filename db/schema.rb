@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_07_091920) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_08_144037) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -65,6 +65,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_07_091920) do
     t.bigint "training_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "follow_id"
+    t.index ["follow_id"], name: "index_notifs_on_follow_id"
     t.index ["training_id"], name: "index_notifs_on_training_id"
     t.index ["user_id"], name: "index_notifs_on_user_id"
   end
@@ -127,6 +129,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_07_091920) do
   add_foreign_key "follows", "users", column: "follower_id"
   add_foreign_key "notifs", "trainings"
   add_foreign_key "notifs", "users"
+  add_foreign_key "notifs", "users", column: "follow_id"
   add_foreign_key "trainings", "playgrounds"
   add_foreign_key "trainings", "users"
   add_foreign_key "trainings", "zones"

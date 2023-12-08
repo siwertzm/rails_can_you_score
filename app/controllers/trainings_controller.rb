@@ -17,8 +17,12 @@ class TrainingsController < ApplicationController
     end
 
     if @training.save
-      @notif = Notif.new(user: current_user, training: @training)
-      @notif.save!
+      if current_user.followers.present?
+        current_user.followers.each do |follower|
+          @notif = Notif.new(user: current_user, training: @training, follow: follower)
+          @notif.save!
+        end
+      end
       flash[:notice] = "Session enregistrée avec succès."
       redirect_to new_training_path
     else
