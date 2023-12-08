@@ -39,12 +39,11 @@
       <hr class="my-4">
 
       <div class="mt-4">
-        <% if current_user.favorite_playgrounds.present? %>
-          <% favorite_playground = current_user.favorite_playgrounds.first.playground %>
+        <% if @profil.favorite_playgrounds.present? %>
+          <% favorite_playground = @profil.favorite_playgrounds.first.playground %>
           <%= link_to playground_path(favorite_playground), class: "text-dark text-decoration-none" do %>
             <h4 class="card-title">
               <strong><i class="fa-solid fa-location-dot m-2"></i><%= favorite_playground.name %></strong>
-
             </h4>
           <% end %>
         <% else %>
