@@ -460,7 +460,7 @@ compteur = 0
     )
     training.save!
   end
-  7.times do
+  10.times do
     training = Training.create(
       shot_total: 20,
       shot_made: rand(9..10),
