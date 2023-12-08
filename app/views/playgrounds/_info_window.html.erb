@@ -60,7 +60,7 @@
 <div class="favorite-button">
 <div class= "favorite-form">
   <% if current_user.favorite_playgrounds.map(&:playground_id).include?(playground.id) %>
-    <%= link_to "<i class='fas fa-star' style='color: #FF3115; padding-top: 5px;'></i>".html_safe, playgrounds_path, class: "fa-2x ps-1 etoile", data: { turbo_method: :delete }%>
+    <%= link_to "<i class='fas fa-star' style='color: #FF3115; padding-top: 5px;'></i>".html_safe, favorite_playground_path(playground), class: "fa-2x ps-1 etoile", data: { turbo_method: :delete }%>
     </div>
   <% else %>
     <%= simple_form_for FavoritePlayground.new, remote: true, html: { class: "favorite-form" } do |f| %>

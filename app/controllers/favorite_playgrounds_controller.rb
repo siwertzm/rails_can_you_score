@@ -22,7 +22,7 @@ class FavoritePlaygroundsController < ApplicationController
   def destroy
     favorite_playground = FavoritePlayground.find_by(playground_id: params[:id], user: current_user)
     favorite_playground.destroy
-    redirect_to root_path, notice: 'Playground removed from favorites.'
+    redirect_to playgrounds_path, notice: 'Playground removed from favorites.'
   end
 
   def add_to_favorites
