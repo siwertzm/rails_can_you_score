@@ -21,15 +21,66 @@
   <% end %>
 </div>
 
+<div>
+  <div class="d-flex flex-column justify-content-center align-items-center">
+    <div class="mb-2 position-relative">
+      <div class="medal">
+        <ion-icon name="medal-outline" style="color: #ffd700;"></ion-icon>
+      </div>
+      <% if @profiles.first.photo.attached? == true  %>
+        <%= link_to profil_path(@profiles.first) do %>
+          <%= cl_image_tag @profiles.first.photo.key, class: "avatar-pod", style:"border: #ffd700 4px solid;" %>
+        <% end %>
+      <% else %>
+        <%= link_to profil_path(@profiles.first) do %>
+          <%= cl_image_tag("uk7594qzhdhrmsmdfnbb", class: "avatar-pod", style:"border: #ffd700 4px solid;" ) %>
+        <% end %>
+      <% end %>
+      <div class="oval"></div>
+    </div>
+    <div class="d-flex">
+        <div class="mx-4 position-relative">
+          <div class="medal">
+            <ion-icon name="medal-outline" style="color: #6e6e6e;"></ion-icon>
+          </div>
+          <% if @profiles[1].photo.attached? == true  %>
+            <%= link_to profil_path(@profiles[1]) do %>
+              <%= cl_image_tag @profiles[1].photo.key, class: "avatar-pod", style:"border: #6e6e6e 4px solid;" %>
+            <% end %>
+          <% else %>
+            <%= link_to profil_path(@profiles[1]) do %>
+              <%= cl_image_tag("uk7594qzhdhrmsmdfnbb", class: "avatar-pod", style:"border: #6e6e6e 4px solid;" ) %>
+            <% end %>
+          <% end %>
+          <div class="oval"></div>
+        </div>
+        <div class="mx-4 position-relative">
+          <div class="medal">
+            <ion-icon name="medal-outline" style="color: #ff7701;"></ion-icon>
+          </div>
+          <% if @profiles[2].photo.attached? == true  %>
+            <%= link_to profil_path(@profiles[2]) do %>
+              <%= cl_image_tag @profiles[2].photo.key, class: "avatar-pod", style:"border: #ff7701 4px solid;" %>
+            <% end %>
+          <% else %>
+            <%= link_to profil_path(@profiles[2]) do %>
+              <%= cl_image_tag("uk7594qzhdhrmsmdfnbb", class: "avatar-pod", style:"border: #ff7701 4px solid;" ) %>
+            <% end %>
+          <% end %>
+          <div class="oval"></div>
+        </div>
+    </div>
+  </div>
+</div>
 
-<div class="d-flex justify-content-center align-item-center mb-5 pb-5">
+<div class="d-flex justify-content-center align-item-center mt-3 mb-5 pb-5">
   <table class="table table-striped rounded-table">
     <thead class="fs-3">
       <tr class="text-center">
         <th scope="col" class="py-2 "><strong>Rang</strong></th>
         <th scope="col" class="py-2"><strong>Nom</strong></th>
         <th scope="col" class="py-2"><strong>Zone</strong></th>
-        <th scope="col" class="py-2"><strong>Précision</strong></th>
+        <th scope="col" class="py-1"><strong>Précision</strong></th>
       </tr>
     </thead>
     <tbody>

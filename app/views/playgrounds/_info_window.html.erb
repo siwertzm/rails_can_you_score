@@ -1,7 +1,7 @@
 <style>
   .custom-link {
     text-decoration: none;
-    color: black; /* Change la couleur du texte des liens */
+    color: white; /* Change la couleur du texte des liens */
   }
   .playground-name {
     color: #FF3115; /* Change la couleur du texte du nom du terrain */
@@ -54,21 +54,21 @@
 
 <div class="info-content">
   <img src="<%= playground.court %>" alt="Playground Picture">
-  <h6><strong><%= link_to "#{playground.address}", playground_path(playground), class: "custom-link" %></strong></h3>
+  <h6 class="text-white"><strong><%= link_to "#{playground.address}", playground_path(playground), class: "custom-link" %></strong></h3>
 </div>
 
 <div class="favorite-button">
 <div class= "favorite-form">
   <% if current_user.favorite_playgrounds.map(&:playground_id).include?(playground.id) %>
-    <%= link_to "<i class='fas fa-star' style='color: #FF3115;'></i>".html_safe, favorite_playground_path(playground), class: "fa-2x ps-1", data: { turbo_method: :delete }%>
+    <%= link_to "<i class='fas fa-star' style='color: #FF3115; padding-top: 5px;'></i>".html_safe, playgrounds_path, class: "fa-2x ps-1 etoile", data: { turbo_method: :delete }%>
     </div>
   <% else %>
     <%= simple_form_for FavoritePlayground.new, remote: true, html: { class: "favorite-form" } do |f| %>
   <%= f.hidden_field :playground_id, value: playground.id %>
   <%= f.submit "", class: "btn btn-link", style: "background: transparent; border: none; position: absolute; width: 100%; height: 100%; z-index: 1;" %>
   <span class="fa-stack" style="font-size: 1.1em; position: relative;">
-    <i class="fas fa-star fa-stack-1x" style="color: white;"></i>
-    <i class="far fa-star fa-2x" style="color: #FF3115;"></i>
+    <i class="fas fa-star fa-stack-1x" style="color: #3c3c44; padding-top: 5px;"></i>
+    <i class="far fa-star fa-2x" style="color: #FF3115; padding-top: 5px;"></i>
   </span>
 <% end %>
   <% end %>
